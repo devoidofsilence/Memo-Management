@@ -1,0 +1,1319 @@
+CIF Create::::
+Date::
+2023-01-08 18:59:18.907
+
+Request::
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                        <RequestHeader>
+                            <MessageKey>
+                                <RequestUUID>SBLREQ_202301081673183737_6855</RequestUUID>
+                                <ServiceRequestId>RetCustAdd</ServiceRequestId>
+                                <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                                <ChannelId>CRM</ChannelId>
+                                <LanguageId></LanguageId>
+                            </MessageKey>
+                            <RequestMessageInfo>
+                                <BankId>1801</BankId>
+                                <TimeZone></TimeZone>
+                                <EntityId></EntityId>
+                                <EntityType></EntityType>
+                                <ArmCorrelationId></ArmCorrelationId>
+                                <MessageDateTime>2023-01-08T19:00:37.362</MessageDateTime>
+                            </RequestMessageInfo>
+                        </RequestHeader>
+                    </Header>
+                    <Body>
+                        <RetCustAddRequest>
+                            <RetCustAddRq>
+                                <CustDtls>
+                                    <CustData>
+                                        <AddrDtls>
+                                            <AddrCategory>Mailing</AddrCategory>
+                                            <City>306</City>
+                                            <Country>NP</Country>
+                                            <FreeTextLabel>KHADAK</FreeTextLabel>
+                                            <HoldMailFlag>N</HoldMailFlag>
+                                            <PrefAddr>Y</PrefAddr>
+                                            <PrefFormat>STRUCTURED_FORMAT</PrefFormat>
+                                            <StartDt>2023-01-08T00:00:00.000</StartDt>
+                                            <State>3</State>
+                                            <PostalCode>44600</PostalCode>
+                                            <HouseNum>999</HouseNum>
+                                            <PremiseName>Premise</PremiseName>
+                                            <StreetNum>2</StreetNum>
+                                            <StreetName>KHADAK</StreetName>
+                                        </AddrDtls>
+                                        <BirthDt>01</BirthDt>
+                                        <BirthMonth>01</BirthMonth>
+                                        <BirthYear>1970</BirthYear>
+                                        <Cust_Type>6.01</Cust_Type>
+                                        <CreatedBySystemId>FIVUSER</CreatedBySystemId>
+                                        <Community>NO</Community>
+                                        <DateOfBirth>2015-01-01T00:00:00.000</DateOfBirth>
+                                        <FirstName>SIRJANA</FirstName>
+                                        <MiddleName>KUMARI</MiddleName>
+                                        <LastName>MANDAL</LastName>
+                                        <CustHealthCode>LRISK</CustHealthCode>
+                                        <RiskRating>LOW</RiskRating>
+                                        <Language>INFENG</Language>
+                                        <IsMinor>Y</IsMinor>
+                                        <IsCustNRE>N</IsCustNRE>
+                                        <DefaultAddrType>Mailing</DefaultAddrType>
+                                        <Gender>F</Gender>
+                                        <Manager>UBSADMIN</Manager>
+                                        <Name>SIRJANA KUMARI MANDAL</Name>
+                                        <NativeLanguageCode>INFENG</NativeLanguageCode>
+                                        <PhoneEmailDtls>
+                                            <PhoneEmailType>CELLPH</PhoneEmailType>
+                                            <PhoneNum>9800000000</PhoneNum>
+                                            <PhoneNumCountryCode>977</PhoneNumCountryCode>
+                                            <PhoneNumLocalCode>977</PhoneNumLocalCode>
+                                            <PhoneOrEmail>PHONE</PhoneOrEmail>
+                                            <PrefFlag>Y</PrefFlag>
+                                        </PhoneEmailDtls>
+                                        <PrimarySolId>168</PrimarySolId>
+                                        <PriorityCode>CV2</PriorityCode>
+                                        <Rating>SDD</Rating>
+                                        <Region>KLP</Region>
+                                        <RelationshipOpeningDt>2023-01-08T00:00:00.000</RelationshipOpeningDt>
+                                        <Salutation>MS.</Salutation>
+                                        <SegmentationClass>OTHE</SegmentationClass>
+                                        <StaffFlag>N</StaffFlag>
+                                        
+                                        <SubSegment>OTHE</SubSegment>
+                                        <TaxDeductionTable>5%</TaxDeductionTable>
+                                        <TradeFinFlag>N</TradeFinFlag>
+                                        <IsSMSBankingEnabled>N</IsSMSBankingEnabled>
+                                        <IsEbankingEnabled>N</IsEbankingEnabled>
+                                        <AutoApproval>Y</AutoApproval>
+                                        <Pref_code>OFFLI</Pref_code>
+                                        <EnableAlerts>N</EnableAlerts>
+                                    </CustData>
+                                </CustDtls>
+                                <RelatedDtls>
+                                    <RelationshipDtls>
+                                    <ChildEntity>CUSTOMER</ChildEntity> 
+                                    <ChildCustId>02000560</ChildCustId> 
+                                    <Relationship>Guardian</Relationship>
+                                    <RelationshipCategory>Social</RelationshipCategory>
+                                    <ChildEntityType>Retail</ChildEntityType>
+                                    <GuardCode>O</GuardCode>
+                                    <RelationshipMiscInfo>
+                                        <Type>Guardian</Type>
+                                    </RelationshipMiscInfo>
+                                </RelationshipDtls>
+                                    <DemographicData>
+                                        <DemographicMiscData>
+                                            <Type>CURRENT_EMPLOYMENT</Type>
+                                            <STRTEXT2>OTH03</STRTEXT2>
+                                        </DemographicMiscData>
+                                        <MaritalStatus>MARR</MaritalStatus>
+                                        <EmploymentStatus>Employed</EmploymentStatus>
+                                        <Nationality>NP</Nationality>
+                                    </DemographicData>
+                                    <EntityDoctData>
+                                        <CountryOfIssue>NP</CountryOfIssue>
+                                        <DocCode>BRCD</DocCode>
+                                        <IssueDt>2023-01-08T00:00:00.000</IssueDt>
+                                        
+                                        <TypeCode>RETAIL</TypeCode>
+                                        <PlaceOfIssue>306</PlaceOfIssue>
+                                        <ReferenceNum>2078100908403</ReferenceNum>
+                                        <preferredUniqueId>Y</preferredUniqueId>
+                                    </EntityDoctData>
+                                    <PsychographicData>
+                                        <PsychographMiscData>
+                                        <StrText10>NPR</StrText10>
+                                        <Type>CURRENCY</Type>
+                                        </PsychographMiscData>
+                                    </PsychographicData>
+                                </RelatedDtls>
+                            </RetCustAddRq>
+                        </RetCustAddRequest>
+                    </Body>
+                    </FIXML>
+
+Response::					
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+<ResponseHeader>
+<RequestMessageKey>
+<RequestUUID>SBLREQ_202301081673183737_6855</RequestUUID>
+<ServiceRequestId>RetCustAdd</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>CRM</ChannelId>
+</RequestMessageKey>
+<ResponseMessageInfo>
+<BankId>1801</BankId>
+<TimeZone>GMT+05:30</TimeZone>
+<MessageDateTime>2023-01-08T18:44:30.859</MessageDateTime>
+</ResponseMessageInfo><UBUSTransaction>
+<Id/>
+<Status/>
+</UBUSTransaction>
+<HostTransaction>
+<Id/>
+<Status>SUCCESS</Status>
+</HostTransaction>
+<HostParentTransaction>
+<Id/>
+<Status/>
+</HostParentTransaction>
+<CustomInfo/>
+</ResponseHeader>
+</Header>
+<Body>
+<RetCustAddResponse>
+<RetCustAddRs>
+<CustId>10079459</CustId>
+<Desc>Retail Customer successfully created with CIFID 10079459</Desc>
+<Entity>Retail Customer</Entity>
+<Service>CIFRetailCustomerCreate</Service>
+<Status>SUCCESS</Status>
+</RetCustAddRs><RetCustAdd_CustomData/>
+</RetCustAddResponse></Body></FIXML>
+
+
+Account Create::::
+Date::
+2023-01-08 18:59:19.320
+
+Request::
+<?xml version="1.0" encoding="UTF-8"?>
+                        <FIXML xsi:schemaLocation="http://www.finacle.com/fixml SBAcctAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                        <RequestHeader>
+                            <MessageKey>
+                                <RequestUUID>SBLREQ_202301081673183737_6874</RequestUUID>
+                                <ServiceRequestId>SBAcctAdd</ServiceRequestId>
+                                <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                                <ChannelId>COR</ChannelId>
+                                <LanguageId></LanguageId>
+                            </MessageKey>
+                            <RequestMessageInfo>
+                                <BankId>1801</BankId>
+                                <TimeZone></TimeZone>
+                                <EntityId></EntityId>
+                                <EntityType></EntityType>
+                                <ArmCorrelationId></ArmCorrelationId>
+                                <MessageDateTime>2023-01-08T19:00:37.362</MessageDateTime>
+                            </RequestMessageInfo>
+                            <Security>
+                                <Token>
+                                    <PasswordToken>
+                                    <UserId></UserId>
+                                    <Password></Password>
+                                    </PasswordToken>
+                                </Token>
+                                <FICertToken></FICertToken>
+                                <RealUserLoginSessionId></RealUserLoginSessionId>
+                                <RealUser></RealUser>
+                                <RealUserPwd></RealUserPwd>
+                                <SSOTransferToken></SSOTransferToken>
+                            </Security>
+                        </RequestHeader>
+                    </Header>
+                    <Body>
+                        <SBAcctAddRequest>
+                            <SBAcctAddRq>
+                                <CustId>
+                                    <CustId>10079459</CustId>  
+                                </CustId>
+                                <SBAcctId>
+                                    <AcctType>
+                                        <SchmCode>SSVA</SchmCode>
+                                    </AcctType>
+                                    <AcctCurr>NPR</AcctCurr> 
+                                    <BankInfo>
+                                        <BranchId>168</BranchId> 
+                                    </BankInfo>
+                                </SBAcctId>
+                                <SBAcctGenInfo>
+                                    <GenLedgerSubHead>
+                                        <GenLedgerSubHeadCode></GenLedgerSubHeadCode>
+                                    </GenLedgerSubHead>
+                                    <AcctName>SIRJANA KUMARI MANDAL</AcctName>
+                                    <AcctShortName></AcctShortName>
+                                    <AcctStmtFreq>
+                                        <Cal>00</Cal> 
+                                        <Type>M</Type> 
+                                        <StartDt>31</StartDt> 
+                                        <HolStat>N</HolStat>
+                                    </AcctStmtFreq>
+                                    <AcctStmtMode>S</AcctStmtMode>
+                                    <DespatchMode>C</DespatchMode> 
+                                </SBAcctGenInfo> 
+                            </SBAcctAddRq> 
+                            <SBAcctAdd_CustomData>
+                                <localCalFlg>N</localCalFlg> 
+                                <WTAXSCOPEFLAG>P</WTAXSCOPEFLAG> 
+                                <INTCRACCTFLG>S</INTCRACCTFLG>
+                            </SBAcctAdd_CustomData>
+                        </SBAcctAddRequest>
+                    </Body>
+                    </FIXML>
+
+Response::
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml SBAcctAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+<ResponseHeader>
+<RequestMessageKey>
+<RequestUUID>SBLREQ_202301081673183737_6874</RequestUUID>
+<ServiceRequestId>SBAcctAdd</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>COR</ChannelId>
+</RequestMessageKey>
+<ResponseMessageInfo>
+<BankId>1801</BankId>
+<TimeZone>GMT+05:30</TimeZone>
+<MessageDateTime>2023-01-08T18:44:31.217</MessageDateTime>
+</ResponseMessageInfo><UBUSTransaction>
+<Id/>
+<Status/>
+</UBUSTransaction>
+<HostTransaction>
+<Id/>
+<Status>SUCCESS</Status>
+</HostTransaction>
+<HostParentTransaction>
+<Id/>
+<Status/>
+</HostParentTransaction>
+<CustomInfo/>
+</ResponseHeader>
+</Header>
+<Body>
+<SBAcctAddResponse>
+<SBAcctAddRs>
+<SBAcctId>
+<AcctId>55501209852</AcctId>
+<AcctType>
+<SchmCode></SchmCode>
+<SchmType></SchmType>
+</AcctType>
+<AcctCurr></AcctCurr>
+<BankInfo>
+<BankId></BankId>
+<Name></Name>
+<BranchId></BranchId>
+<BranchName></BranchName>
+<PostAddr>
+<Addr1></Addr1>
+<Addr2></Addr2>
+<Addr3></Addr3>
+<City></City>
+<StateProv></StateProv>
+<PostalCode></PostalCode>
+<Country></Country>
+<AddrType></AddrType>
+</PostAddr>
+</BankInfo>
+</SBAcctId>
+</SBAcctAddRs><SBAcctAdd_CustomData/>
+</SBAcctAddResponse></Body></FIXML>
+
+
+Account Freeze::::
+
+Date::
+2023-01-08 18:59:19.833
+
+Request::
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml AcctFreezeAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                        <RequestHeader>
+                            <MessageKey>
+                                <RequestUUID>SBLREQ_202301081673183738_9035</RequestUUID>
+                                <ServiceRequestId>AcctFreezeAdd</ServiceRequestId>
+                                <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                                <ChannelId>COR</ChannelId>
+                                <LanguageId></LanguageId>
+                            </MessageKey>
+                            <RequestMessageInfo>
+                                <BankId>1801</BankId>
+                                <TimeZone></TimeZone>
+                                <EntityId></EntityId>
+                                <EntityType></EntityType>
+                                <ArmCorrelationId></ArmCorrelationId>
+                                <MessageDateTime>2023-01-08T19:00:38.362</MessageDateTime>
+                            </RequestMessageInfo>
+                            <Security>
+                                <Token>
+                                    <PasswordToken>
+                                        <UserId></UserId>
+                                        <Password></Password>
+                                    </PasswordToken>
+                                </Token>
+                                <FICertToken></FICertToken>
+                                <RealUserLoginSessionId></RealUserLoginSessionId>
+                                <RealUser></RealUser>
+                                <RealUserPwd></RealUserPwd>
+                                <SSOTransferToken></SSOTransferToken>
+                            </Security>
+                        </RequestHeader>
+                    </Header>
+                    <Body>
+                        <AcctFreezeAddRequest>
+                            <AcctFreezeAddRq>
+                                <AcctId>55501209852</AcctId>
+                                <FreezeCode>D</FreezeCode>
+                                <FreezeReasonCode>OTHE</FreezeReasonCode>
+                                <FreezeRemarks>BULK ACCOUNT OPENING</FreezeRemarks>
+                            </AcctFreezeAddRq>
+                        </AcctFreezeAddRequest>
+                    </Body>
+                </FIXML>
+
+Response::
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml AcctFreezeAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+<ResponseHeader>
+<RequestMessageKey>
+<RequestUUID>SBLREQ_202301081673183738_9035</RequestUUID>
+<ServiceRequestId>AcctFreezeAdd</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>COR</ChannelId>
+</RequestMessageKey>
+<ResponseMessageInfo>
+<BankId>1801</BankId>
+<TimeZone>GMT+05:30</TimeZone>
+<MessageDateTime>2023-01-08T18:44:31.573</MessageDateTime>
+</ResponseMessageInfo><UBUSTransaction>
+<Id/>
+<Status/>
+</UBUSTransaction>
+<HostTransaction>
+<Id/>
+<Status>SUCCESS</Status>
+</HostTransaction>
+<HostParentTransaction>
+<Id/>
+<Status/>
+</HostParentTransaction>
+<CustomInfo/>
+</ResponseHeader>
+</Header>
+<Body>
+<AcctFreezeAddResponse>
+<AcctFreezeAddRs>
+</AcctFreezeAddRs><AcctFreezeAdd_CustomData>
+<acctId><foracid>55501209852</foracid><solId>168</solId></acctId><cifId>10079459</cifId><freezeCode><code>D</code></freezeCode><freezeRemarks>BULK ACCOUNT OPENING</freezeRemarks></AcctFreezeAdd_CustomData>
+</AcctFreezeAddResponse></Body></FIXML>
+
+
+
+Customer Detail Inquiry(Probably for data populate in form)::::
+
+Date::
+2023-03-06 13:47:11.030
+
+Request::
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustInq.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">   <Header>
+                     <RequestHeader>
+                        <MessageKey>
+                            <RequestUUID>SBLREQ_202303061678089889_6357</RequestUUID>
+                            <ServiceRequestId>RetCustInq</ServiceRequestId>
+                            <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                            <ChannelId>CRM</ChannelId>
+                            <LanguageId></LanguageId>
+                        </MessageKey>
+                        <RequestMessageInfo>
+                            <BankId>1801</BankId>
+                            <TimeZone></TimeZone>
+                            <EntityId></EntityId>
+                            <EntityType></EntityType>
+                            <ArmCorrelationId></ArmCorrelationId>
+                            <MessageDateTime>2023-03-06T00:00:00.000</MessageDateTime>
+                        </RequestMessageInfo>
+                                <Security>
+                                <Token>
+                                <PasswordToken>
+                                <UserId></UserId>
+                                <Password></Password>
+                                </PasswordToken>
+                                </Token>
+                                <FICertToken></FICertToken>
+                                <RealUserLoginSessionId></RealUserLoginSessionId>
+                                <RealUser></RealUser>
+                                <RealUserPwd></RealUserPwd>
+                                <SSOTransferToken></SSOTransferToken>
+                                </Security>
+                        </RequestHeader>
+                    </Header>
+                    <Body>
+                        <RetCustInqRequest>
+                        <RetCustInqRq>
+                        <CustId>10079459</CustId>
+                        </RetCustInqRq>
+                        </RetCustInqRequest>
+                    </Body>
+                    </FIXML>
+
+Response::
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustInq.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+<ResponseHeader>
+<RequestMessageKey>
+<RequestUUID>SBLREQ_202303061678089889_6357</RequestUUID>
+<ServiceRequestId>RetCustInq</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>CRM</ChannelId>
+</RequestMessageKey>
+<ResponseMessageInfo>
+<BankId>1801</BankId>
+<TimeZone>GMT+05:30</TimeZone>
+<MessageDateTime>2023-03-06T13:34:37.576</MessageDateTime>
+</ResponseMessageInfo><UBUSTransaction>
+<Id/>
+<Status/>
+</UBUSTransaction>
+<HostTransaction>
+<Id/>
+<Status>SUCCESS</Status>
+</HostTransaction>
+<HostParentTransaction>
+<Id/>
+<Status/>
+</HostParentTransaction>
+<CustomInfo/>
+</ResponseHeader>
+</Header>
+<Body>
+<RetCustInqResponse>
+<RetCustInqRs>
+<RetCustDtls>
+<AcctName></AcctName>
+<AnnualRevenue>0.0</AnnualRevenue>
+<Assistant></Assistant>
+<AvailableCrLimit>0.0</AvailableCrLimit>
+<BlacklistNotes></BlacklistNotes>
+<BlacklistReason></BlacklistReason>
+<IsBlacklisted>N</IsBlacklisted>
+<CardHolder></CardHolder>
+<Category></Category>
+<ChargeLevelCode></ChargeLevelCode>
+<CustId>10079459</CustId>
+<CIN></CIN>
+<City>306</City>
+<CombinedStmtFlag></CombinedStmtFlag>
+<ConstitutionCode></ConstitutionCode>
+<ConstitutionRefCode></ConstitutionRefCode>
+<CorpRepCount>0</CorpRepCount>
+<CountryOfBirth></CountryOfBirth>
+<CreatedFrom></CreatedFrom>
+<CreatedBySystemId>FIVUSER</CreatedBySystemId>
+<CurrCode></CurrCode>
+<CurrentCrExposure>0.0</CurrentCrExposure>
+<CommunityCode></CommunityCode>
+<Community>NO</Community>
+<BirthDt>2015-01-01T00:00:00.000</BirthDt>
+<FirstName>SIRJANA</FirstName>
+<FirstNameNative></FirstNameNative>
+<FirstNameNative1></FirstNameNative1>
+<Health>LRISK</Health>
+<HealthCode></HealthCode>
+<Language>INFENG</Language>
+<LastName>MANDAL</LastName>
+<LastNameNative></LastNameNative>
+<LastNameNative1></LastNameNative1>
+<MiddleName>KUMARI</MiddleName>
+<MiddleNameNative></MiddleNameNative>
+<MiddleNameNative1></MiddleNameNative1>
+<IsStaff></IsStaff>
+<SwiftCode></SwiftCode>
+<CustType>6.01</CustType>
+<CustTypeCode></CustTypeCode>
+<CustClass></CustClass>
+<IsMinor>Y</IsMinor>
+<IsNRE>N</IsNRE>
+<CustProfitability>0.0</CustProfitability>
+<CustRelNum></CustRelNum>
+<CustTrade></CustTrade>
+<DefaultAddrType>Mailing</DefaultAddrType>
+<DelinquencyFlag></DelinquencyFlag>
+<DeliquencyPeriod>0</DeliquencyPeriod>
+<Designation></Designation>
+<IsDocReceived>N</IsDocReceived>
+<DualFirstName></DualFirstName>
+<DualLastName></DualLastName>
+<DualMiddleName></DualMiddleName>
+<Education></Education>
+<EntityCreationFlag>Y</EntityCreationFlag>
+<ExtnNum></ExtnNum>
+<FatherOrHusbandName></FatherOrHusbandName>
+<Fax></Fax>
+<FaxHome></FaxHome>
+<Gender>F</Gender>
+<GroupIdCode></GroupIdCode>
+<HouseholdName></HouseholdName>
+<IncrementalDt>2023-01-08T00:00:00.000</IncrementalDt>
+<InternalScore></InternalScore>
+<SalutationCodeOfIntroducer></SalutationCodeOfIntroducer>
+<StatusOfIntroducer></StatusOfIntroducer>
+<NameOfIntroducer></NameOfIntroducer>
+<SalutationOfIntroducer></SalutationOfIntroducer>
+<IsSwiftCodeOfBank></IsSwiftCodeOfBank>
+<IsCorpRepresentative>N</IsCorpRepresentative>
+<IsDummy>N</IsDummy>
+<IsEBankingEnabled>N</IsEBankingEnabled>
+<IsSMSBankingEnabled>N</IsSMSBankingEnabled>
+<IsWAPBankingEnabled></IsWAPBankingEnabled>
+<LeadSource></LeadSource>
+<LicenseNum></LicenseNum>
+<MaidenName></MaidenName>
+<MaidenNameOfMother></MaidenNameOfMother>
+<Manager>UBSADMIN</Manager>
+<ManagerOpinion></ManagerOpinion>
+<GuardianCode>O</GuardianCode>
+<GuardianName>NA NA</GuardianName>
+<MinorToMajorDt>2033-01-01T00:00:00.000</MinorToMajorDt>
+<ModifiedBySysId></ModifiedBySysId>
+<MotherName></MotherName>
+<Name>SIRJANA KUMARI MANDAL</Name>
+<NameSuffix></NameSuffix>
+<NationalIdCardNum></NationalIdCardNum>
+<NativeLanguage>INFENG</NativeLanguage>
+<NativeLanguageCode></NativeLanguageCode>
+<NativeLanguageName>MANDAL</NativeLanguageName>
+<NativeLanguageTitle></NativeLanguageTitle>
+<NativeLanguageTitleCode></NativeLanguageTitleCode>
+<IsNegated>N</IsNegated>
+<NegationNotes></NegationNotes>
+<NegationReason></NegationReason>
+<NickName></NickName>
+<Notes></Notes>
+<Occupation>OTH03</Occupation>
+<OccupationCode></OccupationCode>
+<OfflineCumDrLimit>0.0</OfflineCumDrLimit>
+<PAN></PAN>
+<PassportNum></PassportNum>
+<PersonType></PersonType>
+<Phone></Phone>
+<PhoneEmailInfo>
+<EmailInfo></EmailInfo>
+<EmailPalm></EmailPalm>
+<PhoneEmailType>CELLPH</PhoneEmailType>
+<PhoneNum>+977977</PhoneNum>
+<PhoneNumCityCode></PhoneNumCityCode>
+<PhoneNumCountryCode>977</PhoneNumCountryCode>
+<PhoneNumLocalCode>977</PhoneNumLocalCode>
+<PhoneOrEmail>PHONE</PhoneOrEmail>
+<PrefFlag>Y</PrefFlag>
+<WorkExtnNum></WorkExtnNum>
+<PhoneEmailID>3649311</PhoneEmailID>
+</PhoneEmailInfo>
+<PlaceOfBirth></PlaceOfBirth>
+<PotentialCrLine>0.0</PotentialCrLine>
+<PrefCode>OFFLI</PrefCode>
+<PrefCodeRefCode></PrefCodeRefCode>
+<PrefName>SIRJANA KUMARI MANDAL</PrefName>
+<PreviousName></PreviousName>
+<PrimaryServiceCentre></PrimaryServiceCentre>
+<PrimarySolId>168</PrimarySolId>
+<PriorityCode>CV2</PriorityCode>
+<ProofOfAgeDoc></ProofOfAgeDoc>
+<ProofOfAgeFlag></ProofOfAgeFlag>
+<PassportDtls></PassportDtls>
+<Rating>SDD</Rating>
+<RatingCode></RatingCode>
+<Region>KLP</Region>
+<RelationshipLevel></RelationshipLevel>
+<RelationshipType></RelationshipType>
+<RelationshipOpeningDt>2023-01-08T00:00:00.000</RelationshipOpeningDt>
+<RelationshipValue>0</RelationshipValue>
+<RetCustAddrInfo>
+<AddrLine1>999,Premise</AddrLine1>
+<AddrLine2>2,KHADAK</AddrLine2>
+<AddrLine3></AddrLine3>
+<AddrStartDt>2023-01-08T00:00:00.000</AddrStartDt>
+<AddrCategory>Mailing</AddrCategory>
+<BuildingLevel></BuildingLevel>
+<BusinessCenter></BusinessCenter>
+<CellNum></CellNum>
+<City>306</City>
+<CityCode></CityCode>
+<Country>NP</Country>
+<CountryCode></CountryCode>
+<Domicile></Domicile>
+<Email></Email>
+<EndDt>2099-12-31T00:00:00.000</EndDt>
+<FaxNum></FaxNum>
+<FaxNumCityCode></FaxNumCityCode>
+<FaxNumCountryCode></FaxNumCountryCode>
+<FaxNumLocalCode></FaxNumLocalCode>
+<HoldMailFlag>N</HoldMailFlag>
+<HoldMailInitiatedBy></HoldMailInitiatedBy>
+<HoldMailReason></HoldMailReason>
+<HouseNum>999</HouseNum>
+<LocalityName></LocalityName>
+<MailStop></MailStop>
+<Name>SIRJANA KUMARI MANDAL</Name>
+<PagerNum></PagerNum>
+<PagerNumCityCode></PagerNumCityCode>
+<PagerNumCcountryCode></PagerNumCcountryCode>
+<PagerNumLocalCode></PagerNumLocalCode>
+<PhoneNum1></PhoneNum1>
+<PrefAddr>Y</PrefAddr>
+<PrefFormat>STRUCTURED_FORMAT</PrefFormat>
+<PremiseName>Premise</PremiseName>
+<ResidentialStatus></ResidentialStatus>
+<SalutationCode></SalutationCode>
+<State>3</State>
+<StateCode></StateCode>
+<StreetName>KHADAK</StreetName>
+<StreetNum>2</StreetNum>
+<Suburb></Suburb>
+<Telex></Telex>
+<TelexCityCode></TelexCityCode>
+<TelexCountryCode></TelexCountryCode>
+<TelexLocalCode></TelexLocalCode>
+<Town></Town>
+<PostalCode>44600</PostalCode>
+<isAddressVerified></isAddressVerified>
+<AddressID>7697475</AddressID>
+</RetCustAddrInfo>
+<RevenueUnits></RevenueUnits>
+<Salutation>MS.</Salutation>
+<SalutationCode></SalutationCode>
+<Sector></Sector>
+<SectorCode></SectorCode>
+<SegmentationClass>OTHE</SegmentationClass>
+<ShortName>SIRJANA KU</ShortName>
+<ShortNameNative></ShortNameNative>
+<ShortNameNative1></ShortNameNative1>
+<SICCode></SICCode>
+<SMSBankingMobNum></SMSBankingMobNum>
+<SSN></SSN>
+<StaffFlag>N</StaffFlag>
+<StartDt>2023-01-08T00:00:00.000</StartDt>
+<Status>A</Status>
+<SubSector></SubSector>
+<SubSectorCode></SubSectorCode>
+<SubSegment>OTHE</SubSegment>
+<SuspendNotes></SuspendNotes>
+<SuspendReason></SuspendReason>
+<IsSuspended>N</IsSuspended>
+<TFPartyFlag>N</TFPartyFlag>
+<TickerSymbol></TickerSymbol>
+<TotalCrExposure>0.0</TotalCrExposure>
+<ForeignAccTaxReportingReq></ForeignAccTaxReportingReq>
+<ForeignTaxReportingCountry></ForeignTaxReportingCountry>
+<ForeignTaxReportingStatus></ForeignTaxReportingStatus>
+<FatcaRemarks></FatcaRemarks>
+<SenCitizenApplicableDate>2065-01-01T00:00:00.000</SenCitizenApplicableDate>
+<SeniorCitizen>N</SeniorCitizen>
+<CustStatus></CustStatus>
+<PhysicalState></PhysicalState>
+<AadhaarNumber></AadhaarNumber>
+<StaffEmployeeID></StaffEmployeeID>
+<Core_cust_id>RC76925</Core_cust_id>
+<short_name_alt1></short_name_alt1>
+<Name_alt1></Name_alt1>
+<Core_introd_cust_id>RC76925</Core_introd_cust_id>
+<IntroducerName_alt1></IntroducerName_alt1>
+<Tds_tbl>5%</Tds_tbl>
+<Tds_cust_id></Tds_cust_id>
+<PurgeFlag>N</PurgeFlag>
+<PurgeRemarks></PurgeRemarks>
+<DSA_ID></DSA_ID>
+<CustCreationMode></CustCreationMode>
+<RiskProfileScore></RiskProfileScore>
+<Cust_First_Name_alt1></Cust_First_Name_alt1>
+<Cust_Middle_Name_alt1></Cust_Middle_Name_alt1>
+<Cust_Last_Name_alt1></Cust_Last_Name_alt1>
+<asset_classification></asset_classification>
+<Customer_Level_Provisioning></Customer_Level_Provisioning>
+<islamic_banking_customer></islamic_banking_customer>
+<preferredCalendar></preferredCalendar>
+<zakat_deduction></zakat_deduction>
+<SecondaryRM_ID></SecondaryRM_ID>
+<TertiaryRM_ID></TertiaryRM_ID>
+<submitForKYC></submitForKYC>
+<preferredchannelid>0</preferredchannelid>
+</RetCustDtls>
+<DemographicDtls>
+<DemographicMiscInfo>
+<Type>CURRENT_EMPLOYMENT</Type>
+<CustomField1></CustomField1>
+<CustomField2></CustomField2>
+<CustomField3></CustomField3>
+<CustomField4></CustomField4>
+<CustomField5></CustomField5>
+<MiscellaneousID>4396887</MiscellaneousID>
+<StrText10></StrText10>
+<StrText4></StrText4>
+<strText9></strText9>
+<strText5></strText5>
+<strText6></strText6>
+<strText28></strText28>
+<strText18></strText18>
+<strText19></strText19>
+<strText20></strText20>
+<strText21></strText21>
+</DemographicMiscInfo>
+<DonotCallFlag></DonotCallFlag>
+<DonotMailFlag></DonotMailFlag>
+<DonotSendEMailFlag></DonotSendEMailFlag>
+<NameOfEmployer></NameOfEmployer>
+<EmploymentStatus>Employed</EmploymentStatus>
+<MaritalStatus>MARR</MaritalStatus>
+<Nationality>NP</Nationality>
+<MaritalStatusCode></MaritalStatusCode>
+<NationalityCode></NationalityCode>
+<PrefContactTime></PrefContactTime>
+<PrefDayTimeContactNum></PrefDayTimeContactNum>
+<PrefDayTimeContactNumArea></PrefDayTimeContactNumArea>
+<PrefDayTimeContactNumCountry></PrefDayTimeContactNumCountry>
+<PrefDayTimeContactNumLocal></PrefDayTimeContactNumLocal>
+<ResidenceCountry></ResidenceCountry>
+<ResidenceCountryCode></ResidenceCountryCode>
+<Tax_Rate_Table_Code></Tax_Rate_Table_Code>
+<Income_Nature></Income_Nature>
+</DemographicDtls>
+<EntityDocDtls>
+<CountryOfIssue>NP</CountryOfIssue>
+<DocCode>BRCD</DocCode>
+<IsDocDeleted></IsDocDeleted>
+<DocIssueDt>2023-01-08T00:00:00.000</DocIssueDt>
+<DocRmks></DocRmks>
+<DocTypeCode>RETAIL</DocTypeCode>
+<DocTypeDesc>RETAIL CUSTOMER</DocTypeDesc>
+<EntityType>CIFRetCust</EntityType>
+<IdentificationType>IDTypeR2</IdentificationType>
+<PlaceOfIssue>306</PlaceOfIssue>
+<RefNum>2078100908403</RefNum>
+<Status>Received</Status>
+<EntityDocumentID>4567574</EntityDocumentID>
+<IsDocumentVerified></IsDocumentVerified>
+<PreferredUniqueId>Y</PreferredUniqueId>
+</EntityDocDtls>
+<MappingDtls>
+<ChannelCustId>10079459</ChannelCustId>
+<ChannelId>FINACLECORE</ChannelId>
+</MappingDtls>
+<PsychographicDtls>
+<DespatchMode></DespatchMode>
+<HouseHoldNum></HouseHoldNum>
+<PrefAddrMode></PrefAddrMode>
+<PrefRep>0</PrefRep>
+<PrefName></PrefName>
+<RiskBehaviour></RiskBehaviour>
+<SegmentationClass></SegmentationClass>
+<StmtFreq></StmtFreq>
+<StmtType></StmtType>
+<StmtDtWeekDay>0</StmtDtWeekDay>
+<StmtDateWeekDay>0</StmtDateWeekDay>
+<StmtWeekOfMonth></StmtWeekOfMonth>
+<External_System_Pricing></External_System_Pricing>
+<Relationship_Pricing_ID></Relationship_Pricing_ID>
+<NumberofDependantChildren>0</NumberofDependantChildren>
+<NumberofDependants>0</NumberofDependants>
+<PrefMiscInqDtls>
+<MiscellaneousID>4396889</MiscellaneousID>
+<dbFloat1>0.0</dbFloat1>
+<dbFloat2>0.0</dbFloat2>
+<dbFloat3>0.0</dbFloat3>
+<dbFloat4>0.0</dbFloat4>
+<dbFloat5>0.0</dbFloat5>
+<dtDate1>2099-12-31T00:00:00.000</dtDate1>
+<strText10>NPR</strText10>
+<Type>CURRENCY</Type>
+</PrefMiscInqDtls>
+</PsychographicDtls>
+<RelBankDtls>
+<OrgKey></OrgKey>
+<EntityCreationFlag></EntityCreationFlag>
+<NumOfCrCards>0</NumOfCrCards>
+</RelBankDtls>
+<TradeFinDtls>
+<CautionStat></CautionStat>
+<CentralBankId></CentralBankId>
+<City></City>
+<ContractLimit>0.0</ContractLimit>
+<CountryDesc></CountryDesc>
+<CorpKey></CorpKey>
+<CorpName></CorpName>
+<CreatedFrom></CreatedFrom>
+<CurrDesc></CurrDesc>
+<CustFlag></CustFlag>
+<CustNative></CustNative>
+<DCMmarginPercentage>0.0</DCMmarginPercentage>
+<DCNextNumCode></DCNextNumCode>
+<DCNextNumCodeRCode></DCNextNumCodeRCode>
+<DCSanctionIngAuth></DCSanctionIngAuth>
+<IsDeleted></IsDeleted>
+<EntityCreationFlag></EntityCreationFlag>
+<EntityType></EntityType>
+<ExpImpInd></ExpImpInd>
+<FaxNum></FaxNum>
+<FCSanctionIngAuth></FCSanctionIngAuth>
+<HundredPercentFlag></HundredPercentFlag>
+<IndividualCorpFlag></IndividualCorpFlag>
+<InlandTradeAllowed></InlandTradeAllowed>
+<LeasingLiabilities></LeasingLiabilities>
+<Name></Name>
+<OrgKey></OrgKey>
+<PartyConst></PartyConst>
+<PartyType></PartyType>
+<Phone></Phone>
+<PhoneCityCode></PhoneCityCode>
+<PhoneCountryCode></PhoneCountryCode>
+<PhoneLocalCode></PhoneLocalCode>
+<ProductionCycle>0</ProductionCycle>
+<Rmks></Rmks>
+<SpecialCustFlag></SpecialCustFlag>
+<SSIFlag></SSIFlag>
+<StateDesc></StateDesc>
+<Telex></Telex>
+<TradeAuthorityCode></TradeAuthorityCode>
+<PostalCode></PostalCode>
+<PartyTypeCode></PartyTypeCode>
+<DCNextNorCode></DCNextNorCode>
+<FCSanctionIngAuthCode></FCSanctionIngAuthCode>
+<PartyConstCode></PartyConstCode>
+<ExpImpIndCode></ExpImpIndCode>
+</TradeFinDtls>
+<RetailBaselDtls>
+<retBaselID>-2147483648</retBaselID>
+<DebtHELOC>0.0</DebtHELOC>
+<CurrFICOScore>0.0</CurrFICOScore>
+<TotalDSR>0.0</TotalDSR>
+<BusinessTotalScore>0.0</BusinessTotalScore>
+<HasRelationship></HasRelationship>
+<CombinedDSR>0.0</CombinedDSR>
+<BusinessDSR>0.0</BusinessDSR>
+<CashAssetRatio>0.0</CashAssetRatio>
+<DebtWorthRatio>0.0</DebtWorthRatio>
+<InterestTaxRatio>0.0</InterestTaxRatio>
+<GeneralQuickRatio>0.0</GeneralQuickRatio>
+<ScoredSICCode></ScoredSICCode>
+<OwnerYears>0</OwnerYears>
+<NetWorth>0.0</NetWorth>
+<DDABal>0.0</DDABal>
+<CombinedDebtRatio>0.0</CombinedDebtRatio>
+<ProposedLeverage>0.0</ProposedLeverage>
+<GLBLCashCoverage>0.0</GLBLCashCoverage>
+<CurrentRatio>0.0</CurrentRatio>
+<LiquidityRatio>0.0</LiquidityRatio>
+<MinTangibleWorth>0.0</MinTangibleWorth>
+<FICOScore>0.0</FICOScore>
+<FinInqCnt>0</FinInqCnt>
+<FinTradeCnt>0</FinTradeCnt>
+<InquiryCnt>0</InquiryCnt>
+<MinorDerogatoryCnt>0</MinorDerogatoryCnt>
+<MajorDerogatoryCnt>0</MajorDerogatoryCnt>
+<NeverPastDueCnt>0</NeverPastDueCnt>
+<OpenTradeCnt>0</OpenTradeCnt>
+<HighestCreditLmt>0.0</HighestCreditLmt>
+<TradeCntThirty>0</TradeCntThirty>
+<TradeCntSixty>0</TradeCntSixty>
+<TradeCntNinety>0</TradeCntNinety>
+<RevolveDebtPrcnt>0.0</RevolveDebtPrcnt>
+<SatisfactoryCnt>0</SatisfactoryCnt>
+<InstLoanBal>0.0</InstLoanBal>
+<InstLoanCnt>0</InstLoanCnt>
+<MortgageBal>0.0</MortgageBal>
+<MortgageTradeCnt>0</MortgageTradeCnt>
+<OtherTradeBal>0.0</OtherTradeBal>
+<OtherTradeCnt>0</OtherTradeCnt>
+<RevolveBal>0.0</RevolveBal>
+<RevolveTradeLmt>0.0</RevolveTradeLmt>
+<RevolveTradeCnt>0</RevolveTradeCnt>
+<CCLimit>0.0</CCLimit>
+<IsWorst></IsWorst>
+<ExpenseIncomeRatio>0.0</ExpenseIncomeRatio>
+<SgmntPoolID>0</SgmntPoolID>
+<PoolPD>0.0</PoolPD>
+<PoolLGD>0.0</PoolLGD>
+<PoolEAD>0.0</PoolEAD>
+<PD>0.0</PD>
+<LGD>0.0</LGD>
+<EAD>0.0</EAD>
+<ModelName></ModelName>
+<ModelVersion>0.0</ModelVersion>
+<ModelResult></ModelResult>
+<IsFailed></IsFailed>
+</RetailBaselDtls>
+<relationshipData>
+<AllowModify></AllowModify>
+<ChildBackEndID></ChildBackEndID>
+<ChildCIFID>02000560</ChildCIFID>
+<ChildEntity>CUSTOMER</ChildEntity>
+<ChildEntityType></ChildEntityType>
+<ContactName></ContactName>
+<KnownYears>0</KnownYears>
+<PrimaryIntroducer></PrimaryIntroducer>
+<RelationShip>Guardian</RelationShip>
+<RelationshipCategory>Social</RelationshipCategory>
+<GuardCode>O</GuardCode>
+<DeleteFlag></DeleteFlag>
+<EntityRelationshipID>551416</EntityRelationshipID>
+<ChildBackendType></ChildBackendType>
+<Relationship_Code></Relationship_Code>
+<ParentEntityType></ParentEntityType>
+<ParentCIFID>10079459</ParentCIFID>
+<ParentEntity>CUSTOMER</ParentEntity>
+<CoreCustID></CoreCustID>
+<CoreChildCustID></CoreChildCustID>
+</relationshipData>
+<coreInterfaceDtls>
+<FREECODE1></FREECODE1>
+<FREECODE2></FREECODE2>
+<FREECODE3></FREECODE3>
+<FREECODE4></FREECODE4>
+<FREECODE5></FREECODE5>
+<FREECODE6></FREECODE6>
+<FREECODE7></FREECODE7>
+<FREECODE8></FREECODE8>
+<FREECODE9></FREECODE9>
+<FREECODE10></FREECODE10>
+<Free_text_1></Free_text_1>
+<Free_text_2></Free_text_2>
+<Free_text_3></Free_text_3>
+<Free_text_4></Free_text_4>
+<Free_text_5></Free_text_5>
+<Free_text_6></Free_text_6>
+<Free_text_7></Free_text_7>
+<Free_text_8></Free_text_8>
+<Free_text_9></Free_text_9>
+<Free_text_10></Free_text_10>
+</coreInterfaceDtls>
+</RetCustInqRs><RetCustInq_CustomData/>
+</RetCustInqResponse></Body></FIXML>
+
+
+
+CIF level Data Update(KYC Update)::::
+
+Date::
+2023-03-06 13:47:11.207
+
+Request::
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustMod.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                <RequestHeader>
+                    <MessageKey>
+                        <RequestUUID>SBLREQ_202303061678089889_3470</RequestUUID>
+                        <ServiceRequestId>RetCustMod</ServiceRequestId>
+                        <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                        <ChannelId>CRM</ChannelId>
+                        <LanguageId/>
+                    </MessageKey>
+                    <RequestMessageInfo>
+                        <BankId>1801</BankId>
+                        <TimeZone/>
+                        <EntityId/>
+                        <EntityType/>
+                        <ArmCorrelationId/>
+                        <MessageDateTime>2023-03-06T00:00:00.000</MessageDateTime>
+                    </RequestMessageInfo>
+                    <Security>
+                        <Token>
+                            <PasswordToken>
+                                <UserId/>
+                                <Password/>
+                            </PasswordToken>
+                        </Token>
+                        <FICertToken/>
+                        <RealUserLoginSessionId/>
+                        <RealUser/>
+                        <RealUserPwd/>
+                        <SSOTransferToken/>
+                    </Security>
+                </RequestHeader>
+                </Header>
+
+                <Body>
+                    <RetCustModRequest>
+                        <RetCustModRq>
+                            <RetCustModMainData>
+                                <CustModData>
+                                    <CustId>10079459</CustId>
+                                    <Salutation>MS.</Salutation>
+                                    <ShortName>SIRJANA</ShortName>
+                                    <FirstName>SIRJANA</FirstName>
+                                    <MiddleName>KUMARI</MiddleName>
+                                    <LastName>MANDAL</LastName>
+                                    <Gender>F</Gender>
+                                    <Name>SIRJANA KUMARI MANDAL</Name>
+                                    <PrefName>SIRJANA KUMARI MANDAL</PrefName>
+                                    <Cust_Type>6.01</Cust_Type>
+                                    <AutoApproval>Y</AutoApproval>
+                                    <ConstitutionCode>INDIF</ConstitutionCode>
+                                    <CreatedBySystemId>2623</CreatedBySystemId>
+                                    <SubmitForKYC>Y</SubmitForKYC>
+                                    
+                                    <RetAddrModDtls>
+                                        <PrefFormat>STRUCTURED_FORMAT</PrefFormat>
+                                        <AddrCategory>Mailing</AddrCategory>
+                                        <Country>NP</Country>
+                                        <StartDt>2023-03-06T00:00:00.000</StartDt>
+                                        <HouseNum>N/A</HouseNum>
+                                        <HoldMailFlag>N</HoldMailFlag>
+                                        <StreetName>KHADAK, KHADAK</StreetName>
+                                        <addressID>7697475</addressID>
+                                    </RetAddrModDtls>
+
+                                    <PhoneEmailModData>
+                                        <PhoneEmailID>3649311</PhoneEmailID>
+                                        <PhoneEmailtType>CELLPH</PhoneEmailtType>
+                                        <PhoneOrEmail>PHONE</PhoneOrEmail>
+                                        <PhoneNumCountryCode>977</PhoneNumCountryCode>
+                                        <PhoneNumLocalCode>9800000000</PhoneNumLocalCode>
+                                        <PrefFlag>Y</PrefFlag>
+                                    </PhoneEmailModData>
+
+                                </CustModData>
+                            </RetCustModMainData>
+                            <RetailCustModRelatedData>
+                                <EntityDocModData>
+                                    <DocCode>BRCD</DocCode>
+                                    <Desc>BIRTH REGISTRATION CARD</Desc>
+                                    <PlaceOfIssue>306</PlaceOfIssue>
+                                    <CountryOfIssue>NP</CountryOfIssue>
+                                    <ReferenceNum>2078100908403</ReferenceNum>
+                                    <PreferredUniqueId>Y</PreferredUniqueId>
+                                    
+                                    <EntityDocumentID>4567574</EntityDocumentID>
+                                </EntityDocModData>
+
+                                <DemographicModData>
+                                    <ResidenceCountry>NP</ResidenceCountry>
+                                    <Nationality>NP</Nationality>
+                                </DemographicModData>
+
+                            </RetailCustModRelatedData>
+                        </RetCustModRq>
+                    </RetCustModRequest>
+                </Body>
+                </FIXML>
+
+
+Response::
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustMod.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+<ResponseHeader>
+<RequestMessageKey>
+<RequestUUID>SBLREQ_202303061678089889_3470</RequestUUID>
+<ServiceRequestId>RetCustMod</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>CRM</ChannelId>
+</RequestMessageKey>
+<ResponseMessageInfo>
+<BankId>1801</BankId>
+<TimeZone>GMT+05:30</TimeZone>
+<MessageDateTime>2023-03-06T13:34:37.776</MessageDateTime>
+</ResponseMessageInfo><UBUSTransaction>
+<Id/>
+<Status/>
+</UBUSTransaction>
+<HostTransaction>
+<Id/>
+<Status>SUCCESS</Status>
+</HostTransaction>
+<HostParentTransaction>
+<Id/>
+<Status/>
+</HostParentTransaction>
+<CustomInfo/>
+</ResponseHeader>
+</Header>
+<Body>
+<RetCustModResponse>
+<RetCustModRs>
+<CustId>10079459</CustId>
+<Desc>Retail Customer successfully updated with CIFID 10079459</Desc>
+<Entity>Retail Customer</Entity>
+<Service>CIFRetailCustomerUpdate</Service>
+<Status>SUCCESS</Status>
+</RetCustModRs><RetCustMod_CustomData/>
+</RetCustModResponse></Body></FIXML>
+
+
+
+Account Details Inquiry::::
+
+Date::
+2023-03-13 10:32:26.033
+
+Request::
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml AcctInq.xsd"
+                        xmlns="http://www.finacle.com/fixml"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                        <RequestHeader>
+                            <MessageKey>
+                                <RequestUUID>SBLREQ_202303131678683013_735</RequestUUID>
+                                <ServiceRequestId>AcctInq</ServiceRequestId>
+                                <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                                <ChannelId>COR</ChannelId>
+                                <LanguageId></LanguageId>
+                            </MessageKey>
+                            <RequestMessageInfo>
+                                <BankId>1801</BankId>
+                                <TimeZone></TimeZone>
+                                <EntityId></EntityId>
+                                <EntityType></EntityType>
+                                <ArmCorrelationId></ArmCorrelationId>
+                                <MessageDateTime>2023-03-13T10:35:13.362</MessageDateTime>
+                            </RequestMessageInfo>
+                            <Security>
+                                <Token>
+                                    <PasswordToken>
+                                        <UserId></UserId>
+                                        <Password></Password>
+                                    </PasswordToken>
+                                </Token>
+                                <FICertToken></FICertToken>
+                                <RealUserLoginSessionId></RealUserLoginSessionId>
+                                <RealUser></RealUser>
+                                <RealUserPwd></RealUserPwd>
+                                <SSOTransferToken></SSOTransferToken>
+                            </Security>
+                        </RequestHeader>
+                    </Header>
+                    <Body>
+                        <AcctInqRequest>
+                            <AcctInqRq>
+                                <AcctId>
+                                    <AcctId>55501209852</AcctId>
+                                </AcctId>
+                            </AcctInqRq>
+                        </AcctInqRequest>
+                    </Body>
+                    </FIXML>
+
+Response::
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml AcctInq.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+<ResponseHeader>
+<RequestMessageKey>
+<RequestUUID>SBLREQ_202303131678683013_735</RequestUUID>
+<ServiceRequestId>AcctInq</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>COR</ChannelId>
+</RequestMessageKey>
+<ResponseMessageInfo>
+<BankId>1801</BankId>
+<TimeZone>GMT+05:30</TimeZone>
+<MessageDateTime>2023-03-13T10:20:00.987</MessageDateTime>
+</ResponseMessageInfo><UBUSTransaction>
+<Id/>
+<Status/>
+</UBUSTransaction>
+<HostTransaction>
+<Id/>
+<Status>SUCCESS</Status>
+</HostTransaction>
+<HostParentTransaction>
+<Id/>
+<Status/>
+</HostParentTransaction>
+<CustomInfo/>
+</ResponseHeader>
+</Header>
+<Body>
+<AcctInqResponse>
+<AcctInqRs>
+<AcctId>
+<AcctId>55501209852</AcctId>
+<AcctType>
+<SchmCode>SSVA</SchmCode>
+<SchmType>SBA</SchmType>
+</AcctType>
+<AcctCurr>NPR</AcctCurr>
+<BankInfo>
+<BankId></BankId>
+<Name></Name>
+<BranchId>168</BranchId>
+<BranchName></BranchName>
+<PostAddr>
+<Addr1></Addr1>
+<Addr2></Addr2>
+<Addr3></Addr3>
+<City></City>
+<StateProv></StateProv>
+<PostalCode></PostalCode>
+<Country></Country>
+<AddrType></AddrType>
+</PostAddr>
+</BankInfo>
+</AcctId>
+<CustId>
+<CustId>10079459</CustId>
+<PersonName>
+<LastName></LastName>
+<FirstName></FirstName>
+<MiddleName></MiddleName>
+<Name>SIRJANA KUMARI MANDAL</Name>
+<TitlePrefix>MS.</TitlePrefix>
+</PersonName>
+</CustId>
+<AcctOpenDt>2023-01-08T00:00:00.000</AcctOpenDt>
+<BankAcctStatusCode>F</BankAcctStatusCode>
+<AcctBal>
+<BalType>LEDGER</BalType>
+<BalAmt>
+<amountValue>2661.98</amountValue>
+<currencyCode></currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>AVAIL</BalType>
+<BalAmt>
+<amountValue>2661.98</amountValue>
+<currencyCode></currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>EFFAVL</BalType>
+<BalAmt>
+<amountValue>2661.98</amountValue>
+<currencyCode></currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>FLOAT</BalType>
+<BalAmt>
+<amountValue>0.00</amountValue>
+<currencyCode></currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>LIEN</BalType>
+<BalAmt>
+<amountValue>0.00</amountValue>
+<currencyCode></currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>DRWPWR</BalType>
+<BalAmt>
+<amountValue>0.00</amountValue>
+<currencyCode></currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>ACCBAL</BalType>
+<BalAmt>
+<amountValue>2661.98</amountValue>
+<currencyCode>NPR</currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>SHADOW</BalType>
+<BalAmt>
+<amountValue>0.00</amountValue>
+<currencyCode>NPR</currencyCode>
+</BalAmt>
+</AcctBal>
+<AcctBal>
+<BalType>FUTBAL</BalType>
+<BalAmt>
+<amountValue>0.00</amountValue>
+<currencyCode>NPR</currencyCode>
+</BalAmt>
+</AcctBal>
+</AcctInqRs><AcctInq_CustomData/>
+</AcctInqResponse></Body></FIXML>					

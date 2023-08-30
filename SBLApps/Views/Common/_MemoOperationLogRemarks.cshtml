@@ -1,0 +1,47 @@
+﻿@using SBLApps.Enums;
+@model IEnumerable<SBLApps.Models.MemoRequestOperation>
+<div id="scrollable-container" class="row scrollable-div">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseRemarksBody" aria-expanded="true" aria-controls="collapseDocumentsBody">
+                <h3>
+                    Remarks Log
+                </h3>
+            </div>
+            <div class="collapse show" id="collapseRemarksBody" style="padding: 10px;">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" style="margin-bottom: 0px;">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Operation</th>
+                                <th>Remarks</th>
+                                <th>File From CCAC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Where(x => x.OperationID != 0))
+                            {
+                                <tr>
+                                    <td>@Html.Raw(item.RequestedByName)</td>
+                                    <td>@Html.Raw(item.OperationCompletedName)</td>
+                                    <td>@Html.Raw(item.OperationRemarks)</td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item?.BlacklistDocumentFullPath))
+                                        {
+                                            <a href="/@item?.BlacklistDocumentFullPath" target="_blank"><i class="bi bi-eye" title="View"></i></a>
+                                        }
+                                        else
+                                        {
+                                            <span>-</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

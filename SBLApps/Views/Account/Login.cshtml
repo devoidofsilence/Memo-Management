@@ -1,0 +1,55 @@
+﻿@model SBLApps.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login User";
+    Layout = null;
+}
+
+@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" style="text-align:center">
+                        <img src="~/content/image/SBL-Logo.png" alt="Company Logo" class="img-fluid" />
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-action="Login" asp-controller="Account">
+                            <div class="form-group">
+                                <label asp-for="Username" class="form-label"></label>
+                                <input asp-for="Username" class="form-control" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password" class="form-label"></label>
+                                <input asp-for="Password" class="form-control">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <input type="hidden" asp-for="RedirectUrl" value="@returnUrl" />
+                            </div>
+                            <div style="text-align:center">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                            <div style="text-align:center">
+                                @Html.ValidationMessage("CustomError")
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

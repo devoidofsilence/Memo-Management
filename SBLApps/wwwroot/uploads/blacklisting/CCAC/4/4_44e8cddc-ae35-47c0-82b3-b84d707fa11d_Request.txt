@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustMod.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                    <RequestHeader>
+                        <MessageKey>
+                            <RequestUUID>SBLREQ_202303091678346912_5788</RequestUUID>
+                            <ServiceRequestId>RetCustMod</ServiceRequestId>
+                            <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                            <ChannelId>CRM</ChannelId>
+                            <LanguageId/>
+                        </MessageKey>
+                        <RequestMessageInfo>
+                            <BankId>1801</BankId>
+                            <TimeZone/>
+                            <EntityId/>
+                            <EntityType/>
+                            <ArmCorrelationId/>
+                            <MessageDateTime>2020-01-01T00:00:00.000</MessageDateTime>
+                        </RequestMessageInfo>
+                        <Security>
+                            <Token>
+                                <PasswordToken>
+                                    <UserId/>
+                                    <Password/>
+                                </PasswordToken>
+                            </Token>
+                            <FICertToken/>
+                            <RealUserLoginSessionId/>
+                            <RealUser/>
+                            <RealUserPwd/>
+                            <SSOTransferToken/>
+                        </Security>
+                    </RequestHeader>
+                </Header>
+                <Body>
+                    <RetCustModRequest>
+                        <RetCustModRq>
+                            <RetCustModMainData>
+                                <CustModData>
+                                    <CustId>10000077</CustId>		
+                                    <DateOfBirth>1971-07-14T00:00:00.000</DateOfBirth>
+                                    <AutoApproval>Y</AutoApproval>		
+                                    <ConstitutionCode>INDIM</ConstitutionCode>		
+                                    <Rating>SDD</Rating>		
+                                    <Occupation>OTH03</Occupation>
+                                    <CustType>6.01</CustType>
+
+                                    
+
+                                    <IntroducerID>02000560</IntroducerID>
+                                    <StatusOfIntroducer>OTHER</StatusOfIntroducer>
+                                    <NameOfIntroducer></NameOfIntroducer>
+                                    <SalutationCodeOfIntroducer>MR.</SalutationCodeOfIntroducer>
+                                    <StatusCodeOfIntroducer>OTHER</StatusCodeOfIntroducer>
+                                    <SubmitForKYC>Y</SubmitForKYC>
+
+                                    <RetAddrModDtls>
+                                        <PrefFormat>STRUCTURED_FORMAT</PrefFormat>	
+                                        <HouseNum>999</HouseNum>	
+                                        <PremiseName>KATHMANDU</PremiseName>
+                                        <StreetNum>2</StreetNum>	
+                                        <StreetName>MAHALAXMI</StreetName>		
+                                        <addressID>6633700</addressID>	
+                                    </RetAddrModDtls>
+            
+                                    <RetAddrModDtls>
+                                        <PrefFormat>STRUCTURED_FORMAT</PrefFormat>		
+                                        <AddrCategory>Home</AddrCategory>	
+                                        <City></City>	
+                                        <Country>NP</Country>	
+                                        <StartDt>2020-01-01T00:00:00.000</StartDt>
+                                        <State></State>	
+                                        <PostalCode>44600</PostalCode>						
+                                        <HouseNum></HouseNum>	
+                                        <HoldMailFlag>N</HoldMailFlag>		
+                                        <PremiseName></PremiseName>
+                                        <StreetNum></StreetNum>		
+                                        <StreetName></StreetName>
+                                        <Town></Town>
+                                        		
+                                    </RetAddrModDtls>
+            
+                                    <RetAddrModDtls>
+                                        <PrefFormat>STRUCTURED_FORMAT</PrefFormat>
+                                        <AddrCategory>Mailing</AddrCategory>
+                                        <City>306</City>
+                                        <Country>NP</Country>
+                                        <StartDt>2020-01-01T00:00:00.000</StartDt>
+                                        <State>3</State>
+                                        <PostalCode>44600</PostalCode>
+                                        <HouseNum>999</HouseNum>
+                                        <HoldMailFlag>N</HoldMailFlag>
+                                        <PremiseName>KATHMANDU</PremiseName>
+                                        <StreetNum>2</StreetNum>
+                                        <StreetName>MAHALAXMI</StreetName>
+                                        <Town></Town>
+                                        <AddressID>6633700</AddressID>	
+                                    </RetAddrModDtls>
+
+                                    <PhoneEmailModData>
+                                        <PhoneEmailID>2364400</PhoneEmailID>
+                                        <PhoneEmailtType>CELLPH</PhoneEmailtType>	
+                                        <PhoneOrEmail>PHONE</PhoneOrEmail>		
+                                        <PhoneNumCountryCode>977</PhoneNumCountryCode>	
+                                        <PhoneNumLocalCode>977</PhoneNumLocalCode>
+                                        <PrefFlag>Y</PrefFlag>
+                                    </PhoneEmailModData>
+                                        
+                                    <PhoneEmailModData>
+                                        
+                                        <PhoneEmailtType>COMMEML</PhoneEmailtType>		
+                                        <PhoneOrEmail>EMAIL</PhoneOrEmail>
+                                        <Email></Email>	
+                                        <PrefFlag>Y</PrefFlag>	
+                                    </PhoneEmailModData>
+            
+                                </CustModData>
+                            </RetCustModMainData>
+                            <RetailCustModRelatedData>
+                                <EntityDocModData>
+                                    <DocCode>CITZ</DocCode>	
+                                        
+                                    <PlaceOfIssue>306</PlaceOfIssue>
+                                    <CountryOfIssue>NP</CountryOfIssue>
+                                    <IssueDt>2022-09-05T00:00:00.000</IssueDt>
+                                        
+                                    <IDIssuedOrganisation></IDIssuedOrganisation>
+                                    <ReferenceNum>81/14</ReferenceNum>		
+                                    <PreferredUniqueId>Y</PreferredUniqueId>
+                                    <EntityDocumentID>3599500</EntityDocumentID>
+                                </EntityDocModData>
+
+                                
+            
+                                <DemographicModData>
+                                    <DemographicMiscModData>
+                                        <MiscellaneousID>3339400</MiscellaneousID>
+                                        <CountryOfIssue>NP</CountryOfIssue>
+                                        <Type>CURRENT_EMPLOYMENT</Type>		
+                                        <strText2>OTH03</strText2>		
+                                    </DemographicMiscModData>
+                                
+                                    <DemographicMiscModData>
+                                        
+                                        <CountryOfIssue>NP</CountryOfIssue>
+                                        <Type>EDU_DET</Type>
+                                        <strText4>TRIBHUWAN UNIVERSITY</strText4>
+                                        <strText5>TEXT5</strText5>
+                                        <strText6>KTM </strText6>
+                                        <strText7>NP</strText7>
+                                        <strText8>NEPAL</strText8>
+                                        <strText9>9</strText9>
+                                        <strText10></strText10>
+                                    </DemographicMiscModData>
+
+                                    <ResidenceCountry>NP</ResidenceCountry>
+                                    <ReferenceCurrExp>NPR</ReferenceCurrExp>
+                                    <ReferenceCurrIncome>NPR</ReferenceCurrIncome>
+                                    <CU_CustNetWorth>NPR</CU_CustNetWorth>
+                                    
+                                    <CustNetWorth>0</CustNetWorth>
+                                    <TotalNonFundBase>0</TotalNonFundBase>
+                                    <TotalFundBase>0</TotalFundBase>
+                                    
+                                    <Income_From>10</Income_From>
+                                    <Income_To>10000</Income_To>
+                                    <OtherLimits>0</OtherLimits>
+                                    <OutStandingMortgage>1000</OutStandingMortgage>
+
+                                    <EmploymentStatus>Employed</EmploymentStatus>	
+                                    <NameOfEmployer>NA STATIC</NameOfEmployer>	
+                                    <Nationality>NP</Nationality>
+                                    <SourceOfIncome></SourceOfIncome>		
+                                    <MaritalStatus>MARR</MaritalStatus>	
+                                    <Annual_Salary_Income>NA</Annual_Salary_Income> 
+
+                                    <AnnualSalaryIncome>NA</AnnualSalaryIncome>
+                                    <CU_Annual_Salary_Income>NPR</CU_Annual_Salary_Income>
+                                    <Annual_Total_Income></Annual_Total_Income>
+
+                                </DemographicModData>        
+
+                            </RetailCustModRelatedData>
+                        </RetCustModRq>
+                    </RetCustModRequest>
+                </Body>
+            </FIXML>

@@ -1,0 +1,181 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+
+
+#overlaySpinner {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.scrollable-div {
+    overflow: auto;
+}
+
+    .scrollable-div .simplebar-scrollbar:before {
+        background-color: #888888; /* Scrollbar thumb color */
+    }
+
+    .scrollable-div .simplebar-scrollbar:hover:before {
+        background-color: #555555; /* Scrollbar thumb color on hover */
+    }
+
+    .scrollable-div .simplebar-track {
+        background-color: #f1f1f1; /* Scrollbar track color */
+    }
+
+
+.btn-pointed-on-right {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    padding: 5px 40px 10px 40px;
+    margin-right: -36px;
+    -webkit-clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%, 20% 50%);
+    clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%, 20% 50%);
+}
+
+.btn-process-completed {
+    background: #008080;
+    color: white;
+}
+
+.btn-process-rejected {
+    background: #8B0000;
+    color: white;
+}
+
+.btn-normal-sbl {
+    background: #e5a812;
+    color: white;
+}
+
+.btn-logout {
+    background: #212529;
+    color: white;
+}
+
+    .btn-logout:hover {
+        background: black;
+        color: white;
+    }
+
+.welcome-text {
+    text-decoration: none;
+    color: #333333;
+    cursor: default;
+    /* Add any additional styling as desired */
+}
+
+@keyframes blink-animation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+        background-color: #008080; /* Color with opacity */
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.btn-pointed-on-right-ongoing {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    padding: 5px 40px 10px 40px;
+    margin-right: -36px;
+    -webkit-clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%, 20% 50%);
+    clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%, 20% 50%);
+    animation: blink-animation 1s infinite;
+}
+
+.view-only-background {
+    background-color: #FFFFF0;
+}
+
+#offcanvas {
+    color: #e5a812;
+}
+
+    #offcanvas a {
+        color: #e5a812;
+    }
+
+    #offcanvas .offcanvas-header {
+        background-color: white;
+        height: 93px;
+    }
+
+    #offcanvas .offcanvas-body {
+        background-color: #212529;
+    }
+
+    #offcanvas ul {
+        width: 100%;
+    }
+
+        #offcanvas ul li {
+            width: 100%;
+        }
+
+.select2-selection__choice__display{
+    margin-left: 12px;
+}

@@ -1,0 +1,33 @@
+﻿@using SBLApps.Enums;
+@model IEnumerable<SBLApps.Models.MemoRequestOperation>
+<div id="scrollable-container" class="row scrollable-div">
+    <div class="col-12">
+        <div class="btn-group" role="group">
+            @foreach (var item in Model)
+            {
+                var chevron = "btn-pointed-on-right btn-normal-sbl";
+                if ((new int[] { (int)OperationEnum.Complete }).Contains(item.OperationID))
+                {
+                    chevron = "btn-pointed-on-right btn-process-completed";
+                }
+                @*else if ((new int[] { (int)OperationEnum.Approve, (int)OperationEnum.Note }).Contains(item.OperationID))
+                {
+                    chevron = "btn-pointed-on-right btn-process-completed";
+                }*@
+                else if ((new int[] { (int)OperationEnum.Reject }).Contains(item.OperationID))
+                {
+                    chevron = "btn-pointed-on-right btn-process-rejected";
+                }
+                else if (item.Equals(Model.Last()))
+                {
+                    chevron = "btn-pointed-on-right-ongoing btn-normal-sbl";
+                }
+                <div class="@(chevron)" data-bs-html="true">
+                    <strong>@Html.DisplayFor(modelItem => item.RequestedByName)</strong>
+                    <br />
+                    <small><i>@Html.DisplayFor(modelItem => item.OperationCompletedName)</i></small>
+                </div>
+            }
+        </div>
+    </div>
+</div>

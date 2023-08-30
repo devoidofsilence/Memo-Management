@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div>
+        <ul class="nav navbar-nav navbar-right">
+            <form asp-action="LogOut" asp-controller="Account" id="logoutForm" method="post">
+                @Html.AntiForgeryToken()
+            <li>
+                    @Html.ActionLink("Welcome, " + User.FindFirst("FullName")?.Value + "!", "BlacklistingMemoMainList", "BlacklistingMemoMain", null, new { @class = "btn btn-link welcome-text" })
+                <a class="btn btn-logout" href="javascript:document.getElementById('logoutForm').submit()"><i class="bi bi-box-arrow-right"></i>&nbsp;Log off</a>
+            </li>
+            </form>
+        </ul>
+    </div>
+}

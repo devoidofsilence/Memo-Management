@@ -1,0 +1,28 @@
+ORCHARD CORE ::::::::
+
+Composition ::::
+	1. Main Web Project
+	2. Plugins/Extentions ::::
+		Modules => for feature extension
+		Themes => everything styling, look and feel
+		
+Create new empty ASP.NET Core Web Application
+Add OrchardCore.Application.Cms.Targets
+Add lines ::::
+	builder.Services.AddOrchardCoreCms();
+	app.UseOrchardCore();
+	
+Add a new Folder called OrchardCore.Modules
+	Add a C# Class Library named MyModules.OrchardCore
+	Add a Manifest.cs file with content ::::
+		
+		using OrchardCore.Modules.Manifest;
+
+		[assembly: Module(
+			Name = "TemplateModule.OrchardCore",
+			Author = "The Orchard Team",
+			Website = "http://orchardproject.net",
+			Version = "0.0.1",
+			Description = "Template module."
+		)]
+		

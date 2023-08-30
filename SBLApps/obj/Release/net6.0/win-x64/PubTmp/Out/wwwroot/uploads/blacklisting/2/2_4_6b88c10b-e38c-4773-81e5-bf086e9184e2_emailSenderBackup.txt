@@ -1,0 +1,197 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Net.Mail;
+using System.Configuration;
+using System.IO;
+using System.Net;
+
+namespace WSEmailEngine
+{
+    class emailSender
+    {
+        public static bool Shutdown = false;
+        public static int interval = Convert.ToInt16(ConfigurationManager.AppSettings["Interval"]);
+        public static int itemtoProcess = Convert.ToInt16(ConfigurationManager.AppSettings["Itemtoprocess"]);
+        Thread sendMailThread;
+        public async static void sendEmail()
+        {
+            try
+            {
+                while (!Shutdown)
+                {
+                    using (var context = new EmailSenderEntities())
+                    {
+                        var eitems = (from e1 in context.Email_Master
+                                      where e1.Process_Flag == 0
+                                      orderby e1.Created_Time ascending
+                                      select e1).Take(itemtoProcess);
+                        foreach (var eitem in eitems)
+                        {
+                            var eTemplate = context.Template_Master.Find(eitem.TemplateID);
+                            string result = await sendEmail(eitem, eTemplate.Template_Location, eTemplate.EmailFrom);
+                            eitem.Process_Flag = 1;
+                            eitem.Processed_Time = DateTime.Now;
+                            eitem.Error_Msg = result;
+                        }
+                        await context.SaveChangesAsync();
+                    }
+                    Thread.Sleep(interval);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append(Environment.NewLine);
+                sb.Append("4. " + ex.Message);
+                // flush every 20 seconds as you do it
+                File.AppendAllText("C:/Hosted Applications/EmailSender/" + "log.txt", sb.ToString());
+                sb.Clear();
+            }
+        }
+
+        private async static Task<string> sendEmail(Email_Master em, string tempLocation, string _emailFrom)
+        {
+            string result = string.Empty;
+            string body = getEmailBody(em, tempLocation);
+            using (MailMessage msg = new MailMessage())
+            {
+                try
+                {
+                    var context = new EmailSenderEntities();
+                    var eAttachments = from a in context.Attachments
+                                       where a.TemplateID == em.TemplateID
+                                       select a;
+                    foreach (var eAttachment in eAttachments)
+                    {
+                        System.Net.Mail.Attachment attach = new System.Net.Mail.Attachment(eAttachment.Attachment_Location);
+                        msg.Attachments.Add(attach);
+                    }
+                    ///
+                    /// Modified 
+                    ///
+                    //msg.From = new MailAddress(ConfigurationManager.AppSettings["emailFrom"]);
+                    msg.From = new MailAddress(_emailFrom, "Siddhartha Bank");
+                    msg.Subject = em.Subject;
+                    msg.Body = body;
+                    msg.IsBodyHtml = true;
+                    msg.To.Add(new MailAddress(em.EmailID));
+
+                    ///
+                    /// Modified for Multiple CC
+                    ///
+
+
+                    if (!string.IsNullOrEmpty(em.CC))
+                    {
+                        foreach (var address in em.CC.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            string res = CheckEmail(address);
+                            if (!string.IsNullOrEmpty(res))
+                                msg.CC.Add(res);
+                        }
+                    }
+
+
+                    ///END OF MODIFICATION CC
+
+
+                    SmtpClient smtp = new SmtpClient();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    smtp.Host = ConfigurationManager.AppSettings["Host"];
+                    smtp.EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]);
+                    System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential();
+                    NetworkCred.UserName = ConfigurationManager.AppSettings["emailFrom"];
+                    NetworkCred.Password = ConfigurationManager.AppSettings["Password"];
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = NetworkCred;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Port = int.Parse(ConfigurationManager.AppSettings["Port"]);
+                    smtp.Timeout = 20000;
+
+                    await smtp.SendMailAsync(msg);
+                    return "Success";
+                }
+                catch (Exception ex)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(Environment.NewLine);
+                    sb.Append("5. " + ex.Message);
+                    // flush every 20 seconds as you do it
+                    File.AppendAllText("C:/Hosted Applications/EmailSender/" + "log.txt", sb.ToString());
+                    sb.Clear();
+                    return ex.Message;
+                }
+            }
+        }
+
+        private static string getEmailBody(Email_Master eMaster, string tLoc)
+        {
+            string body = string.Empty;
+            try
+            {
+                using (StreamReader reader = new StreamReader(tLoc))
+                {
+                    body = reader.ReadToEnd();
+                }
+                body = body.Replace("{Field1}", eMaster.Field1);
+                body = body.Replace("{Field2}", eMaster.Field2);
+                body = body.Replace("{Field3}", eMaster.Field3);
+                body = body.Replace("{Field4}", eMaster.Field4);
+                body = body.Replace("{Field5}", eMaster.Field5);
+                body = body.Replace("{Field6}", eMaster.Field6);
+                body = body.Replace("{Field7}", eMaster.Field7);
+                body = body.Replace("{Field8}", eMaster.Field8);
+                body = body.Replace("{Field9}", eMaster.Field9);
+                body = body.Replace("{Field10}", eMaster.Field10);
+                body = body.Replace("{Field11}", eMaster.Field11);
+                body = body.Replace("{Field12}", eMaster.Field12);
+                body = body.Replace("{Field13}", eMaster.Field13);
+                body = body.Replace("{Field14}", eMaster.Field14);
+                body = body.Replace("{Field15}", eMaster.Field15);
+            }
+            catch (Exception ex)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(Environment.NewLine);
+                sb.Append("6. " + ex.Message);
+                // flush every 20 seconds as you do it
+                File.AppendAllText("C:/Hosted Applications/EmailSender/" + "log.txt", sb.ToString());
+                sb.Clear();
+            }
+            return body;
+        }
+
+
+        public static string CheckEmail(string _emailAddress)
+        {
+            try
+            {
+                MailAddress fromAddress = new MailAddress(_emailAddress);
+                return _emailAddress;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        public void StartProcess()
+        {
+            sendMailThread = new Thread(new ThreadStart(sendEmail));
+            sendMailThread.Start();
+        }
+
+        public void StopProcess()
+        {
+            sendMailThread = new Thread(new ThreadStart(sendEmail));
+            Shutdown = true;
+            sendMailThread.Join();
+        }
+
+    }
+}

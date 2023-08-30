@@ -1,0 +1,93 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SBLApps
+build_property.RootNamespace = SBLApps
+build_property.ProjectDir = D:\Git Projects\Roman Dai Projects\SBLApps - Memo App\SBLApps\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Git Projects\Roman Dai Projects\SBLApps - Memo App\SBLApps
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Account/UserList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Account/UserRegistration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyUmVnaXN0cmF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/BlacklistingMemoMain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cQmxhY2tsaXN0aW5nTWVtb01haW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/BlacklistingMemoMainList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cQmxhY2tsaXN0aW5nTWVtb01haW5MaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/BlacklistingMemoMainOrchestrate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cQmxhY2tsaXN0aW5nTWVtb01haW5PcmNoZXN0cmF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/BlacklistingMemoMainToCCAC.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cQmxhY2tsaXN0aW5nTWVtb01haW5Ub0NDQUMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/BlacklistingMemoMainView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cQmxhY2tsaXN0aW5nTWVtb01haW5WaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cVGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/_BlacklistingMemoMainForward.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cX0JsYWNrbGlzdGluZ01lbW9NYWluRm9yd2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/BlacklistingMemoMain/_BlacklistingMemoMainViewOnly.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxhY2tsaXN0aW5nTWVtb01haW5cX0JsYWNrbGlzdGluZ01lbW9NYWluVmlld09ubHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Common/_MemoOperationLogRemarks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbW9uXF9NZW1vT3BlcmF0aW9uTG9nUmVtYXJrcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Common/_MemoOperationLogStrip.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbW9uXF9NZW1vT3BlcmF0aW9uTG9nU3RyaXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Git Projects/Roman Dai Projects/SBLApps - Memo App/SBLApps/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-onjkyvsegj

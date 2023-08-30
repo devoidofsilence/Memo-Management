@@ -1,0 +1,7 @@
+Applications List::::
+
+1. Forestry Campus FTP File transfer => windows worker service => hosted in 192.168.170.61 on Task Scheduler (gets data from Oracle DB View and writes to excel file and pushes file to Forestry Campuss' FTP Server)
+2. Bulk Interest Revision System => Asp.NET MVC 4 application => hosted in 192.168.100.30 (application and DB both)
+3. Role Request Form => Asp.NET 4 application => hosted in 192.168.100.166 (application and DB both)
+4. Email Sender Service => Windows Service (Service Name: EmailEngineService) => hosted in 192.168.100.165 (service and DB both)
+5. 

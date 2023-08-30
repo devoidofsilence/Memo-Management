@@ -1,0 +1,30 @@
+Workflow Management System::
+
+Operations that can be performed are;
+1. "Initiate"(possible next operations for the next personnel are "Recommend" and pass for another personnel,
+	directly "Approve" and end the workflow, "Reject" and end the workflow, Mark "Noted" and end the workflow, "Refer" the request
+	to another personnel, "Forward for review" the request to another personnel), request is then put in [Initiated] stage,
+2. "Recommend" the request and pass for another personnel(possible next operations for the next personnel are "Recommend" and pass
+	for another personnel, directly "Approve" and end the workflow, "Reject" and end the workflow, Mark "Noted" and end the
+	workflow, "Return" the request to initiator, "Refer" the request to another personnel, "Forward for Review" the request to
+	another personnel), request is then put in [Recommended] stage,
+3. "Approve" the request(ends the workflow), request is then put in [Completed] stage,
+4. "Return" to initiator(possible next operations for the next personnel(initiator) is only "Reinitiate", similar to number 1),
+	request is then put in [Returned] stage,
+5. "Reinitiate" the returned request(possible next operations for the next personnel are "Recommend" and pass for another personnel,
+	directly "Approve" and end the workflow, "Reject" and end the workflow, Mark "Noted" and end the workflow, "Refer" the request
+	to another personnel, "Forward for review" the request to another personnel), request is then put in [Initiated] stage,
+6. "Refer" to another personnel(possible next operations for the next personnel is only "Referral Approved"),
+	request is then put in [Referral] stage,
+7. "Referral Approved"(possible next operations for the next personnel are "Recommend" and pass
+	for another personnel, directly "Approve" and end the workflow, "Reject" and end the workflow, Mark "Noted" and end the
+	workflow, "Return" the request to initiator, "Refer" the request to another personnel, "Forward for Review" the request to
+	another personnel), request is then put in [Referred] stage,
+8. "Forward for Review" to another personnel(possible next operations for the next personnel is only "Request Reviewed"),
+	request is then put in [ForReview] stage,
+9. "Request Reviewed"(possible next operations for the next personnel are "Recommend" and pass
+	for another personnel, directly "Approve" and end the workflow, "Reject" and end the workflow, Mark "Noted" and end the
+	workflow, "Return" the request to initiator, "Refer" the request to another personnel, "Forward for Review" the request to
+	another personnel), request is then put in [Reviewed] stage,
+10. "Noted"(ends the workflow), request is then put in [Completed] stage,
+11. "Reject"(ends the workflow), request is then put in [Rejected] stage

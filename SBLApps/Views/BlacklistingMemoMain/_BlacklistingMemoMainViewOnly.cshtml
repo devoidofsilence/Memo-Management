@@ -1,0 +1,259 @@
+﻿@model SBLApps.Models.BlacklistingMemoMain
+
+@{
+    ViewData["Title"] = "Memo View";
+}
+
+<div class="card view-only-background" id="viewOnlyDiv">
+    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseWholeBody" aria-expanded="true" aria-controls="collapseWholeBody">
+        <h3>
+            Blacklisting Memo
+        </h3>
+    </div>
+    <div class="collapse show" id="collapseWholeBody">
+        <div class="card-body">
+            <input asp-for="MemoId" type="hidden" />
+            <input asp-for="Initiator" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="ReferenceNumber" class="control-label"></label>
+                    <input asp-for="ReferenceNumber" class="form-control" readonly />
+                    <span asp-validation-for="ReferenceNumber" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="BranchId" class="control-label"></label>
+                    <select asp-for="BranchId" class="form-control">
+                        <option value="">-- Select --</option>
+                        @foreach (var item in Model.BranchList ?? Enumerable.Empty<SelectListItem>())
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="BranchId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="DepartmentId" class="control-label"></label>
+                    <select asp-for="DepartmentId" class="form-control">
+                        <option value="">-- Select --</option>
+                        @foreach (var item in Model.DepartmentList ?? Enumerable.Empty<SelectListItem>())
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="FinalApproverSAMName" class="control-label"></label>
+                    <select asp-for="FinalApproverSAMName" class="form-control js-select2">
+                        <option value="">-- Select --</option>
+                        @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]))
+                        {
+                            <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                        }
+                    </select>
+                    <span asp-validation-for="FinalApproverSAMName" class="text-danger"></span>
+                </div>
+                <div class="col-md-8">
+                    <label asp-for="Subject" class="control-label"></label>
+                    <textarea asp-for="Subject" class="form-control"></textarea>
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label asp-for="AccountNumber" class="control-label"></label>
+                    <input asp-for="AccountNumber" class="form-control" />
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                    <input type="hidden" asp-for="CIF" />
+                </div>
+                <div class="col-md-1">
+                    <br />
+                    <input type="button" class="btn btn-primary" value="Get" id="btnGetDataFromAccountNumber" style="display:none" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="AccountHolderName" class="control-label"></label>
+                    <input asp-for="AccountHolderName" class="form-control" />
+                    <span asp-validation-for="AccountHolderName" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="CustomerTypeId" class="control-label"></label>
+                    <select asp-for="CustomerTypeId" class="form-control">
+                        <option value="">-- Select --</option>
+                        @foreach (var item in Model.CustomerTypeList ?? Enumerable.Empty<SelectListItem>())
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CustomerTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-md-4 form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="IsLoanCustomer" id="IsLoanCustomer" />
+                    <label class="form-check-label" asp-for="IsLoanCustomer">Is Loan Customer?</label>
+                    <span asp-validation-for="IsLoanCustomer" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 loan-customer-fields">
+                    <label asp-for="TotalLoanOutstanding" class="control-label"></label>
+                    <input asp-for="TotalLoanOutstanding" class="form-control" />
+                    <span asp-validation-for="TotalLoanOutstanding" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 loan-customer-fields">
+                    <label asp-for="NameOfRORM" class="control-label"></label>
+                    <input asp-for="NameOfRORM" class="form-control" />
+                    <span asp-validation-for="NameOfRORM" class="text-danger"></span>
+                </div>
+                @* Grid to show all the account that are maintained *@
+                <div id="table-container" class="table table-responsive">
+                </div>
+                <br />
+                <div id="table-linked-entities" class="table table-responsive">
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="NameOfPayee" class="control-label"></label>
+                    <input asp-for="NameOfPayee" class="form-control" />
+                    <span asp-validation-for="NameOfPayee" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="BlacklistingRequestedBy" class="control-label"></label>
+                    <input asp-for="BlacklistingRequestedBy" class="form-control" />
+                    @*<select asp-for="BlacklistingRequestedBy" class="form-control js-select2">
+                    <option value="">-- Select --</option>
+                    @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]))
+                    {
+                    <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                    }
+                    </select>*@
+                    <span asp-validation-for="BlacklistingRequestedBy" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="BlacklistingApplicationReceivedDate" class="control-label"></label>
+                    <input asp-for="BlacklistingApplicationReceivedDate" class="form-control" type="date" />
+                    <span asp-validation-for="BlacklistingApplicationReceivedDate" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="AddressOfRequestingPerson" class="control-label"></label>
+                    <input asp-for="AddressOfRequestingPerson" class="form-control" />
+                    <span asp-validation-for="AddressOfRequestingPerson" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="StaffIDNoOfRequestingPerson" class="control-label"></label>
+                    <input asp-for="StaffIDNoOfRequestingPerson" class="form-control" />
+                    <span asp-validation-for="StaffIDNoOfRequestingPerson" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="ContactNumberOfRequestingPerson" class="control-label"></label>
+                    <input asp-for="ContactNumberOfRequestingPerson" class="form-control" />
+                    <span asp-validation-for="ContactNumberOfRequestingPerson" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="card">
+                <input asp-for="StringifiedBlacklistingMemoDetails" type="hidden" />
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseAccountDetailsBody" aria-expanded="true" aria-controls="collapseAccountDetailsBody">
+                    <h3>
+                        Account Details
+                    </h3>
+                </div>
+                <div class="collapse show" id="collapseAccountDetailsBody">
+                    <div class="card-body">
+                        <div id="jsGrid"></div>
+                        <br />
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label asp-for="TotalChequeAmount" class="control-label"></label>
+                                <input type="text" class="form-control" asp-for="TotalChequeAmount" readonly>
+                            </div>
+                        </div>
+                        <hr />
+
+                        @*<div class="corporate-customer-fields">*@
+                        <div>
+                            <input asp-for="StringifiedBlacklistingOtherPartyDetails" type="hidden" />
+                            Other parties to be blacklisted
+                            <div id="jsGridOtherParty"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="card">
+                <input asp-for="StringifiedBlacklistingDocumentDetails" type="hidden" />
+                <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseDocumentsBody" aria-expanded="true" aria-controls="collapseDocumentsBody">
+                    <h3>
+                        Documents
+                    </h3>
+                </div>
+                <div class="collapse show" id="collapseDocumentsBody">
+                    <div class="card-body">
+                        <input type="button" id="addRow" class="btn btn-normal-sbl" value="Add Document" style="display:none" />
+                        <div id="jsGridDocuments" class="table-responsive">
+                            <table id="documentsTable" class="table table-bordered table-light">
+                                <thead>
+                                    <tr>
+                                        <th>Document Type</th>
+                                        <th>Saved File</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="RequestStatusId" class="control-label"></label>
+                    <select asp-for="RequestStatusId" class="form-control">
+                        <option value="">-- Select --</option>
+                        @foreach (var item in Model.RequestStatusList ?? Enumerable.Empty<SelectListItem>())
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="RequestStatusId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="NextAuthority" class="control-label">Authority With</label>
+                    <select asp-for="NextAuthority" class="form-control js-select2">
+                        <option value="">-- Select --</option>
+                        @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]))
+                        {
+                            if (user.Value == Model.NextAuthority)
+                            {
+                                <option value="@user.Value" selected>@($"{user.Text} ({user.Value})")</option>
+                            }
+                            else
+                            {
+                                <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="NextAuthority" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <input asp-for="MemoRequirementRemarks" type="hidden" />
+                <div class="col-md-12">
+                    <label asp-for="MemoRequirementRemarks" class="control-label"></label>
+                    <div id="ck_remarks" contenteditable="false"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

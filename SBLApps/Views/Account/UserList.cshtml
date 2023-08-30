@@ -1,0 +1,111 @@
+﻿@model IEnumerable<SBLApps.Models.User>
+
+@{
+    ViewData["Title"] = "Memo List";
+}
+
+@*<p>
+    <a asp-action="UserRegistration" class="btn btn-normal-sbl">Create New</a>
+</p>*@
+
+@using (Html.BeginForm("SyncUserFromAD", "Account", FormMethod.Post, new { id = "syncForm" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group mb-0">
+                <div class="custom-control ">
+                    <input type="submit" value="Sync Users from AD" class="btn btn-normal-sbl" onclick="return confirmSubmit();" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="table table-responsive">
+    <table id="tbl_UserList" class="display compact" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Designation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Department)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>*@
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>*@
+                    <td>
+                        <div class="row">
+                            <div class="col-6"><a class="btn btn-normal-sbl" href="@Url.Action("UserRegistrationEdit", "Account", new { userId = item.UserId })"><i class="bi bi-pencil-square" title="Edit"></i></a></div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tbl_UserList').DataTable();
+        });
+
+        function confirmSubmit() {
+            // Display a confirmation dialog
+            var result = confirm("Are you sure you want to sync users from AD?");
+
+            // Return the confirmation result
+            debugger;
+            if (result === true) {
+                document.getElementById("overlay").style.display = "block";
+            }
+            return result;
+        }
+
+    </script>
+}

@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "5258da23-8cb9-4563-a43e-d0501edf7df3",
+		"name": "NePS-VAT-Refund",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SBL",
+			"item": [
+				{
+					"name": "OAUTH-Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "5TGUu1szzOCVcNRjXbrA1V0YEvhibNCBBu3CqoEAquhSik49",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Ok60LsM7HjVhvkS1FGe1axyq",
+									"type": "string"
+								},
+								{
+									"key": "showPassword",
+									"value": false,
+									"type": "boolean"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "default"
+								},
+								{
+									"key": "username",
+									"value": "SBL_USER",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "SBL_P@$$",
+									"type": "default"
+								},
+								{
+									"key": "scope",
+									"value": "vat_refund",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://182.93.86.36:443/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"182",
+								"93",
+								"86",
+								"36"
+							],
+							"port": "443",
+							"path": [
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VAT-Refund",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const postRequest = {\r",
+									"  url: 'https://10.0.3.156:443/oauth2/token',\r",
+									"  method: 'POST',\r",
+									"  timeout: 0,\r",
+									"  header: {\r",
+									"    \"Content-Type\": \"application/x-www-form-urlencoded\"\r",
+									"  },\r",
+									"  body: {\r",
+									"    mode: 'urlencoded',\r",
+									"    urlencoded: [\r",
+									"        {key: \"client_id\", value: \"Ok60LsM7HjVhvkS1FGe1axyq\"},\r",
+									"        {key: \"client_secret\", value: \"5TGUu1szzOCVcNRjXbrA1V0YEvhibNCBBu3CqoEAquhSik49\"},\r",
+									"        {key: \"grant_type\", value: \"password\"},\r",
+									"        {key:\"username\", value: \"SBL_USER\"},\r",
+									"        {key:\"password\", value: \"SBL_P@$$\"},\r",
+									"        {key:\"scope\", value: \"vat_refund\"}\r",
+									"    ]}\r",
+									"};\r",
+									"\r",
+									"pm.sendRequest(postRequest, function (err, res) {\r",
+									"    var responseJson = res.json();\r",
+									"    console.log(responseJson);\r",
+									"    pm.environment.set('ACCESS_TOKEN', responseJson['access_token']);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJOZVBTIiwidXNlciI6IlNCTF9VU0VSIiwic2NvcGUiOiJ2YXRfcmVmdW5kIiwiaW5zdCI6MTAwNSwia2lkIjoiS1phUmZnYkp3cm1WdFhaemhiN1dHZ0xBOUdPQXJTdzQtd0RCb1VOUnJrbyIsImNvZGUiOiJTSURETlBLQSIsImF1ZCI6ImJhbmsiLCJncmFudF90eXBlIjoicGFzc3dvcmQiLCJleHAiOjE2ODMwMTk5ODJ9.icnoDhAWt1U6UvYVRB3QPj2j29h0gT75M1H0hlfok0KOnLoXwXnPBFNckyoft-uWEHxeTveBVYZZcGG4R8pJOY2ll2jz7TRtMDGuxwcOryXU-cUfD6zr3mamjJP0ioZGCBdrvYzL1_q569lEtc33GxI2w5wg0_94ggyuoGLIDa3mwcrsKULz9JURCdADOYw0YMyoDK3T_5V7RlNnDaPfGpFFARNoEoOF-p0ZquCAQ0DAPIktRtHuagSSBIoToyu4mVfKBfXHHAhY_o-4e5RSQz81VAHhb4V71agT3OwLqv3mBd462ZOvsBcN7esWfVupqFeMog6XnbzvsGKCBosRrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ref_num\": \"312209935410\",\r\n    \"date\": \"2023-05-02\",\r\n    \"amount\": 200,\r\n    \"currency\": 524,\r\n    \"terminal_id\": \"13072001\",\r\n    \"sender_address\": \"VAT Refund\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://182.93.86.36:443/api/v1/cardservice/vatrefund",
+							"protocol": "https",
+							"host": [
+								"182",
+								"93",
+								"86",
+								"36"
+							],
+							"port": "443",
+							"path": [
+								"api",
+								"v1",
+								"cardservice",
+								"vatrefund"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

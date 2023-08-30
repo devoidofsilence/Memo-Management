@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+                    <FIXML xsi:schemaLocation="http://www.finacle.com/fixml RetCustAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+                        <RequestHeader>
+                            <MessageKey>
+                                <RequestUUID>SBLREQ_202303281679988604_2047</RequestUUID>
+                                <ServiceRequestId>RetCustAdd</ServiceRequestId> --DEFAULT VALUE
+                                <ServiceRequestVersion>10.2</ServiceRequestVersion> --DEFAULT VALUE
+                                <ChannelId>CRM</ChannelId> --DEFAULT VALUE
+                                <LanguageId></LanguageId> --DEFAULT VALUE
+                            </MessageKey>
+                            <RequestMessageInfo>
+                                <BankId>1801</BankId> --DEFAULT VALUE
+                                <TimeZone></TimeZone> --DEFAULT VALUE
+                                <EntityId></EntityId> --DEFAULT VALUE
+                                <EntityType></EntityType> --DEFAULT VALUE
+                                <ArmCorrelationId></ArmCorrelationId> --DEFAULT VALUE
+                                <MessageDateTime>2023-03-28T13:15:04.362</MessageDateTime> --CURRENT TIME
+                            </RequestMessageInfo>
+                        </RequestHeader>
+                    </Header>
+                    <Body>
+                        <RetCustAddRequest>
+                            <RetCustAddRq>
+                                <CustDtls>
+                                    <CustData>
+                                        <AddrDtls>
+                                            <AddrCategory>Mailing</AddrCategory> --DEFAULT VALUE
+                                            <City>306</City> --DEFAULT VALUE
+                                            <Country>NP</Country> -- VALUE FROM COUNTRY DROPDOWN
+                                            <FreeTextLabel>SHANTINAGAR</FreeTextLabel> -- VALUE FROM STREET NAME/TOLE FREETEXT FIELD
+                                            <HoldMailFlag>N</HoldMailFlag> --DEFAULT VALUE
+                                            <PrefAddr>Y</PrefAddr> --DEFAULT VALUE
+                                            <PrefFormat>STRUCTURED_FORMAT</PrefFormat> --DEFAULT VALUE
+                                            <StartDt>2020-01-01T00:00:00.000</StartDt> --TODAY'S DATE VALUE
+                                            <State>3</State> --DEFAULT VALUE
+                                            <PostalCode>44600</PostalCode> --DEFAULT VALUE
+                                            <HouseNum>12547</HouseNum> --VALUE FROM HOUSE NO. FREETEXT FIELD
+                                            <PremiseName>Premise</PremiseName> --DEFAULT VALUE
+                                            <StreetNum>2</StreetNum> --DEFAULT VALUE
+                                            <StreetName>SHANTINAGAR</StreetName> -- SAME VALUE FROM STREET NAME/TOLE FREETEXT FIELD
+                                        </AddrDtls>
+                                        <BirthDt>01</BirthDt> -- VALUE FROM Date of Birth (A.D.) FIELD
+                                        <BirthMonth>03</BirthMonth> -- VALUE FROM Date of Birth (A.D.) FIELD
+                                        <BirthYear>1997</BirthYear> -- VALUE FROM Date of Birth (A.D.) FIELD
+                                        <Cust_Type>6.01</Cust_Type> -- VALUE FROM Customer Category DROPDOWN FIELD
+                                        <CreatedBySystemId>2746</CreatedBySystemId> -- FINACLE MAPPED USERNAME
+                                        <Community>NO</Community> -- VALUE FOR PEP Confirmation DROPDOWN
+                                        <DateOfBirth>1997-03-01T00:00:00.000</DateOfBirth> -- VALUE FROM Date of Birth (A.D.) FIELD
+                                        <FirstName>BHANU</FirstName>
+                                        <MiddleName></MiddleName>
+                                        <LastName>TIMSEENA</LastName>
+                                        <CustHealthCode>MRISK</CustHealthCode> -- VALUE FROM AML Risk Rating DROPDOWN
+                                        <RiskRating>MODERATE</RiskRating> -- ACCORDING TO AML RISK RATING
+                                        <Language>INFENG</Language> -- DEFAULT VALUE
+                                        <IsMinor>N</IsMinor> -- DETERMINES MINOR OR NOT
+                                        <IsCustNRE>N</IsCustNRE> -- DEFAULT VALUE
+                                        <DefaultAddrType>Mailing</DefaultAddrType> --DEFAULT VALUE
+                                        <Gender>M</Gender> -- VALUE DETERMINED FROM SALUTATION CHECKBOX (MS, MS., MRS, MRS. => F) (MR, MR. => M)
+                                        <Manager>UBSADMIN</Manager> -- DEFAULT VALUE
+                                        <Name>BHANU TIMSEENA</Name> -- CUSTOMER FULL NAME CALCULATED VALUE
+                                        <NativeLanguageCode>INFENG</NativeLanguageCode> -- DEFAULT VALUE
+                                        <PhoneEmailDtls>
+                                            <PhoneEmailType>CELLPH</PhoneEmailType> -- DEFAULT VALUE
+                                            <PhoneNum>9849088256</PhoneNum> -- Mobile Number FIELD VALUE
+                                            <PhoneNumCountryCode>977</PhoneNumCountryCode> -- DEFAULT VALUE
+                                            <PhoneNumLocalCode>9849088256</PhoneNumLocalCode> -- Mobile Number FIELD VALUE, DOES NOT LOOK GOOD BUT THIS IS THE ACTUAL MOBILE NUMBER THAT IS BEING SAVED TO MOBILE NUMBER IN FINACLE
+                                            <PhoneOrEmail>PHONE</PhoneOrEmail> -- DEFAULT VALUE
+                                            <PrefFlag>Y</PrefFlag> -- DEFAULT VALUE
+                                        </PhoneEmailDtls>
+                                        <PrimarySolId>999</PrimarySolId> --DEFAULT VALUE
+                                        <PriorityCode>CV2</PriorityCode> -- VALUE FROM Customer Classification DROPDOWN
+                                        <Rating>BDD</Rating> -- ECDD, SDD or BDD according to the selected AML Risk Rating
+                                        <Region>HAT</Region>  -- VALUE FROM THE Location (Branch Location Code) FIELD, HAT IS DEFAULT DURING OPENING
+                                        <RelationshipOpeningDt>2020-01-01T00:00:00.000</RelationshipOpeningDt> -- CURRENT DATE AND TIME
+                                        <Salutation>MR.</Salutation> -- VALUE FROM Salutation RADIOBOX
+                                        <SegmentationClass>OTHE</SegmentationClass> -- DEFAULT VALUE
+                                        <StaffFlag>N</StaffFlag> -- VALUE DETERMINED FROM Account Class DROPDOWN (IF ACCOUNT CLASS == SVST(STAFF SAVINGS), THEN Y ELSE N)
+                                        
+                                        <SubSegment>OTHE</SubSegment> -- DEFAULT VALUE
+                                        <TaxDeductionTable>5%</TaxDeductionTable> -- DEFAULT VALUE
+                                        <TradeFinFlag>N</TradeFinFlag> -- DEFAULT VALUE
+                                        <IsSMSBankingEnabled>N</IsSMSBankingEnabled> -- DEFAULT VALUE
+                                        <IsEbankingEnabled>N</IsEbankingEnabled> -- DEFAULT VALUE
+                                        <AutoApproval>Y</AutoApproval> -- DEFAULT VALUE
+                                        <Pref_code>OFFLI</Pref_code> -- DEFAULT VALUE
+                                        <EnableAlerts>N</EnableAlerts> -- DEFAULT VALUE
+                                    </CustData>
+                                </CustDtls>
+                                <RelatedDtls>
+                                    
+                                    <DemographicData>
+                                        <DonotCallFlag>N</DonotCallFlag> -- FROM Email and Mobile Number Verification. CHECKBOXES
+                                        <DonotMailFlag>N</DonotMailFlag> -- FROM Email and Mobile Number Verification. CHECKBOXES
+                                        <DemographicMiscData>
+                                            <Type>CURRENT_EMPLOYMENT</Type> -- DEFAULT VALUE
+                                            <STRTEXT2>OTH03</STRTEXT2> -- DEFAULT VALUE
+                                        </DemographicMiscData>
+                                        <MaritalStatus>MARR</MaritalStatus> -- DEFAULT VALUE for CIF opening
+                                        <EmploymentStatus>Employed</EmploymentStatus> -- DEFAULT VALUE
+                                        <Nationality>NP</Nationality> -- FROM Nationality DROPDOWN
+                                    </DemographicData>
+                                    <EntityDoctData>
+                                        <CountryOfIssue>NP</CountryOfIssue> -- DEFAULT VALUE
+                                        <DocCode>CITZ</DocCode> -- VALUE FROM ID Type DROPDOWN
+                                        <IssueDt>2020-01-01T00:00:00.000</IssueDt> -- TODAY'S DATE TIME
+                                        
+                                        <TypeCode>RETAIL</TypeCode> -- DEFAULT VALUE
+                                        <PlaceOfIssue>306</PlaceOfIssue> -- DEFAULT VALUE
+                                        <ReferenceNum>25489</ReferenceNum> -- VALUE FROM ID Number TEXT FIELD
+                                        <preferredUniqueId>Y</preferredUniqueId> -- DEFAULT VALUE
+                                    </EntityDoctData>
+                                    <PsychographicData>
+                                        <PsychographMiscData>
+                                        <StrText10>NPR</StrText10> --FROM Account Currency DROPDOWN
+                                        <Type>CURRENCY</Type> -- DEFAULT VALUE
+                                        </PsychographMiscData>
+                                    </PsychographicData>
+                                </RelatedDtls>
+                            </RetCustAddRq>
+                        </RetCustAddRequest>
+                    </Body>
+                    </FIXML>
+					
+					
+					
+<?xml version="1.0" encoding="UTF-8"?>
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml SBAcctAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+"<Header>
+    <RequestHeader>
+        <MessageKey>
+            <RequestUUID>$request_uid</RequestUUID>
+            <ServiceRequestId>SBAcctAdd</ServiceRequestId>
+            <ServiceRequestVersion>10.2</ServiceRequestVersion>
+            <ChannelId>COR</ChannelId>
+            <LanguageId></LanguageId>
+        </MessageKey>
+        <RequestMessageInfo>
+            <BankId>1801</BankId>
+            <TimeZone></TimeZone>
+            <EntityId></EntityId>
+            <EntityType></EntityType>
+            <ArmCorrelationId></ArmCorrelationId>
+            <MessageDateTime>$message_date_time</MessageDateTime>
+        </RequestMessageInfo>
+        <Security>
+            <Token>
+                <PasswordToken>
+                <UserId></UserId>
+                <Password></Password>
+                </PasswordToken>
+            </Token>
+            <FICertToken></FICertToken>
+            <RealUserLoginSessionId></RealUserLoginSessionId>
+            <RealUser></RealUser>
+            <RealUserPwd></RealUserPwd>
+            <SSOTransferToken></SSOTransferToken>
+        </Security>
+    </RequestHeader>
+</Header>
+<Body>
+    <SBAcctAddRequest>
+        <SBAcctAddRq>
+            <CustId>
+                <CustId>$cif_number</CustId> -- GENERATED CIF VALUE FROM FIRST FI API CALL
+            </CustId>
+            <SBAcctId>
+                <AcctType>
+                    <SchmCode>$account_class</SchmCode> -- FROM Account Class DROPDOWN
+                </AcctType>
+                <AcctCurr>$account_currency</AcctCurr> --FROM Account Currency DROPDOWN
+                <BankInfo>
+                    <BranchId>$branch_sol_id</BranchId> -- FINACLE VALUE FROM Location (Branch Location Code) FIELD
+                </BankInfo>
+            </SBAcctId>
+            <SBAcctGenInfo>
+                <GenLedgerSubHead>
+                    <GenLedgerSubHeadCode></GenLedgerSubHeadCode>
+                </GenLedgerSubHead>
+                <AcctName>$customerfullname</AcctName>
+                <AcctShortName></AcctShortName>
+                <AcctStmtFreq>
+                    <Cal>00</Cal>  -- DEFAULT VALUE
+                    <Type>M</Type>  -- DEFAULT VALUE
+                    <StartDt>31</StartDt>  -- DEFAULT VALUE
+                    <HolStat>N</HolStat> -- DEFAULT VALUE
+                </AcctStmtFreq>
+                <AcctStmtMode>S</AcctStmtMode> -- DEFAULT VALUE
+                <DespatchMode>C</DespatchMode>  -- DEFAULT VALUE
+            </SBAcctGenInfo> 
+        </SBAcctAddRq> 
+        <SBAcctAdd_CustomData>
+            <localCalFlg>N</localCalFlg>  -- DEFAULT VALUE
+            <WTAXSCOPEFLAG>P</WTAXSCOPEFLAG>  -- DEFAULT VALUE
+            <INTCRACCTFLG>S</INTCRACCTFLG> -- DEFAULT VALUE
+        </SBAcctAdd_CustomData>
+    </SBAcctAddRequest>
+</Body>
+</FIXML>
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml CAAcctAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Header>
+    <RequestHeader>
+        <MessageKey>
+            <RequestUUID>$request_uid</RequestUUID>
+            <ServiceRequestId>CAAcctAdd</ServiceRequestId>
+            <ServiceRequestVersion>10.2</ServiceRequestVersion>
+            <ChannelId>COR</ChannelId>
+            <LanguageId></LanguageId>
+        </MessageKey>
+        <RequestMessageInfo>
+            <BankId>1801</BankId>
+            <TimeZone></TimeZone>
+            <EntityId></EntityId>
+            <EntityType></EntityType>
+            <ArmCorrelationId></ArmCorrelationId>
+            <MessageDateTime>$message_date_time</MessageDateTime>
+        </RequestMessageInfo>
+        <Security>
+            <Token>
+                <PasswordToken>
+                    <UserId></UserId>
+                    <Password></Password>
+                </PasswordToken>
+            </Token>
+            <FICertToken></FICertToken>
+            <RealUserLoginSessionId></RealUserLoginSessionId>
+            <RealUser></RealUser>
+            <RealUserPwd></RealUserPwd>
+            <SSOTransferToken></SSOTransferToken>
+        </Security>
+    </RequestHeader>
+</Header>
+<Body>
+    <CAAcctAddRequest>
+        <CAAcctAddRq>
+            <CustId>
+                <CustId>$cif_number</CustId> -- GENERATED CIF VALUE FROM FIRST FI API CALL
+            </CustId>
+            <CAAcctId>
+                <AcctType>
+                    <SchmCode>$account_class</SchmCode> -- FROM Account Class DROPDOWN
+                </AcctType>
+                <AcctCurr>$account_currency</AcctCurr> --FROM Account Currency DROPDOWN
+            </CAAcctId>
+            <CAAcctGenInfo>
+                <GenLedgerSubHead>
+                    <GenLedgerSubHeadCode></GenLedgerSubHeadCode>
+                </GenLedgerSubHead>
+                <despatchMode>N</despatchMode> -- DEFAULT VALUE
+            </CAAcctGenInfo>
+        </CAAcctAddRq>
+        <CAAcctAdd_CustomData>
+            <SOLID>$branch_sol_id</SOLID> -- FINACLE VALUE FROM Location (Branch Location Code) FIELD
+            <localCalFlg>N</localCalFlg> -- DEFAULT VALUE
+            <WTAXAMOUNTSCOPEFLG>P</WTAXAMOUNTSCOPEFLG> -- DEFAULT VALUE
+			<INTCRACCTFLG>S</INTCRACCTFLG> -- DEFAULT VALUE
+			<nextIntRunDateCr>$start_date</nextIntRunDateCr>
+        </CAAcctAdd_CustomData>
+    </CAAcctAddRequest>
+</Body>
+</FIXML>
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml createCorporateCustomer.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+"<Header>
+    <RequestHeader>
+        <MessageKey>
+            <RequestUUID>$request_uid</RequestUUID>
+            <ServiceRequestId>createCorporateCustomer</ServiceRequestId>
+            <ServiceRequestVersion>10.2</ServiceRequestVersion>
+            <ChannelId>CRM</ChannelId>
+            <LanguageId/>
+        </MessageKey>
+        <RequestMessageInfo>
+            <BankId>1801</BankId>
+            <TimeZone/>
+            <EntityId/>
+            <EntityType/>
+            <ArmCorrelationId/>
+            <MessageDateTime>$message_date_time</MessageDateTime>
+        </RequestMessageInfo>
+        <Security>
+            <Token>
+            <PasswordToken>
+                <UserId/>
+                <Password/>
+            </PasswordToken>
+            </Token>
+            <FICertToken/>
+            <RealUserLoginSessionId/>
+            <RealUser/>
+            <RealUserPwd/>
+            <SSOTransferToken/>
+        </Security>
+    </RequestHeader>
+</Header>
+<Body>
+    <createCorporateCustomerRequest>
+        <CorpCustDetails>
+            <corpCustomerDtlsData>
+                <corpCustomerData>						
+                    <business_type>$business_type</business_type> -- VALUE FROM Customer Category DROPDOWN
+                    <average_annualincome>$cust_data->annual_income</average_annualincome> -- FROM Annual Income FIELD
+                    <AutoApproval>Y</AutoApproval> -- DEFAULT VALUE
+                    <Pref_code>OFFLI</Pref_code> -- DEFAULT VALUE
+                    <corpAddressData>                                                              
+                        <addresscategory>Registered</addresscategory> -- DEFAULT VALUE
+                        <preferredAddress>Y</preferredAddress> -- DEFAULT VALUE
+                        <preferredFormat>STRUCTURED_FORMAT</preferredFormat> -- DEFAULT VALUE
+                        <street_no>street_no</street_no> -- DEFAULT VALUE
+                        <street_name>$cust_data->tole</street_name> 
+                        <state>3</state> -- DEFAULT VALUE
+                        <city>101</city> -- DEFAULT VALUE
+                        <country>$country</country> 
+                        <start_date>$address_start_date</start_date>
+                        <PostalCode>44700</PostalCode> -- DEFAULT VALUE
+                        <house_no>$house_number</house_no>                                                     
+                        <zip>977</zip> -- DEFAULT VALUE
+                        <isAddressVerified>Y</isAddressVerified> -- DEFAULT VALUE
+                        <holdMailFlag>N</holdMailFlag> -- DEFAULT VALUE
+                    </corpAddressData>
+                    <corporate_name>$cust_data->full_name</corporate_name> 
+                    
+                    <corpPhoneEmailData>
+                        <phoneemailtype>CELLPH</phoneemailtype> -- DEFAULT VALUE
+                        <phoneno>$cust_data->mobile_number</phoneno> -- VALUE FROM STREET NAME/TOLE FREETEXT FIELD
+                        <phonenocitycode>977</phonenocitycode> -- DEFAULT VALUE
+                        <phonenocountrycode>977</phonenocountrycode> -- DEFAULT VALUE
+                        <phonenolocalcode>$cust_data->mobile_number</phonenolocalcode> -- Mobile Number FIELD VALUE
+                        <phoneoremail>PHONE</phoneoremail> -- DEFAULT VALUE
+                        <preferredflag>Y</preferredflag> -- DEFAULT VALUE
+                        <start_date>$address_start_date</start_date> -- TODAY'S DATE TIME
+                    </corpPhoneEmailData>
+                    
+                    <corpPhoneEmailData>
+                        <email>$cust_data->email</email> -- Email FIELD VALUE
+                        <phoneemailtype>COMMEML</phoneemailtype> -- DEFAULT VALUE
+                        <phoneoremail>EMAIL</phoneoremail> -- DEFAULT VALUE
+                        <preferredflag>Y</preferredflag> -- DEFAULT VALUE
+                    </corpPhoneEmailData>
+                    
+                    <createdBySystemID>$fin_username</createdBySystemID> -- FINACLE USERNAME
+                    <crncy_Code>NPR</crncy_Code> -- DEFAULT VALUE
+                    <cust_hlth>$aml_risk</cust_hlth> -- SAME AS RETAIL
+                    <RiskRating>$risk_rating</RiskRating> -- SAME AS RETAIL
+                    <customer_rating>$kyc_level</customer_rating> -- SAME AS RETAIL
+                      
+                    <date_of_incorporation>$incorporation_date</date_of_incorporation> -- TODAY'S DATE TIME
+                    <defaultaddresstype>Registered</defaultaddresstype> -- DEFAULT VALUE
+                    <entity_type>Customer</entity_type> -- DEFAULT VALUE
+                    <entityclass>$pep</entityclass> -- SAME AS RETAIL
+                    <keycontact_personname>$cust_data->preferred_contact_person</keycontact_personname>  -- VALUE FROM Key Contact Person FIELD
+                    <lang_desc>INFENG</lang_desc> -- DEFAULT VALUE
+                    <legalentity_type>$customer_classification</legalentity_type> -- FROM Customer Classification DROPDOWN
+                    <nativeLangCode>INFENG</nativeLangCode> -- DEFAULT VALUE
+                    <primary_service_center>999</primary_service_center> -- DEFAULT VALUE
+                    <primaryRM_ID>400040</primaryRM_ID> -- DEFAULT VALUE
+                    <principle_placeoperation>NP</principle_placeoperation> -- DEFAULT VALUE
+                    <priority>$institutional</priority> -- FROM Institutional YES/NO FIELD
+                    <region>$cust_data->location_code</region> -- FROM Home Branch (Location Code) FEILD
+                    <registration_number>$id_number</registration_number> -- FROM ID Number FIELD
+                    <relationship_createdby>$fin_username</relationship_createdby>
+                    <relationship_startdate>$start_date</relationship_startdate> 
+                    <relationship_type>New</relationship_type> -- DEFAULT VALUE
+                    <sector>ELE</sector> -- DEFAULT VALUE
+                    <Notes>$cust_data->full_name</Notes>  -- CUSTOMER FULL NAME
+                    <segment>OTH</segment> -- DEFAULT VALUE
+                    <short_name>$cust_data->short_name</short_name>
+                    <source_of_funds>BUSINESS</source_of_funds> -- DEFAULT VALUE
+                    <subsector>ELE01</subsector> -- DEFAULT VALUE
+                    <subsegment>OTH</subsegment> -- DEFAULT VALUE
+                    <taxid>TDS</taxid> -- DEFAULT VALUE
+                    <tds_tbl_desc>$tax_category_value</tds_tbl_desc> -- VALUE ACCORDING TO SELECTED Tax Category DROPDOWN
+                    <TaxDeductionTable>$tax_category_value</TaxDeductionTable> -- VALUE FROM Tax Category DROPDOWN
+                    <trade_services_availed>N</trade_services_availed> -- DEFAULT VALUE
+                    <primaryRMLOGIN_ID>UBSADMIN</primaryRMLOGIN_ID> -- DEFAULT VALUE
+                    <isEbankingEnabled>N</isEbankingEnabled> -- DEFAULT VALUE
+                </corpCustomerData>
+            </corpCustomerDtlsData>
+            <corpRelatedData>
+                <corpEntityDocumentData>
+                    <referenceNumber>$id_number</referenceNumber> -- FROM ID Number FIELD
+                    <docTypeCode>CORPORATE</docTypeCode> -- DEFAULT VALUE
+                    <docCode>REGDT</docCode> -- DEFAULT VALUE
+                    <placeOfIssue>306</placeOfIssue> -- DEFAULT VALUE
+                    <entityType>CIFCorpCust</entityType> -- DEFAULT VALUE
+                    <docIssueDate>$incorporation_date</docIssueDate> -- FROM Date of Incorporation (A.D.) FIELD
+                    <isDocumentVerified>Y</isDocumentVerified> -- DEFAULT VALUE
+                    <countryOfIssue>NP</countryOfIssue> -- DEFAULT VALUE
+                </corpEntityDocumentData>
+                
+                <preferencesData>
+                    <Tax_Rate_Table_Code>15%</Tax_Rate_Table_Code> -- DEFAULT VALUE
+                    <corpPrefMiscData>
+                        <date1>2099-04-05T00:00:00.000</date1> -- DEFAULT VALUE
+                        <str1>NPR</str1> -- DEFAULT VALUE
+                        <type>CURRENCY</type> -- DEFAULT VALUE
+                    </corpPrefMiscData>
+                </preferencesData>
+            
+            </corpRelatedData>
+        </CorpCustDetails>
+    </createCorporateCustomerRequest>
+</Body>
+</FIXML>";

@@ -1,0 +1,773 @@
+﻿@model SBLApps.Models.MemoRequestOperation
+@{
+    ViewData["Title"] = "Memo Flow";
+}
+
+@await Html.PartialAsync("../Common/_MemoOperationLogStrip", Model.Request.MemoRequestOperations)
+<br />
+@await Html.PartialAsync("_BlacklistingMemoMainViewOnly", Model.Request)
+<hr />
+<form asp-action="BlacklistingMemoMainOrchestrate" enctype="multipart/form-data">
+    <input asp-for="RequestID" type="hidden" />
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label asp-for="OperationID" class="control-label"></label>
+            <select asp-for="OperationID" class="form-control">
+                <option value="">-- Select --</option>
+                @foreach (var item in Model.OperationList ?? Enumerable.Empty<SelectListItem>())
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+            <span asp-validation-for="OperationID" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="OperationBy" class="control-label"></label>
+            <select asp-for="OperationBy" class="form-control js-select2">
+                <option value="">-- Select --</option>
+                @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]).Where(x => x.Value != User.Identity.Name && x.Value != Model.Request.Initiator))
+                {
+                    <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                }
+            </select>
+            <span asp-validation-for="OperationBy" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group row">
+        <div class="col-md-12">
+            <label asp-for="OperationRemarks" class="control-label"></label>
+            <textarea asp-for="OperationRemarks" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="OperationRemarks" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group row">
+        <input type="submit" value="Submit" class="btn btn-normal-sbl offset-md-5 col-md-2" />
+    </div>
+</form>
+<br />
+@await Html.PartialAsync("../Common/_MemoOperationLogRemarks", Model.Request.MemoRequestOperations)
+<br />
+<div>
+    <a asp-action="BlacklistingMemoMainList" class="btn btn-normal-sbl">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // #region Enable Scroll
+            const container = document.getElementById('scrollable-container');
+            new SimpleBar(container);
+            // #endregion
+
+            //#region Contact Number to receive only numbers
+            var cleave = new Cleave('#ContactNumberOfRequestingPerson', {
+                numericOnly: true,
+                blocks: [10], // Set the desired max length to 10
+                delimiter: '', // Remove any delimiters (e.g., commas)
+            });
+            //#endregion
+
+            // #region Initialize CKEditor
+            ClassicEditor
+                .create(document.querySelector('#OperationRemarks'), {
+                    height: '300px' // Set the desired height here
+                })
+                .then(editor => {
+                    // Update the model property value when the editor content changes
+                    editor.model.document.on('change:data', () => {
+                        document.getElementById('OperationRemarks').value = editor.getData();
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+            const htmlString = $("#MemoRequirementRemarks").val();
+            const formattedTextElement = document.getElementById('ck_remarks');
+            formattedTextElement.innerHTML = htmlString;
+            // #endregion
+
+            // #region => Initialize select2 controls
+            $('.js-select2').select2();
+            // #endregion
+
+            // #region Define custom Date field for jsGrid
+            //Define custom date field for jsGrid
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [month, day, year].join('/');
+            }
+
+            var MyDateField = function (config) {
+                jsGrid.Field.call(this, config);
+            };
+
+            MyDateField.prototype = new jsGrid.Field({
+                sorter: function (date1, date2) {
+                    return new Date(date1) - new Date(date2);
+                },
+                itemTemplate: function (value) {
+                    // return new Date(value).toISOString();
+                    return formatDate(new Date(value));
+                },
+
+                insertTemplate: function (value) {
+                    return this._insertPicker = $("<input>").datepicker({
+                        defaultDate: new Date(), dateFormat: "mm/dd/yy", changeYear: true,
+                        changeMonth: true
+                    });
+                },
+
+                editTemplate: function (value) {
+                    return this._editPicker = $("<input>").datepicker({
+                        dateFormat: "mm/dd/yy", changeYear: true,
+                        changeMonth: true
+                    }).datepicker("setDate", new Date(value));
+
+                },
+
+                insertValue: function () {
+                    var insertValue = this._insertPicker.datepicker("getDate");
+                    if (insertValue !== null && insertValue !== 'undefined') {
+                        return formatDate(this._insertPicker.datepicker("getDate"));//.toISOString();
+                    }
+                    return null;
+
+                },
+
+                editValue: function () {
+                    var editValue = this._editPicker.datepicker("getDate");
+                    if (editValue !== null && editValue !== 'undefined') {
+                        return formatDate(this._editPicker.datepicker("getDate"));//.toISOString();
+                    }
+                    return null;
+                }
+            });
+
+            jsGrid.fields.date = MyDateField;
+            // #endregion
+
+            // #region Define custom Decimal field for jsGrid
+            // Custom "decimal" field type
+            function formatDecimal(value) {
+                // Convert to a floating-point number with up to 2 decimal places
+                return parseFloat(value).toFixed(4);
+            }
+
+            var MyDecimalField = function (config) {
+                jsGrid.Field.call(this, config);
+            };
+
+            MyDecimalField.prototype = new jsGrid.Field({
+                sorter: "number", // Use "number" sorter for numeric values
+                align: "right", // Align text to the right in the cell
+
+                // Custom itemTemplate to display formatted decimal value
+                itemTemplate: function (value) {
+                    return formatDecimal(value);
+                },
+
+                // Custom insertTemplate with a regex pattern for decimal numbers
+                insertTemplate: function () {
+                    return this._insertPicker = $("<input>").attr({
+                        type: "text",
+                        pattern: "^\\d*(\\.\\d{0,2})?$" // Regular expression for decimal numbers with up to 2 decimal places
+                    });
+                },
+
+                // Custom editTemplate with a regex pattern for decimal numbers
+                editTemplate: function (value) {
+                    return this._editPicker = $("<input>").attr({
+                        type: "text",
+                        pattern: "^\\d*(\\.\\d{0,2})?$" // Regular expression for decimal numbers with up to 2 decimal places
+                    }).val(value);
+                },
+
+                // Custom insertValue to parse the decimal value from the input
+                insertValue: function () {
+                    var insertValue = parseFloat(this._insertPicker.val());
+                    return isNaN(insertValue) ? undefined : insertValue;
+                },
+
+                // Custom editValue to parse the decimal value from the input
+                editValue: function () {
+                    var editValue = parseFloat(this._editPicker.val());
+                    return isNaN(editValue) ? undefined : editValue;
+                }
+            });
+
+            // Register the custom "decimal" field type with jsGrid
+            jsGrid.fields.decimal = MyDecimalField;
+
+            // #endregion
+
+            // #region => For Main Account Details Grid
+            let accounts = [
+                { Name: "", Id: "" }
+            ];
+            var blacklistingMemoDetailData = $('#StringifiedBlacklistingMemoDetails').val();
+
+            $("#jsGrid").jsGrid({
+                width: "100%",
+                height: "auto",
+
+                inserting: false,
+                editing: false,
+                sorting: false,
+                paging: false,
+
+                data: blacklistingMemoDetailData === "" ? [] : JSON.parse($('#StringifiedBlacklistingMemoDetails').val()),
+
+                fields: [
+                    {
+                        name: "SNo", title: "SNo", width: 70, itemTemplate: function (_, item) {
+                            var index = $("#jsGrid").jsGrid("option", "data").indexOf(item);
+                            return index + 1; // Serial number calculation based on the item index
+                        }
+                    },
+                    { name: "MemoId", title: "Memo Id", type: "text", visible: false },
+                    { name: "MemoDetailId", title: "Memo Detail Id", type: "text", visible: false },
+                    { name: "AccountNumber", title: "Account Number", type: "text", width: 150, validate: "required" },
+                    { name: "ChequeNumber", title: "Cheque Number", type: "text", width: 150, validate: "required" },
+                    { name: "ChequeIssueDate", title: "Cheque Issue Date", type: "date", width: 150, validate: "required", dateFormat: "mm/dd/yyyy" },
+                    { name: "ChequeReturnDate", title: "Cheque Return Date", type: "text", width: 150, validate: "required" },
+                    { name: "ChequeAmount", title: "Cheque Amount", type: "decimal", width: 150, validate: "required" },
+                    { name: "ReasonOfReturn", title: "Reason of Return", type: "textarea", width: 200, validate: "required" },
+                    // Customized field without Edit and Delete buttons
+                    {
+                        type: "control",
+                        modeSwitchButton: false,  // Hide the mode switch button
+                        editButton: false,        // Hide the Edit button
+                        deleteButton: false,      // Hide the Delete button
+                    }
+                ],
+                onItemUpdated: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingMemoDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemDeleted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingMemoDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemInserted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingMemoDetails').val(JSON.stringify(args.grid.data))
+                },
+                onDataChanged: function (args) {
+                    calculateTotalAmount();
+                },
+                onRefreshed: function (args) {
+                    calculateTotalAmount();
+                }
+            });
+
+            function calculateTotalAmount() {
+                var data = $("#jsGrid").jsGrid("option", "data");
+                var totalAmount = 0;
+                for (var i = 0; i < data.length; i++) {
+                    totalAmount += parseFloat(data[i]["ChequeAmount"]) || 0;
+                }
+
+                $("#TotalChequeAmount").val(totalAmount);
+            }
+            // #endregion
+
+            // #region => For IsLoanCustomer case
+            var isLoanCustomerCheckbox = $('#IsLoanCustomer');
+            var loanCustomerFields = $('.loan-customer-fields');
+
+            loanCustomerFields.hide();
+
+            isLoanCustomerCheckbox.on('change', function () {
+                if (isLoanCustomerCheckbox.is(':checked')) {
+                    loanCustomerFields.show();
+                } else {
+                    loanCustomerFields.hide();
+                }
+            });
+            // #endregion
+
+            // #region => For Corporate case only
+            //$('.corporate-customer-fields').hide();
+
+            //$('#CustomerTypeId').on('change', function () {
+            //    if ($('#CustomerTypeId').val() === "2") {
+            //        $('.corporate-customer-fields').show();
+            //    } else {
+            //        $('.corporate-customer-fields').hide();
+            //    }
+            //});
+
+            // #region => For grid used for Corporate case only
+            var blacklistingMemoOtherPartyData = $('#StringifiedBlacklistingOtherPartyDetails').val();
+
+            $("#jsGridOtherParty").jsGrid({
+                width: "100%",
+                height: "auto",
+
+                inserting: false,
+                editing: false,
+                sorting: false,
+                paging: false,
+
+                data: blacklistingMemoOtherPartyData === "" ? [] : JSON.parse($('#StringifiedBlacklistingOtherPartyDetails').val()),
+
+                fields: [
+                    {
+                        name: "SNo", title: "SNo", width: 70, itemTemplate: function (_, item) {
+                            var index = $("#jsGridOtherParty").jsGrid("option", "data").indexOf(item);
+                            return index + 1; // Serial number calculation based on the item index
+                        }
+                    },
+                    { name: "MemoId", title: "Memo Id", type: "text", visible: false },
+                    { name: "OtherPartyDetailId", title: "Other Party Detail Id", type: "text", visible: false },
+                    { name: "FullName", title: "Full Name", type: "text", width: 200, validate: "required" },
+                    { name: "Address", title: "Address", type: "text", width: 200, validate: "required" },
+                    { name: "ShareHoldingPercentage", title: "Shareholding %", type: "decimal", width: 200, validate: "required" },
+                    { name: "Remarks", title: "Remarks", type: "textarea", width: 200, validate: "required" },
+                    // Customized field without Edit and Delete buttons
+                    {
+                        type: "control",
+                        modeSwitchButton: false,  // Hide the mode switch button
+                        editButton: false,        // Hide the Edit button
+                        deleteButton: false,      // Hide the Delete button
+                    }
+                ],
+                onItemUpdated: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingOtherPartyDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemDeleted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingOtherPartyDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemInserted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingOtherPartyDetails').val(JSON.stringify(args.grid.data))
+                }
+            });
+            // #endregion
+            // #endregion
+
+            // #region => On GET button clicked, getting Data from CBS for given Account Number
+            $("#btnGetDataFromAccountNumber").click(function () {
+                document.getElementById("overlay").style.display = "block";
+                var urlValue = "";
+                urlValue = "/BlacklistingMemoMain/GetAccountDetailFromAccountNumberFromLocalDB?accountNumber=" + $("#AccountNumber").val() + "&memoId=" + $("#MemoId").val();
+                if (urlValue !== "") {
+                    $.ajax({
+                        url: urlValue,
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: function (result) {
+                            const resultJsonified = JSON.parse(result);
+                            $("#AccountHolderName").val(resultJsonified.accountHolderName);
+                            $("#CustomerTypeId").val(resultJsonified.customerTypeId);
+                            $("#CustomerTypeId").trigger('change');
+                            var isChecked = resultJsonified.isLoanCustomer === "Y";
+                            $('#IsLoanCustomer').prop('checked', isChecked).trigger('change');
+                            $("#TotalLoanOutstanding").val(resultJsonified.totalLoanOutstanding);
+                            $("#NameOfRORM").val(resultJsonified.nameOfRORM);
+                            $("#CIF").val(resultJsonified.cif);
+                            //if CIF is not null or empty, proceed with getting other account details
+                            if (resultJsonified.cif !== null && resultJsonified.cif !== "") {
+                                var urlValueGetAllAccountsToList = "";
+                                urlValueGetAllAccountsToList = "/BlacklistingMemoMain/GetAllAccountDetailsRelatedToTheCIFFromLocalDB?cif=" + resultJsonified.cif + "&memoId=" + $("#MemoId").val();
+                                if (urlValueGetAllAccountsToList !== "") {
+                                    $.ajax({
+                                        url: urlValueGetAllAccountsToList,
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: function (result) {
+                                            // #region => Load datagrid here
+                                            var jsonData = JSON.parse(result); // Parse the JSON string to convert it into an array of objects
+
+                                            // Check if jsonData is empty
+                                            if (jsonData.length === 0) {
+                                                // Remove existing table and horizontal line
+                                                $('#table-container').empty();
+                                                $('#table-linked-entities').empty();
+                                                accounts.splice(1);
+                                                return; // Exit the success function
+                                            }
+
+                                            var table = $('<table>').addClass('data-table');
+                                            var headerRow = $('<tr>');
+                                            var headers = Object.keys(jsonData[0]); // Get the headers from the first object in the array
+
+                                            // Map the header names to their desired format
+                                            var headerMappings = {
+                                                'cif': 'CIF',
+                                                'accountNumber': 'Account Number',
+                                                'accountScheme': 'Account Scheme',
+                                                'balance': 'Balance',
+                                                'accountStatus': 'Account Status',
+                                                'freezeStatus': 'Freeze Status'
+                                                // Add more mappings as needed
+                                            };
+
+                                            // Exclude headers
+                                            var excludedHeaders = ['detailId', 'memoId', 'blacklistingMemoMain'];
+
+                                            // Create table headers
+                                            var headerRow = $('<tr>');
+                                            headers.forEach(function (header) {
+                                                if (!excludedHeaders.includes(header)) {
+                                                    var mappedHeader = headerMappings[header] || header; // Use the mapped header if available, otherwise use the original header
+                                                    headerRow.append($('<th>').text(mappedHeader));
+                                                }
+                                            });
+                                            table.append(headerRow);
+
+                                            accounts.splice(1);
+                                            // Create table rows
+                                            jsonData.forEach(function (item) {
+                                                var row = $('<tr>');
+                                                headers.forEach(function (header) {
+                                                    if (!excludedHeaders.includes(header)) {
+                                                        row.append($('<td>').text(item[header]));
+                                                        if (header == "accountNumber" && item[header] === $("#AccountNumber").val()) {
+                                                            accounts.push({ Name: item[header], Id: item[header] });
+                                                        }
+                                                    }
+                                                });
+                                                table.append(row);
+                                            });
+
+                                            // Apply CSS styles to the table and table cells
+                                            table.css({
+                                                'border-collapse': 'collapse',
+                                                'border': '2px solid black',
+                                                'padding': '2px',
+                                                'width': '100%'
+                                            });
+
+                                            table.find('td, th').css({
+                                                'border': '1px solid black',
+                                                'padding': '2px'
+                                            });
+
+                                            // Add the table to a container element in your HTML
+                                            var tableContainer = $('#table-container');
+                                            tableContainer.empty(); // Clear any existing content
+                                            tableContainer.append($('<hr>'), "All accounts maintained", table);
+
+                                            //Linked Entities related data
+                                            var urlValueLE = "";
+                                            urlValueLE = "/BlacklistingMemoMain/GetLinkedEntitiesDetailFromAccountNumberFromLocalDB?accountNumber=" + $("#AccountNumber").val() + "&memoId=" + $("#MemoId").val();
+                                            if (urlValueLE !== "") {
+                                                $.ajax({
+                                                    url: urlValueLE,
+                                                    contentType: 'application/html; charset=utf-8',
+                                                    type: 'GET',
+                                                    dataType: 'html',
+                                                    success: function (resultLE) {
+                                                        // #region => Load datagrid here
+                                                        var jsonDataLE = JSON.parse(resultLE); // Parse the JSON string to convert it into an array of objects
+
+                                                        // Check if jsonData is empty
+                                                        if (jsonDataLE.length === 0) {
+                                                            // Remove existing table and horizontal line
+                                                            $('#table-linked-entities').empty();
+                                                            return; // Exit the success function
+                                                        }
+                                                        debugger;
+                                                        var tableLE = $('<table>').addClass('data-table');
+                                                        var headerRowLE = $('<tr>');
+                                                        var headersLE = Object.keys(jsonDataLE[0]); // Get the headers from the first object in the array
+
+                                                        // Map the header names to their desired format
+                                                        var headerMappingsLE = {
+                                                            'cif': 'CIF',
+                                                            'accountNumber': 'Account Number',
+                                                            'accountName': 'Account Name',
+                                                            'balance': 'Balance'
+                                                            // Add more mappings as needed
+                                                        };
+
+                                                        // Exclude headers
+                                                        var excludedHeadersLE = ['mainAccountNumber', 'detailId', 'memoId', 'blacklistingMemoMain'];
+
+                                                        // Create table headers
+                                                        var headerRowLE = $('<tr>');
+                                                        headersLE.forEach(function (header) {
+                                                            if (!excludedHeadersLE.includes(header)) {
+                                                                var mappedHeaderLE = headerMappingsLE[header] || header; // Use the mapped header if available, otherwise use the original header
+                                                                headerRowLE.append($('<th>').text(mappedHeaderLE));
+                                                            }
+                                                        });
+                                                        tableLE.append(headerRowLE);
+
+                                                        // Create table rows
+                                                        jsonDataLE.forEach(function (item) {
+                                                            var rowLE = $('<tr>');
+                                                            headersLE.forEach(function (header) {
+                                                                if (!excludedHeadersLE.includes(header)) {
+                                                                    rowLE.append($('<td>').text(item[header]));
+                                                                }
+                                                            });
+                                                            tableLE.append(rowLE);
+                                                        });
+
+                                                        // Apply CSS styles to the table and table cells
+                                                        tableLE.css({
+                                                            'border-collapse': 'collapse',
+                                                            'border': '2px solid black',
+                                                            'padding': '2px',
+                                                            'width': '100%'
+                                                        });
+
+                                                        tableLE.find('td, th').css({
+                                                            'border': '1px solid black',
+                                                            'padding': '2px'
+                                                        });
+
+                                                        // Add the table to a container element in your HTML
+                                                        var tableContainerLE = $('#table-linked-entities');
+                                                        tableContainerLE.empty(); // Clear any existing content
+                                                        tableContainerLE.append($('<hr>'), "All Linked Entities", tableLE);
+
+                                                        // #endregion
+                                                    },
+                                                    error: function (xhr, status) { alert(status); }
+                                                });
+                                            }
+
+                                            // Update the data source of the select field
+                                            $("#jsGrid").jsGrid("fieldOption", "AccountNumber", "items", accounts);
+
+                                            // Refresh the grid to reflect the changes
+                                            $("#jsGrid").jsGrid("loadData");
+
+                                            // #endregion
+                                        },
+                                        error: function (xhr, status) { alert(status); }
+                                    });
+                                }
+                            }
+                            else {
+                                $('#table-container').empty();
+                                $('#table-linked-entities').empty();
+                                accounts.splice(1);
+                                document.getElementById("overlay").style.display = "none";
+                                return;
+                            }
+                            document.getElementById("overlay").style.display = "none";
+                        },
+                        error: function (xhr, status) { alert(status); document.getElementById("overlay").style.display = "none"; }
+                    });
+                }
+            });
+            // #endregion
+
+            // #region => For Documents Upload Table
+            var documentTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Request.DocumentTypeList));
+            let documentTypesForDropdown = documentTypes.map(function (documentType) {
+                return {
+                    Name: documentType.Text,
+                    Id: documentType.Value
+                };
+            });
+
+            var parameters = {
+                documentTypeValue: 0,
+                documentFullPathValue: '',
+                memoIdValue: 0,
+                documentDetailIdValue: 0
+            };
+
+            var documentRowIndex = 0; // Initialize documentRowIndex
+
+            $("#addRow").click(function () {
+                var newRow = $("<tr>");
+                var cols = '';
+
+                cols += '<td>';
+                cols += '<input type="hidden" name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentDetailId" value="' + parameters.documentDetailIdValue + '"/>';
+                cols += '<input type="hidden" name="blacklistingDocumentDetails[' + documentRowIndex + '].MemoId" value="' + parameters.memoIdValue + '" />';
+                cols += '<input type="hidden" name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentFullPath" value="' + parameters.documentFullPathValue + '" />';
+                cols += '<select name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentTypeId" class="documentType form-control" required>';
+                // Add options from the documentTypesForDropdown array
+                for (var i = 0; i < documentTypesForDropdown.length; i++) {
+                    var documentType = documentTypesForDropdown[i];
+                    cols += '<option value="' + documentType.Id + '"' + (parameters.documentTypeValue === parseInt(documentType.Id) ? 'selected' : '') + '>' + documentType.Name + '</option>';
+                }
+
+                cols += '</select>';
+                cols += '</td>';
+                if (parameters.documentFullPathValue !== '') {
+                    cols += '<td><a href="/' + String(parameters.documentFullPathValue).replace(/\\/g, '/') + '" target="_blank"><i class="bi bi-eye" title="View"></i></a></td>';
+                }
+                else {
+                    cols += '<td></td>';
+                }
+
+                newRow.append(cols);
+                $("#documentsTable").append(newRow);
+
+                documentRowIndex++; // Increment documentRowIndex
+            });
+            // #endregion
+
+            // #region For case of Edits
+            if (@(Model.Request.MemoId)!== 0) {
+                $('#btnGetDataFromAccountNumber').trigger('click').promise().then(function () {
+                    isLoanCustomerCheckbox.trigger('change');
+                });
+
+                if ($("#StringifiedBlacklistingDocumentDetails").val() !== "") {
+                    var arrDocumentDetails = JSON.parse($("#StringifiedBlacklistingDocumentDetails").val());
+                    $.each(arrDocumentDetails, function (i, l) {
+                        parameters = {
+                            documentTypeValue: l.DocumentTypeId,
+                            documentFullPathValue: l.DocumentFullPath,
+                            memoIdValue: l.MemoId,
+                            documentDetailIdValue: l.DocumentDetailId
+                        };
+                        $("#addRow").trigger("click").promise().then(function () {
+                            parameters = {
+                                documentTypeValue: 0,
+                                documentFullPathValue: '',
+                                memoIdValue: 0,
+                                documentDetailIdValue: 0
+                            };
+                        });
+                    });
+                }
+            }
+            // #endregion
+
+            // #region Make controls readonly
+            $('#viewOnlyDiv').find('input, textarea, button, select').attr('disabled', 'disabled');
+            // #endregion
+
+            // #region Show/Hide/Default Next Authority according to selected Operation
+            $("#OperationID").change(function () {
+                var operationID = $(this).val();
+                var memoID = $('#RequestID').val();
+                var url = '/BlacklistingMemoMain/GetFilteredOperationByList';
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: { operationID: operationID, memoID: memoID },
+                    dataType: 'json',
+                    success: function (filteredOperationByList) {
+                        var operationByDropdown = $("#OperationBy");
+                        var emptyOption = operationByDropdown.find("option[value='']"); // Get the empty option
+
+                        operationByDropdown.empty(); // Clear existing options
+
+                        operationByDropdown.append(emptyOption); // Add back the empty option
+
+                        $.each(filteredOperationByList, function (index, option) {
+                            operationByDropdown.append($('<option></option>').val(option.username).text(option.name + ' (' + option.username + ')'));
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error); // Handle the error, if any
+                    }
+                });
+            });
+            //#endregion
+
+            // #region Form Submit
+            // Validate the form before submission
+            $("form").submit(function (event) {
+                document.getElementById("overlay").style.display = "block";
+                debugger;
+                var form = $(this);
+                if (!form.valid()) {
+                    document.getElementById("overlay").style.display = "none";
+                    event.preventDefault(); // Prevent form submission
+                }
+                else {
+                    debugger;
+                    if ($('#OperationID').val() !== '3' && $('#OperationID').val() !== '10' && $('#OperationID').val() !== '11' && $('#OperationBy').val() === '') {
+                        // Show Toastr error notification
+                        document.getElementById("overlay").style.display = "none";
+                        toastr.error("Please provide Next Authority.");
+                        event.preventDefault(); // Prevent form submission
+                    }
+
+                    if ($("#OperationRemarks").val() === undefined || $("#OperationRemarks").val() === null || $("#OperationRemarks").val().trim() === '') {
+                        // Show Toastr error notification
+                        document.getElementById("overlay").style.display = "none";
+                        toastr.error("Please provide remarks.");
+                        event.preventDefault(); // Prevent form submission
+                    }
+                }
+            });
+            // #endregion
+        });
+    </script>
+
+}

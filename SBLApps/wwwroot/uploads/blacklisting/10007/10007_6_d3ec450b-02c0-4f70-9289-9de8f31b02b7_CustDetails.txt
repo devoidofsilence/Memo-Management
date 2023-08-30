@@ -1,0 +1,23 @@
+GET Endpoint (Test) :: http://192.168.100.197:9001/OnlineAccOpening/GetCustomerDetailByUniqueID
+
+Request body ::
+{
+    "UniqueId" : "54-32600" //Takes only Citizenship Number as unique ID
+}
+
+Response Format ::
+
+{
+    "uniqueIdType": "CITIZENSHIP CERTIFICATE",
+    "uniqueIdValue": "54-32600",
+    "firstName": "ROMAN",
+    "middleName": "RAJ",
+    "lastName": "BAJRACHARYA",
+    "sex": "M",
+    "customerPrefix": "MR.",
+    "addressLine1": "GABAHAL",
+    "addressLine2": "LALITPUR 16",
+    "addressLine3": "LALITPUR 03",
+    "addressLine4": "NEPAL",
+    "dateOfBirth": "12/17/1988 12:00:00 AM"
+}

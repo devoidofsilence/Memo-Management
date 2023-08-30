@@ -1,0 +1,319 @@
+var service_categories = {
+        "1c0bc159-150a-e111-a31b-00155d04c01d": "Service Request",
+        "d8c29525-d328-4f2a-8498-6b70214dfd01": "Feedback & Suggestions",
+        "bba203bc-e00d-4adb-a103-79741cbaa7d0": "Complaints",
+        "32fbec83-2859-42d4-9473-d6cba5c5de94": "Enquiries"
+    };
+
+    var service_types = {
+        "1c0bc159-150a-e111-a31b-00155d04c01d": {
+            "7fbdc147-0b94-4660-aa56-e5058c75ccc4": "Debit Card Services",
+            "7943f5a7-5f68-46d1-8767-e35dc356325e": "Mobile Banking Services",
+            "77f30b1d-6964-458d-8ea0-b31b903442e3": "Prepaid Card Services",
+            "0c0f3f27-e43d-474d-badf-971e4452cf59": "Credit Card Services",
+			"841D8A32-5B0D-4A60-B8CB-4DE3D097F0BD": "Medical Card Services"
+        },
+        "d8c29525-d328-4f2a-8498-6b70214dfd01": {
+            "cd59249b-6131-4944-b4c5-7bc06abd3ee9": "Service Related Feedback",
+            "340e0d3e-485f-4c3f-aa18-4e7ee1412f05": "Product Related Feedback",
+			"faf763a2-f446-409b-bd07-a0297c912d1a": "Others"
+        },
+        "bba203bc-e00d-4adb-a103-79741cbaa7d0": {
+            "e614a1be-b574-4bf4-86b2-f820f468368a": "DEMAT Services",
+            "45097a7c-feb5-4d42-9810-ee868a5407e8": "Loan Services",
+            "1e262cec-5e93-449d-a57c-d3aa20b89af1": "Debit Card Services",
+            "bd8712c3-a489-4aab-b974-c0a3e3fa824e": "POS Services",
+            "6f5638af-e9eb-43a7-b2b5-b91e14f2598b": "Contact Centre Services",
+            "2f1e1985-3c3d-4eca-ab3b-b1173df9cb63": "Remittance Services",
+            "f98434c5-7c8a-4e9f-9325-a96b90faf4de": "Internet banking Services",
+            "00b9cc25-fa77-4add-b6b5-a074a8d4c215": "Credit Card Services",
+            "c07e5413-aa3d-41d6-9589-9efa94e8fa0d": "ATM related Services",
+            "516fb35c-9706-44cd-931c-9b2c606cced3": "Mobile banking Services",
+            "9c0ff121-3927-4680-8d2c-51824a7e4cb7": "Others",
+            "9914eb9a-6077-4496-940c-41fa4da8eb0f": "Locker Services",
+            "8e096562-c279-4f18-8d6f-389f797d8a5d": "Prepaid Card Services",
+            "492ea332-a62b-4a2d-9704-15dfad6c7a20": "BLB Services",
+            "29e19f33-3365-434f-b6f7-0c438ee3098b": "Branch Services"
+        },
+        "32fbec83-2859-42d4-9473-d6cba5c5de94": {
+            "95891ca2-4242-4b2e-9f3f-fa2f08f3a070": "Loan Services",
+			"9ef1c6ae-dcff-4995-8e97-e0cf7ce3232a": "Mobile banking Services",
+			"8804A130-CF67-4ABF-B359-1CAE0CF198D9": "Remittance Related",
+			"E9760C62-1D1C-4170-97E2-1AE2C2EA13A2": "Medical Card Services",
+			"2B00E0CF-2038-4A41-8E1A-49B80501D652": "Clearing Service",
+			"44ED964F-9BAF-4841-B5A1-B9C8DAFE1930": "IPS",
+            "adc128a4-27a8-4241-a5d3-e66e8dd19acf": "Prepaid Card Services",
+            "86ed3c3d-6252-43dc-b4ea-be5ba900b412": "BLB Services",
+			"2ee1a0d8-13a0-41e6-b26a-3d309e0b3624": "DEMAT/Mero Share Services",
+			"3c75bd04-9f2c-4cc0-a1e3-343cd0ac7a6a": "Debit Card Services",
+			"09d49252-c603-41db-bdfb-8068c5e6549a": "Internet Banking Services",
+            "80c3fca8-eea5-46a7-9488-82d304eb0ff9": "Credit Card Services",
+            "d8885ff3-0706-4a61-bf4d-7685a30aaaaa": "Account Services"
+        }
+    };
+
+    var service_sub_types = {
+        "1c0bc159-150a-e111-a31b-00155d04c01d": {
+            "7fbdc147-0b94-4660-aa56-e5058c75ccc4": {
+				"070ab726-e1bb-4af2-aee8-76a0e2d299c6":"ATM Transaction Dispute REMOTE ONUS ( INR Transaction )",
+				"0e611818-9e50-4352-b0e9-b82aba76d19a":"POS Transaction Dispute ONUS",
+				"10501c69-c0b5-4c3c-97db-7f0e5be2eae7":"ATM Transaction Dispute REMOTE ONUS (RNUS)",
+				"72c462cc-a448-47e1-a32e-4eb65a2bfe9c":"ECOMM Activation",
+				"90ab0b95-e633-425e-851a-726731bbb9ee":"Card Lost/Block",
+				"d63202fe-df0f-4772-aed3-d89471f37502":"POS Transaction Dispute REMOTE ONUS (RNUS)",
+				"e3fa57bf-f3d9-4e12-8f27-32d422da5a62":"PIN Reset",
+				"f2f6802c-508f-4d56-99fc-ad3649d7160c":"ATM Transaction Dispute ONUS",
+				"fda67809-2dd1-4cc8-9fb4-bb784271d09a":"ECOMM Transaction Dispute"
+            },
+            "7943f5a7-5f68-46d1-8767-e35dc356325e": {
+				"1c38b844-b9d7-480d-8f20-26491857037d":	"Renewal of Mobile Banking",
+				"1fa2ce73-c7b1-44d0-8dbc-d97dff28b734":	"Transaction Dispute- Wallet Load",
+				"2d493927-58da-4606-9eba-98d126157f46":	"Mobile Device Reset",
+				"74082091-a972-4837-8f86-67d95b7a2720":	"Transaction Dispute- TOPUP",
+				"b0bb5148-6d22-459f-a1f9-1f9da99ef802":	"Mobile Lost/Block",
+				"e088022c-d982-47d3-830e-88db7e654dcd":	"Transaction Dispute- Bill Payment",
+				"f074c5a8-b5c1-4a0f-90cd-5e577a690d8c":	"Transaction Dispute- IBFT",
+				"fe7eb3ad-9c23-4ec5-b7ff-29bd180c1301":	"PIN Reset"
+            },
+            "77f30b1d-6964-458d-8ea0-b31b903442e3": {
+				"38a10f72-ff6f-4f53-bf97-b22433d617e9":"ECOMM Activation",
+				"5649326f-db45-42f6-ba45-552a34837dd5":"Statement request",
+				"5cc7de1f-795d-445e-807e-f540a6694fad":"POS Transaction Dispute REMOTE ONUS (RNUS)",
+				"5f64bd61-914b-4d01-83c2-d4513bed16ed":"POS Transaction Dispute ONUS",
+				"73e17fb0-bf9f-4525-9bc9-662ba7963cdd":"Card Lost/Block",
+				"7cc231f4-c305-419c-a29c-4f67c9a937a3":"ATM Transaction Dispute ONUS",
+				"8cbc336b-568e-434f-abd6-5b54472e54a9":"PIN Reset",
+				"9f8b132c-53ca-48f2-9e79-412548f407f0":"ECOMM Transaction Dispute",
+				"c53c8b1c-9c4b-4f6a-a624-6e7d255a8035":"ATM Transaction Dispute REMOTE ONUS (RNUS)"
+            },
+            "0c0f3f27-e43d-474d-badf-971e4452cf59": {
+				"0fff3fa2-85eb-4c64-8c29-94934a0a1d25":"ECOMM Transaction Dispute",
+				"2815081a-7fdf-419d-836a-cc64e938f871":"POS Transaction Dispute ONUS",
+				"2b6f54ba-6111-4e26-989b-7ecd4790cc33":"Rewards Point Enquiry",
+				"3412c079-4e1c-4d57-a457-000e08eedc43":"ECOMM Activation",
+				"3b0706c3-6f69-46ce-930d-b9230e72baf3":"Card Lost/Block",
+				"3d74eccd-f551-4138-8231-a066fb924f78":"Reversal request of Cr. Card due amount deducted twice by bank",
+				"6cccadfe-8568-489d-84d4-a1b71df073bb":"ATM Transaction Dispute ONUS",
+				"81bf430d-89dd-42da-ba9a-0a36c2b2f5fc":"PIN Reset",
+				"95ff4d7d-e207-4e9e-bafa-446e6f01e123":"ATM Transaction Dispute REMOTE ONUS (RNUS)",
+				"a59942c5-7a58-4b7e-94fc-aee1e0748630":"Outstanding to EMI",
+				"a8758d83-3b1e-4430-995c-1f80760f2faf":"Credit card Payment Manual Settlement",
+				"beb1d927-def3-4b16-8316-97d2bae7c403":"Renewal of Cr. Card if failed due to insufficient balance",
+				"e504b435-ec79-4aa4-94fd-81a47e19a22c":"Statement request",
+				"e7411870-411b-4890-9a14-b605695d8300":"POS Transaction Dispute REMOTE ONUS (RNUS)"
+            },
+			"841D8A32-5B0D-4A60-B8CB-4DE3D097F0BD": {
+				"1a349051-4ddb-42d0-a8bd-eaacd805f4c2":"PIN Reset",
+				"f02ef951-3f04-43ce-bfe0-ee22b6a6ba1f":"Card lost/block"
+			}
+        },
+        "d8c29525-d328-4f2a-8498-6b70214dfd01": {
+            "cd59249b-6131-4944-b4c5-7bc06abd3ee9": {
+				"6E6AC7B6-925D-4E7C-AE52-EDC8D3CEEE5D":	"General Feedback"
+			},
+            "340e0d3e-485f-4c3f-aa18-4e7ee1412f05": {
+				"9CDF4AE4-F8BF-4FD7-8754-F32B4ADB95B7":	"General Feedback"
+			},
+			"faf763a2-f446-409b-bd07-a0297c912d1a": {
+				"2FB29614-35F2-4D5E-8946-589823F562A9":	"General Feedback",
+				"CF55624A-BC4C-4EDA-B6B2-62ECA43035AE":	"General Complain"
+			}
+        },
+        "bba203bc-e00d-4adb-a103-79741cbaa7d0": {
+            "e614a1be-b574-4bf4-86b2-f820f468368a": {
+				"9C6C0568-7855-416F-984D-7DA3BB225DC7":	"General Complain"
+			},
+            "45097a7c-feb5-4d42-9810-ee868a5407e8": {
+				"61AA292D-D515-4F86-8C5F-267D3F69D7A4":	"Interest rate related",
+				"7ED608F0-7D05-4400-B137-5AE1CA11A895":	"Others",
+				"F95160FE-BBC1-408C-81D4-9A0371FDBA2B":	"Charges related",
+				"951EE845-CAA8-400B-8E3D-B801AD6C70B2":	"Processing time"
+			},
+            "1e262cec-5e93-449d-a57c-d3aa20b89af1": {
+				"B47631DF-AA4C-4268-910A-2AAC93C672BF":	"eCommerce transaction failed",
+				"F10A8BAF-38CB-461A-98E6-31E231D3F3E4":	"Card not activated",
+				"59FD6BC4-767C-45A9-988E-86EA78CEBE5C":	"General Complain",
+				"49F7686C-6B6E-4478-840A-A9F8912E2321":	"Card not delivered on time",
+				"99081115-7DB9-4E02-9A7E-CC76612EAA64":	"Fraud activity"
+			},
+            "bd8712c3-a489-4aab-b974-c0a3e3fa824e": {
+				"F0DD7FF9-14EB-468A-99EF-FA7A98B86424":	"General Complain",
+				"EEF0EE24-9A52-4582-8C5F-C2B117892AAF":	"Service Down"
+			},
+            "6f5638af-e9eb-43a7-b2b5-b91e14f2598b": {
+				"7557739E-F7C4-42A4-9D40-0ADB1BC47869":	"Others",
+				"7B9A2364-6555-4BE5-9760-61F3678653E5":	"Service Delivery",
+				"C89CBD5F-F1C3-46E0-B9FC-A64F4AAD2ED7":	"Staff Behaviour"
+			},
+            "2f1e1985-3c3d-4eca-ab3b-b1173df9cb63": {
+				"72738F8B-9593-425C-90C7-3B5B608445F9": "General Complain"
+			},
+            "f98434c5-7c8a-4e9f-9325-a96b90faf4de": {
+				"336BA3CE-B1A6-426F-A2A2-FADEA3AC79C6":	"Service Down",
+				"149EB11D-E676-4F77-9351-04BA0F197B79":	"General Complain",
+				"3EC7E727-6009-41CE-951F-3B99BFD29E54":	"Not Responsive"
+			},
+            "00b9cc25-fa77-4add-b6b5-a074a8d4c215": {
+				"28C9FDFC-31DD-48B5-B34D-0C04AA14AD6D":	"eCommerce transaction failed",
+				"3B320B38-8F30-4607-B852-2127F778AA3C":	"General Complain",
+				"3916FEF7-4FF2-428D-8219-278483F4CECA":	"Card not activated",
+				"1BCFB7BB-3BBA-4B2B-B427-443778A68380":	"Fraud activity",
+				"C86E93CA-B926-4825-89D0-AFD27E417154":	"Card not delivered on time"
+			},
+            "c07e5413-aa3d-41d6-9589-9efa94e8fa0d": {
+				"55A8761B-57FC-4994-AF64-2BFFC31CCE45":	"Service Down",
+				"F33C3FEA-A8C9-4A5D-BC8F-8116505A06EB":	"General Complain",
+				"D3B780D6-761E-4B48-92E3-9EDD7D1D3944":	"Fraud Activity"
+
+			},
+            "516fb35c-9706-44cd-931c-9b2c606cced3": {
+				"882D38E8-1881-4134-8A8B-12B34026133F":	"General Complain",
+				"593AF3D0-1204-4383-BA68-1B7AA4A306CB":	"Not Responsive",
+				"D407D67C-A2AB-4BCC-8A0B-24C2CB6BF9C1":	"Fraud Activity",
+				"D5EDC89D-3244-47A6-B169-C53F0022DD14":	"Service Down",
+				"6864BAC6-C204-4415-86DE-E1E1620D64A4":	"Others"
+			},
+            "9c0ff121-3927-4680-8d2c-51824a7e4cb7": {
+				"CF55624A-BC4C-4EDA-B6B2-62ECA43035AE":	"General Complain"
+			},
+            "9914eb9a-6077-4496-940c-41fa4da8eb0f": {
+				"C57398F2-9119-4818-8703-030C554A3D25": "General Complain"
+			},
+            "8e096562-c279-4f18-8d6f-389f797d8a5d": {
+				"DF87AB63-7700-4600-ABAA-C4BC0E9D7E4B":	"eCommerce transaction failed",
+				"802D5A7A-9314-4F6A-B2E6-B0A88F477316":	"Card not activated",
+				"999FC013-B89F-4AB5-82A6-46022066C91A":	"General Complain",
+				"656E5BDB-7D43-4A08-B8AB-3F1FDE5ED75A":	"Charges related",
+				"29ACFB17-7AE1-4B2E-8A95-2F50E8F5948E":	"Card not delivered on time",
+				"57783458-A9B5-4000-BC55-2BF125278645":	"Fraud activity",
+				"1F315F15-0A24-4455-AF04-156B8EB7574A":	"Others"
+			},
+            "492ea332-a62b-4a2d-9704-15dfad6c7a20": {
+				"80F31759-991A-4E05-8129-E4BFC6DCE2A7":	"General Complain"
+			},
+            "29e19f33-3365-434f-b6f7-0c438ee3098b": {
+				"3AC607EA-3D6C-43DC-AE94-036A0A2E802C":	"Service Delivery",
+				"8C04CEB4-47E6-4C0A-BDCE-0532F5DC52B9":	"Staff Behaviour",
+				"9579BCC9-ECEF-46C8-A0AB-7A819C53896D":	"Queue management",
+				"F67F6438-0366-4B6A-A1E4-9516D68A1F89":	"Others",
+				"5DD8AA74-91D8-4B34-9E24-D3DF4D8D47BE":	"Facility related (logistics/infrastructure)"
+			}
+        },
+        "32fbec83-2859-42d4-9473-d6cba5c5de94": {
+            "95891ca2-4242-4b2e-9f3f-fa2f08f3a070": {
+				"9B8B40D9-1D1F-4811-9389-FAB9D7320DF7":"STC related Charges",
+				"F7E187EA-343C-4D4F-8D45-FD49752E5C60":"LC/Guaranteee Cancel",
+				"604EF596-DDF6-4FF5-993E-051ABA24DA73":"Loan EMI/EQI enquiry",
+				"3AD83ACF-7D5D-4F8A-B954-065D2747B78B":"Request for settlement of loan",
+				"80ADD22C-73F0-4DC0-A834-08634B2594F7":"Letter of Credit advising/Document collection",
+				"023A59F2-64E9-4B9B-894A-1EA432D25756":"Cash Against Document",
+				"02B46941-8A9A-4B6B-B137-23487DC01F94":"Pre payment of loan",
+				"6597C7B6-B4FC-42BB-810B-2E8940451926":"Base Rate & Premium",
+				"A9EA4D4F-EF02-41B4-B193-462718317B2D":"LC/Guarantee Issuance",
+				"FA0E6C96-26CD-4D08-8BA9-47AEAC814019":"Limit utilization/Balance enquiry",
+				"40016FF0-425E-4937-A154-4BE5F7A8833B":"Change in Collateral",
+				"655EFECF-EF78-41C9-B3E6-52997A7ACFCA":"LC/Guarantee Closure/Settlement",
+				"CC62C088-EF6D-4077-B5F0-5CF976851020":"Expiry of loan account",
+				"197487D4-005C-4CD7-9CC5-806F443D24CB":"Document Against Payment and Acceptance",
+				"E94AA938-73DE-4649-AA2F-A25A124AC31C":"LC/Guaranteee Ammedment",
+				"072EDAC0-27D7-4CE5-8F63-AF3CA49ED49B":"New Loan or SWAP",
+				"3E0C5E36-B187-4841-BB99-B103794D1DB3":"Loan enhancement",
+				"DE1F1FE3-89D9-45B6-BB76-B16EAB980866":"Restructuring and Reschedulling of Loan",
+				"CE0EAA9F-D76C-4694-86E5-B6D02976D550":"Prevailing interest rate",
+				"2A099497-0065-41A8-B52E-CBBF092B1B06":"Documentary Purchase",
+				"03BD4447-26C9-4B90-91CB-D029E9104B6B":"Review/Renew of loan",
+				"8D030C01-9E53-4C50-8145-DAF39D43F2BF":"Partial release of securities",
+				"A383A507-3AD3-4356-BD93-DB242A8CE35E":"waiver of interst/penal/or charges"
+			},
+			"9ef1c6ae-dcff-4995-8e97-e0cf7ce3232a": {
+				"AB3223D3-D8AE-46F2-91E7-B7BBF5070E59":"General Query",
+				"F0A6CBC4-7314-4A63-BCB4-F783E53327B8":"Bank Smart status check",
+				"9C270F01-773B-47A0-8638-3C7020C04CA6":"Bank Smart profile status check",
+				"EB9017EB-AFD4-41F1-BCAD-565A4838A481":"Transaction confirmation",
+				"027D7D59-A1AE-4242-86DC-557DFBE15A06":"Schedule payment setting procedure",
+				"8D4F8238-9BF6-4685-9506-5643C72D8EB7":"Stopping schedule payment",
+				"4B204B45-DA10-4F38-AAB6-3A8BD33AD574":"Bank Smart error enquiry",
+				"44197F5F-F6BA-439E-9F54-AC3447F30DB7":"Annual charge enquiry",
+				"7785FA5E-4317-48E7-A1E5-43241BC36CD4":"Top-up/ recharge enquiry",
+				"B5244796-8B35-44F1-A79F-568728835458":"Transaction alert not received",
+				"3BAD029F-280F-427F-BBB8-64E710E7C498":"Wallet load procedure enquiry"
+			},
+			"8804A130-CF67-4ABF-B359-1CAE0CF198D9": {
+				"34530275-4A45-4578-916F-4AF744561D8F":"Remittance Inward",
+				"04FCCC50-4ACF-4D82-8EFC-A04B8CB93009":"Remittance Outward"
+			},
+			"E9760C62-1D1C-4170-97E2-1AE2C2EA13A2": {
+				"6E8262C4-6696-4DF2-A16C-06170AA77E76":"Transaction check",
+				"EAF57C68-C2DA-40D4-984B-35A0EB41DAA8":"Card Status enquiry",
+				"230C455F-A256-438E-A612-AF5A23A4BD5E":"New Card charge enquiry"
+			},
+			"2B00E0CF-2038-4A41-8E1A-49B80501D652": {
+				"7337D01D-9BD8-4E9A-88F7-5E6E23D16315":"Confirmation of A/c Dr.",
+				"5168A370-B0E7-4936-884A-FD6D1422B502":" Clearing charge confirmation",
+				"6F7ACF89-5F91-4EFC-8AF7-08FEA338391B":"NCHL Time confirmation ",
+				"36B6552E-F790-4C5B-8440-735BD2DA1C4E":"NCHL Settlement time confirmation",
+				"4A7D1230-94C5-4D60-9929-B736E54F8272":"Confirmation of A/c Cr."
+			},
+			"44ED964F-9BAF-4841-B5A1-B9C8DAFE1930": {
+				"23159470-C2B3-4955-839E-2955322082B0":"IPS Inward",
+				"EB5C430B-97F5-4B25-8D82-F04F9EE38F00":"IPS Outward",
+				"D3EF09E5-55F5-48BF-998D-F23BD30D6FAF":"Payment/Bank transfer done by our customer using Connect IPS",
+				"85FE03A0-3CCF-48A3-82F5-74E0215A07AD":"IPS/Connect IPS charge confirmation",
+				"0CDA963F-76A5-4B66-AD63-90A683E508A9":"IPS/Connect IPS transaction limit enquiry",
+				"60C6B86E-7670-453F-BDF2-B146E6B56537":"IPS/Connect IPS transaction dispute",
+				"CF39EE0C-C494-49BA-B7A3-F0303939248B":"Account link process in connect IPS",
+				"F38E104A-2CA5-4559-892B-8EDE586B3452":"Connect IPS pin reset enquiry"
+			},
+            "adc128a4-27a8-4241-a5d3-e66e8dd19acf": {
+				"39741905-B2E8-4276-9AAC-5DCBE612125C":"General Query",
+				"368DE676-C584-454A-85D5-46A94B05165F":"Outstanding due check",
+				"2074145F-7400-465D-A3F9-42234D83B899":"Transaction check",
+				"3B4008C3-5473-4BF2-98BD-1AAA40602472":"Card Status",
+				"C9265C08-D2D8-4C60-868C-CF4C02070FDA":"New Card charge enquiry",
+				"5FDB74B6-CF7C-4A12-A8EC-1EDD1A391160":"Card Status enquiry"
+			},
+            "86ed3c3d-6252-43dc-b4ea-be5ba900b412": {
+				"EDC97FBA-87AA-4F9D-9D64-499626BA7163":"BLB Services"
+			},
+			"2ee1a0d8-13a0-41e6-b26a-3d309e0b3624": {
+				"0A4A46BC-4EBD-4ADD-BD3F-4EFB1A8A21E8":"DEMAT renewal charge",
+				"FAFE44E5-3F0B-4C25-9B59-62A1EAB86057":"Mero share renewal charge",
+				"81290D2A-2A5F-4F4A-B4C6-8D22993B9FFC":"CRN No. request",
+				"63C5381C-D596-464A-B1C6-B448D999129E":"Mero share password reset",
+				"4DC4F01F-F423-4B0E-9CD6-8F4FAED66147":"DEMAT Services"
+			},
+			"3c75bd04-9f2c-4cc0-a1e3-343cd0ac7a6a": {
+				"A54ABAEE-D778-4A0C-8807-C00B125E7923":"General Query",
+				"B640C941-F639-4751-A856-0EAC18502D86":"ATM cash withdrawal charge ",
+				"959D3249-9BA3-440E-87AA-C99078A6B64B":"Annual charge enquiry",
+				"A4D2AFA7-7BB7-492B-8F27-88B5FFB6428E":"Cash withdraw limit enquiry",
+				"5F0257C5-5A56-44A3-AA7B-A2871F1FA14C":"Status confirmation",
+				"C00DDD0B-72BA-4E17-8683-F2BF7CE1CC0A":"Card not working in ATM",
+				"0374003D-5067-487C-8B6E-B8B2A54B4A82":"New pin change procedure"
+			},
+			"09d49252-c603-41db-bdfb-8068c5e6549a": {
+				"624BA57C-5975-42C1-B813-E2833ECC763C":"General Query"
+			},
+            "80c3fca8-eea5-46a7-9488-82d304eb0ff9": {
+				"C5F6EE8B-41BD-4534-98C2-7F5EFF5A949D":"General Query",
+				"822D13A4-5D0E-4E2F-A04E-17C74787FB31":"Outstanding due check",
+				"9E5299BE-7276-43A6-A6C5-179756FB79F0":"Transaction check",
+				"D6395E1E-896B-4603-AB22-E83C31008961":"Account link confirmation",
+				"47BFC142-6473-49B8-9AAA-440CA2B93112":"Card Status",
+				"3D3D5014-9B1D-4501-AFF9-828CB5D8DDDB":"Annual charge enquiry",
+				"0A7205CA-2518-4816-B161-4D17A247C189":"Payment confirmation from wallet",
+				"C2547406-2E0A-4271-A9AF-B1DB70A7E935":"Enquiry on new EMI service",
+				"8E8C8B32-03B8-4CE7-AC61-86E99141400A":"Payment confirmation from counter deposit",
+				"6D9CA601-39D4-4065-B823-C88FA5CD991C":"Payment confirmation from linked account"
+			},
+            "d8885ff3-0706-4a61-bf4d-7685a30aaaaa": {
+				"D8BDCE5B-98CA-4E01-A5DC-DAE92F8FEEC9":"Account status check",
+				"3042BFA4-B5EC-440D-B5C3-16DFF4810E00":"Account transaction confirmation (Dr. & Cr.)",
+				"13E9354D-AE59-4EEF-A9E5-315E843C628A":"Account number confirmation",
+				"9B7FA48D-8BA2-4AE8-9772-01C77355D3AD":"FD related",
+				"46300806-49CE-472E-9FE2-243F93A310A1":"Savings Related",
+				"483935F6-B676-4635-B4D9-A4D4B9E5AA32":"Deposit Locker related",
+				"3E572CB7-A95B-4C3E-B765-D166904E6936":"Other enquiries"
+			}
+        }
+    };

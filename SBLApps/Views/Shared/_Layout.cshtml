@@ -1,0 +1,185 @@
+﻿@using SBLApps.Enums;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/jsgrid/jsgrid.min.css" rel="stylesheet" />
+    <link href="~/lib/jsgrid/jsgrid-theme.min.css" rel="stylesheet" />
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="~/lib/simplebar/simplebar.min.css" rel="stylesheet" />
+    <link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/lib/select2/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/SBLApps.styles.css" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome Icons -->
+    <link href="~/content/adminlayout/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/content/adminlayout/dist/css/adminlte.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/datatables/jquery.datatables.min.css" rel="stylesheet" />
+    <style>
+        .my-element {
+            zoom: 0.9; /* or zoom: 90%; */
+        }
+
+        .navbar-white {
+            background-color: #fab719 !important;
+            color: #1f2d3d !important;
+        }
+
+        .brand-link .brand-image {
+            float: left;
+            line-height: .8;
+            margin-left: .8rem;
+            margin-right: .5rem;
+            margin-top: -15px !important;
+            max-height: 51px !important;
+            width: auto;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div id="overlay">
+        <div id="overlaySpinner"></div>
+    </div>
+    <div class="wrapper  my-element">
+        @if (User.Identity.IsAuthenticated)
+        {
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <partial name="_LoginPartial" />
+            </ul>
+        </nav>
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="@Url.Action("BlacklistingMemoMainList","BlacklistingMemoMain")" class="brand-link">
+                <img src="~/Content/Image/logo.png" class="brand-image img-circle elevation-3" alt="banklogo" />
+                <span class="brand-text font-weight-light">Siddhartha Bank</span>
+            </a>
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>
+                                    Memo
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("BlacklistingMemoMainList","BlacklistingMemoMain")" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Blacklisting memo</p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+                                    <a href="@Url.Action("BlacklistingMemoMainList","BlacklistingMemoMain")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reversal memo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("BlacklistingMemoMainList","BlacklistingMemoMain")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Deceased memo</p>
+                                    </a>
+                                </li>*@
+                            </ul>
+                        </li>
+                        @{
+                            var userRolesClaim = User.Claims.FirstOrDefault(c => c.Type == "Role");
+                            if (userRolesClaim != null && userRolesClaim.Value != "")
+                            {
+                                var userRoles = userRolesClaim.Value.Split(',').Select(int.Parse).ToList();
+                                if (userRoles.Contains((int)UserRoleEnum.Administrator))
+                                {
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("UserList","Account")" class="nav-link">
+                                            <i class="nav-icon fas fa-user-cog"></i>
+                                            <p>
+                                                User Roles
+                                            </p>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        }
+        <div class="content-wrapper" style="padding: 10px">
+            @RenderBody()
+        </div>
+        <aside class="control-sidebar control-sidebar-dark">
+        </aside>
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2023 <a href="https://www.siddharthabank.com/">Memo Application</a>.</strong>
+            All rights reserved.
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="~/content/adminlayout/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/select2/select2.min.js"></script>
+    <script src="~/lib/jsgrid/jsgrid.min.js"></script>
+    <script src="~/lib/datatables/jquery.datatables.min.js"></script>
+    <!-- Toastr -->
+    <script src="~/content/adminlayout/plugins/toastr/toastr.min.js"></script>
+    <script src="~/lib/ckeditor/ckeditor.min.js"></script>
+    <script src="~/lib/simplebar/simplebar.min.js"></script>
+    <script src="~/lib/cleavejs/cleave.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="~/content/adminlayout/dist/js/adminlte.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script type="text/javascript">
+        $(function () {
+            // Check if TempData has notification values
+            var notificationType = '@TempData["NotificationType"]';
+            var notificationMessage = '@TempData["NotificationMessage"]';
+
+            if (notificationType && notificationMessage) {
+                // Display Toastr notification
+                toastr.options = {
+                    positionClass: "toast-top-right" // Set the desired position
+                };
+
+                toastr[notificationType](notificationMessage);
+            }
+        });
+
+        $(function () {
+            var url = window.location;
+            // for single sidebar menu
+            $('ul.nav-sidebar a').filter(function () {
+                return this.href == url;
+            }).addClass('active');
+
+            // for sidebar menu and treeview
+            $('ul.nav-treeview a').filter(function () {
+                return this.href == url;
+            }).parentsUntil(".nav-sidebar > .nav-treeview")
+                .css({ 'display': 'block' })
+                .addClass('menu-open').prev('a')
+                .addClass('active');
+        });
+    </script>
+</body>
+</html>

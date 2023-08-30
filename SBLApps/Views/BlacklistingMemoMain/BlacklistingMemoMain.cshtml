@@ -1,0 +1,1010 @@
+﻿@model SBLApps.Models.BlacklistingMemoMain
+
+@{
+    ViewData["Title"] = "Memo Entry";
+}
+
+@if (Model != null && Model.MemoRequestOperations != null)
+{
+    @await Html.PartialAsync("../Common/_MemoOperationLogStrip", Model.MemoRequestOperations)
+    <br />
+}
+<div class="card">
+    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseWholeBody" aria-expanded="true" aria-controls="collapseWholeBody">
+        <h3>
+            Blacklisting Memo
+        </h3>
+    </div>
+    <div class="collapse show" id="collapseWholeBody">
+        <div class="card-body">
+            <form asp-action="BlacklistingMemoMain" enctype="multipart/form-data">
+                <input asp-for="MemoId" type="hidden" />
+                <input asp-for="CIF" type="hidden" />
+                <input asp-for="StringifiedOtherAccounts" type="hidden" />
+                <input asp-for="StringifiedLinkedEntitiesDetails" type="hidden" />
+                <input asp-for="Initiator" value="@User.Identity.Name" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="ReferenceNumber" class="control-label"></label>
+                        <input asp-for="ReferenceNumber" class="form-control" readonly />
+                        <span asp-validation-for="ReferenceNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="BranchId" class="control-label"></label>
+                        <select asp-for="BranchId" class="form-control">
+                            <option value="">-- Select --</option>
+                            @foreach (var item in Model.BranchList ?? Enumerable.Empty<SelectListItem>())
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="BranchId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="DepartmentId" class="control-label"></label>
+                        <select asp-for="DepartmentId" class="form-control">
+                            <option value="">-- Select --</option>
+                            @foreach (var item in Model.DepartmentList ?? Enumerable.Empty<SelectListItem>())
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="FinalApproverSAMName" class="control-label"></label>
+                        <select asp-for="FinalApproverSAMName" class="form-control js-select2">
+                            <option value="">-- Select --</option>
+                            @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]).Where(x => x.Value.ToLower() != User.Identity.Name))
+                            {
+                                <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                            }
+                        </select>
+                        <span asp-validation-for="FinalApproverSAMName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-8">
+                        <label asp-for="Subject" class="control-label"></label>
+                        <textarea asp-for="Subject" class="form-control"></textarea>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label asp-for="AccountNumber" class="control-label"></label>
+                        <input asp-for="AccountNumber" class="form-control" />
+                        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                        <input type="hidden" asp-for="CIF" />
+                    </div>
+                    <div class="col-md-1">
+                        <label class="control-label">&nbsp;</label>
+                        <input type="button" class="btn btn-normal-sbl form-control" value="Get" id="btnGetDataFromAccountNumber" />
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="AccountHolderName" class="control-label"></label>
+                        <input asp-for="AccountHolderName" class="form-control" readonly />
+                        <span asp-validation-for="AccountHolderName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="CustomerTypeId" class="control-label"></label>
+                        <select asp-for="CustomerTypeId" class="form-control" style="pointer-events: none;">
+                            <option value="">-- Select --</option>
+                            @foreach (var item in Model.CustomerTypeList ?? Enumerable.Empty<SelectListItem>())
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="CustomerTypeId" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-4 form-check">
+                        <input class="form-check-input" type="checkbox" asp-for="IsLoanCustomer" id="IsLoanCustomer" style="pointer-events: none;" />
+                        <label class="form-check-label" asp-for="IsLoanCustomer" style="pointer-events: none;">Is Loan Customer?</label>
+                        <span asp-validation-for="IsLoanCustomer" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 loan-customer-fields">
+                        <label asp-for="TotalLoanOutstanding" class="control-label"></label>
+                        <input asp-for="TotalLoanOutstanding" class="form-control" readonly />
+                        <span asp-validation-for="TotalLoanOutstanding" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 loan-customer-fields">
+                        <label asp-for="NameOfRORM" class="control-label"></label>
+                        <input asp-for="NameOfRORM" class="form-control" readonly />
+                        <span asp-validation-for="NameOfRORM" class="text-danger"></span>
+                    </div>
+                    @* Grid to show all the account that are maintained *@
+                    <div id="table-container" class="table table-responsive">
+                    </div>
+                    <br />
+                    <div id="table-linked-entities" class="table table-responsive">
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="NameOfPayee" class="control-label"></label>
+                        <input asp-for="NameOfPayee" class="form-control" />
+                        <span asp-validation-for="NameOfPayee" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="BlacklistingRequestedBy" class="control-label"></label>
+                        <input asp-for="BlacklistingRequestedBy" class="form-control" />
+                        @*<select asp-for="BlacklistingRequestedBy" class="form-control js-select2">
+                        <option value="">-- Select --</option>
+                        @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]).Where(x => x.Value == User.Identity.Name))
+                        {
+                        <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                        }
+                        </select>*@
+                        <span asp-validation-for="BlacklistingRequestedBy" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="BlacklistingApplicationReceivedDate" class="control-label"></label>
+                        <input asp-for="BlacklistingApplicationReceivedDate" class="form-control" type="date" />
+                        <span asp-validation-for="BlacklistingApplicationReceivedDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="AddressOfRequestingPerson" class="control-label"></label>
+                        <input asp-for="AddressOfRequestingPerson" class="form-control" />
+                        <span asp-validation-for="AddressOfRequestingPerson" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="StaffIDNoOfRequestingPerson" class="control-label"></label>
+                        <input asp-for="StaffIDNoOfRequestingPerson" class="form-control" />
+                        <span asp-validation-for="StaffIDNoOfRequestingPerson" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="ContactNumberOfRequestingPerson" class="control-label"></label>
+                        <input asp-for="ContactNumberOfRequestingPerson" class="form-control" maxlength="10" />
+                        <span asp-validation-for="ContactNumberOfRequestingPerson" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="card">
+                    <input asp-for="StringifiedBlacklistingMemoDetails" type="hidden" />
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseAccountDetailsBody" aria-expanded="true" aria-controls="collapseAccountDetailsBody">
+                        <h3>
+                            Account Details
+                        </h3>
+                    </div>
+                    <div class="collapse show" id="collapseAccountDetailsBody">
+                        <div class="card-body">
+                            <div id="jsGrid"></div>
+                            <br />
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label asp-for="TotalChequeAmount" class="control-label"></label>
+                                    <input type="text" class="form-control" asp-for="TotalChequeAmount" readonly>
+                                </div>
+                            </div>
+                            <hr />
+
+                            @*<div class="corporate-customer-fields">*@
+                            <div>
+                                <input asp-for="StringifiedBlacklistingOtherPartyDetails" type="hidden" />
+                                Other parties to be blacklisted
+                                <div id="jsGridOtherParty"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="card">
+                    <input asp-for="StringifiedBlacklistingDocumentDetails" type="hidden" />
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#collapseDocumentsBody" aria-expanded="true" aria-controls="collapseDocumentsBody">
+                        <h3>
+                            Documents Upload
+                        </h3>
+                    </div>
+                    <div class="collapse show" id="collapseDocumentsBody">
+                        <div class="card-body">
+                            <input type="button" id="addRow" class="btn btn-normal-sbl" value="Add Document" />
+                            <br />
+                            <br />
+                            <div id="jsGridDocuments" class="table-responsive">
+                                <table id="documentsTable" class="table table-bordered table-light">
+                                    <thead>
+                                        <tr>
+                                            <th>Document Type</th>
+                                            <th>Document(not to exceed 1MB)</th>
+                                            <th>Action</th>
+                                            <th>Saved File</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="LatestOperationId" class="control-label"></label>
+                        <select asp-for="LatestOperationId" class="form-control">
+                            <option value="">-- Select --</option>
+                            @foreach (var item in Model.OperationList ?? Enumerable.Empty<SelectListItem>())
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="LatestOperationId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="NextAuthority" class="control-label"></label>
+                        <select asp-for="NextAuthority" class="form-control js-select2">
+                            <option value="">-- Select --</option>
+                            @foreach (var user in ((IEnumerable<SelectListItem>)ViewData["users"]).Where(x => x.Value.ToLower() != User.Identity.Name))
+                            {
+                                <option value="@user.Value">@($"{user.Text} ({user.Value})")</option>
+                            }
+                        </select>
+                        <span asp-validation-for="NextAuthority" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label asp-for="MemoRequirementRemarks" class="control-label"></label>
+                        <textarea asp-for="MemoRequirementRemarks" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="MemoRequirementRemarks" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row">
+                    <input type="submit" value="Submit" class="btn btn-normal-sbl offset-md-5 col-md-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+@if (Model != null && Model.MemoRequestOperations != null)
+{
+    @await Html.PartialAsync("../Common/_MemoOperationLogRemarks", Model.MemoRequestOperations)
+    <br />
+}
+<div>
+    <a asp-action="BlacklistingMemoMainList" class="btn btn-normal-sbl">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //#region Contact Number to receive only numbers
+            var cleave = new Cleave('#ContactNumberOfRequestingPerson', {
+                numericOnly: true,
+                blocks: [10], // Set the desired max length to 10
+                delimiter: '', // Remove any delimiters (e.g., commas)
+            });
+            //#endregion
+
+
+            // #region Initialize CKEditor
+            ClassicEditor
+                .create(document.querySelector('#MemoRequirementRemarks'), {
+                    height: '300px' // Set the desired height here
+                })
+                .then(editor => {
+                    // Update the model property value when the editor content changes
+                    editor.model.document.on('change:data', () => {
+                        document.getElementById('MemoRequirementRemarks').value = editor.getData();
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            // #endregion
+
+            // #region => Initialize select2 controls
+            $('.js-select2').select2();
+            // #endregion
+
+            // #region Define custom Date field for jsGrid
+            //Define custom date field for jsGrid
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [month, day, year].join('/');
+            }
+
+            var MyDateField = function (config) {
+                jsGrid.Field.call(this, config);
+            };
+
+            MyDateField.prototype = new jsGrid.Field({
+                sorter: function (date1, date2) {
+                    return new Date(date1) - new Date(date2);
+                },
+                itemTemplate: function (value) {
+                    // return new Date(value).toISOString();
+                    return formatDate(new Date(value));
+                },
+
+                insertTemplate: function (value) {
+                    return this._insertPicker = $("<input>").datepicker({
+                        defaultDate: new Date(), dateFormat: "mm/dd/yy", changeYear: true,
+                        changeMonth: true
+                    });
+                },
+
+                editTemplate: function (value) {
+                    return this._editPicker = $("<input>").datepicker({
+                        dateFormat: "mm/dd/yy", changeYear: true,
+                        changeMonth: true
+                    }).datepicker("setDate", new Date(value));
+
+                },
+
+                insertValue: function () {
+                    var insertValue = this._insertPicker.datepicker("getDate");
+                    if (insertValue !== null && insertValue !== 'undefined') {
+                        return formatDate(this._insertPicker.datepicker("getDate"));//.toISOString();
+                    }
+                    return null;
+
+                },
+
+                editValue: function () {
+                    var editValue = this._editPicker.datepicker("getDate");
+                    if (editValue !== null && editValue !== 'undefined') {
+                        return formatDate(this._editPicker.datepicker("getDate"));//.toISOString();
+                    }
+                    return null;
+                }
+            });
+
+            jsGrid.fields.date = MyDateField;
+            // #endregion
+
+            // #region Define custom Decimal field for jsGrid
+            // Custom "decimal" field type
+            function formatDecimal(value) {
+                // Convert to a floating-point number with up to 2 decimal places
+                return parseFloat(value).toFixed(2);
+            }
+
+            var MyDecimalField = function (config) {
+                jsGrid.Field.call(this, config);
+            };
+
+            MyDecimalField.prototype = new jsGrid.Field({
+                sorter: "number", // Use "number" sorter for numeric values
+                align: "right", // Align text to the right in the cell
+
+                // Custom itemTemplate to display formatted decimal value
+                itemTemplate: function (value) {
+                    return formatDecimal(value);
+                },
+
+                // Custom insertTemplate with a regex pattern for decimal numbers
+                insertTemplate: function () {
+                    return this._insertPicker = $("<input>").attr({
+                        type: "text",
+                        pattern: "^\\d*(\\.\\d{0,2})?$" // Regular expression for decimal numbers with up to 2 decimal places
+                    });
+                },
+
+                // Custom editTemplate with a regex pattern for decimal numbers
+                editTemplate: function (value) {
+                    return this._editPicker = $("<input>").attr({
+                        type: "text",
+                        pattern: "^\\d*(\\.\\d{0,2})?$" // Regular expression for decimal numbers with up to 2 decimal places
+                    }).val(value);
+                },
+
+                // Custom insertValue to parse the decimal value from the input
+                insertValue: function () {
+                    var insertValue = parseFloat(this._insertPicker.val());
+                    return isNaN(insertValue) ? undefined : insertValue;
+                },
+
+                // Custom editValue to parse the decimal value from the input
+                editValue: function () {
+                    var editValue = parseFloat(this._editPicker.val());
+                    return isNaN(editValue) ? undefined : editValue;
+                }
+            });
+
+            // Register the custom "decimal" field type with jsGrid
+            jsGrid.fields.decimal = MyDecimalField;
+
+            // #endregion
+
+
+            // #region => For Main Account Details Grid
+            let accounts = [
+                { Name: "", Id: "" }
+            ];
+            var blacklistingMemoDetailData = $('#StringifiedBlacklistingMemoDetails').val();
+
+            $("#jsGrid").jsGrid({
+                width: "100%",
+                height: "auto",
+
+                inserting: true,
+                editing: true,
+                sorting: false,
+                paging: false,
+
+                data: blacklistingMemoDetailData === "" ? [] : JSON.parse($('#StringifiedBlacklistingMemoDetails').val()),
+
+                fields: [
+                    {
+                        name: "SNo", title: "SNo", width: 70, itemTemplate: function (_, item) {
+                            var index = $("#jsGrid").jsGrid("option", "data").indexOf(item);
+                            return index + 1; // Serial number calculation based on the item index
+                        }
+                    },
+                    { name: "MemoId", title: "Memo Id", type: "text", visible: false },
+                    { name: "MemoDetailId", title: "Memo Detail Id", type: "text", visible: false },
+                    { name: "AccountNumber", title: "Account Number", type: "select", width: 150, items: accounts, valueField: "Id", textField: "Name", validate: "required" },
+                    { name: "ChequeNumber", title: "Cheque Number", type: "text", width: 150, validate: "required" },
+                    { name: "ChequeIssueDate", title: "Cheque Issue Date", type: "date", width: 150, validate: "required", dateFormat: "mm/dd/yyyy" },
+                    { name: "ChequeReturnDate", title: "Cheque Return Date", type: "text", width: 150, validate: "required" },
+                    { name: "ChequeAmount", title: "Cheque Amount", type: "decimal", width: 150, validate: "required" },
+                    { name: "ReasonOfReturn", title: "Reason of Return", type: "textarea", width: 200, validate: "required" },
+                    { type: "control" }
+                ],
+                onItemUpdated: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingMemoDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemDeleted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingMemoDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemInserted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingMemoDetails').val(JSON.stringify(args.grid.data))
+                },
+                onDataChanged: function (args) {
+                    calculateTotalAmount();
+                },
+                onRefreshed: function (args) {
+                    calculateTotalAmount();
+                }
+            });
+
+            function calculateTotalAmount() {
+                var data = $("#jsGrid").jsGrid("option", "data");
+                var totalAmount = 0;
+                for (var i = 0; i < data.length; i++) {
+                    totalAmount += parseFloat(data[i]["ChequeAmount"]) || 0;
+                }
+                $("#TotalChequeAmount").val(totalAmount.toFixed(2));// Format total to 2 decimal places
+            }
+            // #endregion
+
+            // #region => For IsLoanCustomer case
+            var isLoanCustomerCheckbox = $('#IsLoanCustomer');
+            var loanCustomerFields = $('.loan-customer-fields');
+
+            loanCustomerFields.hide();
+
+            isLoanCustomerCheckbox.on('change', function () {
+                if (isLoanCustomerCheckbox.is(':checked')) {
+
+                    loanCustomerFields.show();
+                } else {
+                    loanCustomerFields.hide();
+                }
+            });
+            // #endregion
+
+            // #region => For Corporate case only
+            //$('.corporate-customer-fields').hide();
+
+            //$('#CustomerTypeId').on('change', function () {
+            //    if ($('#CustomerTypeId').val() === "2") {
+            //        $('.corporate-customer-fields').show();
+            //    } else {
+            //        $('.corporate-customer-fields').hide();
+            //    }
+            //});
+
+            // #region => For grid used for Other Party case only
+            var blacklistingMemoOtherPartyData = $('#StringifiedBlacklistingOtherPartyDetails').val();
+
+            $("#jsGridOtherParty").jsGrid({
+                width: "100%",
+                height: "auto",
+
+                inserting: true,
+                editing: true,
+                sorting: false,
+                paging: false,
+
+                data: blacklistingMemoOtherPartyData === "" ? [] : JSON.parse($('#StringifiedBlacklistingOtherPartyDetails').val()),
+
+                fields: [
+                    {
+                        name: "SNo", title: "SNo", width: 70, itemTemplate: function (_, item) {
+                            var index = $("#jsGridOtherParty").jsGrid("option", "data").indexOf(item);
+                            return index + 1; // Serial number calculation based on the item index
+                        }
+                    },
+                    { name: "MemoId", title: "Memo Id", type: "text", visible: false },
+                    { name: "OtherPartyDetailId", title: "Other Party Detail Id", type: "text", visible: false },
+                    { name: "FullName", title: "Full Name", type: "text", width: 200, validate: "required" },
+                    { name: "Address", title: "Address", type: "text", width: 200, validate: "required" },
+                    { name: "ShareHoldingPercentage", title: "Shareholding %", type: "decimal", width: 200, validate: "required" },
+                    { name: "Remarks", title: "Remarks", type: "textarea", width: 200, validate: "required" },
+                    { type: "control" }
+                ],
+                onItemUpdated: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingOtherPartyDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemDeleted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingOtherPartyDetails').val(JSON.stringify(args.grid.data))
+                },
+                onItemInserted: function (args) {
+                    var grid = this;
+                    var data = grid.option("data");
+
+                    // Update the serial numbers for all rows
+                    for (var i = 0; i < data.length; i++) {
+                        data[i]["SNo"] = i + 1;
+                    }
+
+                    // Refresh the grid to reflect the updated serial numbers
+                    grid.refresh();
+                    $('#StringifiedBlacklistingOtherPartyDetails').val(JSON.stringify(args.grid.data))
+                }
+            });
+            // #endregion
+            // #endregion
+
+            // #region => On GET button clicked, getting Data from CBS for given Account Number
+            $("#btnGetDataFromAccountNumber").click(function () {
+                document.getElementById("overlay").style.display = "block";
+                var urlValue = "";
+                urlValue = "/BlacklistingMemoMain/GetAccountDetailFromAccountNumber?accountNumber=" + $("#AccountNumber").val();
+                if (urlValue !== "") {
+                    $.ajax({
+                        url: urlValue,
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: function (result) {
+                            const resultJsonified = JSON.parse(result);
+                            $("#AccountHolderName").val(resultJsonified.accountHolderName);
+                            $("#CustomerTypeId").val(resultJsonified.customerTypeId);
+                            $("#CustomerTypeId").trigger('change');
+                            var isChecked = resultJsonified.isLoanCustomer === "Y";
+                            $('#IsLoanCustomer').prop('checked', isChecked).trigger('change');
+                            $("#TotalLoanOutstanding").val(resultJsonified.totalLoanOutstanding);
+                            $("#NameOfRORM").val(resultJsonified.nameOfRORM);
+                            $("#CIF").val(resultJsonified.cif);
+                            //if CIF is not null or empty, proceed with getting other account details
+                            if (resultJsonified.cif !== null && resultJsonified.cif !== "") {
+                                var urlValueGetAllAccountsToList = "";
+                                urlValueGetAllAccountsToList = "/BlacklistingMemoMain/GetAllAccountDetailsRelatedToTheCIF?cif=" + resultJsonified.cif;
+                                if (urlValueGetAllAccountsToList !== "") {
+                                    $.ajax({
+                                        url: urlValueGetAllAccountsToList,
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: function (result) {
+                                            // #region => Load datagrid here
+                                            var jsonData = JSON.parse(result); // Parse the JSON string to convert it into an array of objects
+                                            $("#StringifiedOtherAccounts").val(JSON.stringify(jsonData));
+                                            // Check if jsonData is empty
+                                            if (jsonData.length === 0) {
+                                                // Remove existing table and horizontal line
+                                                $('#table-container').empty();
+                                                $('#table-linked-entities').empty();
+                                                accounts.splice(1);
+                                                return; // Exit the success function
+                                            }
+
+                                            var table = $('<table>').addClass('data-table');
+                                            var headerRow = $('<tr>');
+                                            var headers = Object.keys(jsonData[0]); // Get the headers from the first object in the array
+
+                                            // Map the header names to their desired format
+                                            var headerMappings = {
+                                                'cif': 'CIF',
+                                                'accountNumber': 'Account Number',
+                                                'accountScheme': 'Account Scheme',
+                                                'balance': 'Balance',
+                                                'accountStatus': 'Account Status',
+                                                'freezeStatus': 'Freeze Status'
+                                                // Add more mappings as needed
+                                            };
+
+                                            // Exclude headers
+                                            var excludedHeaders = ['detailId', 'memoId', 'blacklistingMemoMain'];
+
+                                            // Create table headers
+                                            var headerRow = $('<tr>');
+                                            headers.forEach(function (header) {
+                                                if (!excludedHeaders.includes(header)) {
+                                                    var mappedHeader = headerMappings[header] || header; // Use the mapped header if available, otherwise use the original header
+                                                    headerRow.append($('<th>').text(mappedHeader));
+                                                }
+                                            });
+                                            table.append(headerRow);
+
+                                            accounts.splice(1);
+                                            // Create table rows
+                                            jsonData.forEach(function (item) {
+                                                var row = $('<tr>');
+                                                headers.forEach(function (header) {
+                                                    if (!excludedHeaders.includes(header)) {
+                                                        row.append($('<td>').text(item[header]));
+                                                        if (header == "accountNumber" && item[header] === $("#AccountNumber").val()) {
+                                                            accounts.push({ Name: item[header], Id: item[header] });
+                                                        }
+                                                    }
+                                                });
+                                                table.append(row);
+                                            });
+
+                                            // Apply CSS styles to the table and table cells
+                                            table.css({
+                                                'border-collapse': 'collapse',
+                                                'border': '2px solid black',
+                                                'padding': '2px',
+                                                'width': '100%'
+                                            });
+
+                                            table.find('td, th').css({
+                                                'border': '1px solid black',
+                                                'padding': '2px'
+                                            });
+
+                                            // Add the table to a container element in your HTML
+                                            var tableContainer = $('#table-container');
+                                            tableContainer.empty(); // Clear any existing content
+                                            tableContainer.append($('<hr>'), "All accounts maintained", table);
+
+                                            //Linked Entities related data
+                                            var urlValueLE = "";
+                                            urlValueLE = "/BlacklistingMemoMain/GetLinkedEntitiesDetailFromAccountNumber?accountNumber=" + $("#AccountNumber").val();
+                                            if (urlValueLE !== "") {
+                                                $.ajax({
+                                                    url: urlValueLE,
+                                                    contentType: 'application/html; charset=utf-8',
+                                                    type: 'GET',
+                                                    dataType: 'html',
+                                                    success: function (resultLE) {
+                                                        // #region => Load datagrid here
+                                                        var jsonDataLE = JSON.parse(resultLE); // Parse the JSON string to convert it into an array of objects
+                                                        $("#StringifiedLinkedEntitiesDetails").val(JSON.stringify(jsonDataLE));
+                                                        // Check if jsonData is empty
+                                                        if (jsonDataLE.length === 0) {
+                                                            // Remove existing table and horizontal line
+                                                            $('#table-linked-entities').empty();
+                                                            return; // Exit the success function
+                                                        }
+
+                                                        var tableLE = $('<table>').addClass('data-table');
+                                                        var headerRowLE = $('<tr>');
+                                                        var headersLE = Object.keys(jsonDataLE[0]); // Get the headers from the first object in the array
+
+                                                        // Map the header names to their desired format
+                                                        var headerMappingsLE = {
+                                                            'cif': 'CIF',
+                                                            'accountNumber': 'Account Number',
+                                                            'accountName': 'Account Name',
+                                                            'balance': 'Balance',
+                                                            'accountStatus': 'Account Status',
+                                                            'freezeStatus': 'Freeze Status'
+
+                                                            // Add more mappings as needed
+                                                        };
+
+                                                        // Exclude headers
+                                                        var excludedHeadersLE = ['mainAccountNumber', 'detailId', 'memoId', 'blacklistingMemoMain'];
+
+                                                        // Create table headers
+                                                        var headerRowLE = $('<tr>');
+                                                        headersLE.forEach(function (header) {
+                                                            if (!excludedHeadersLE.includes(header)) {
+                                                                var mappedHeaderLE = headerMappingsLE[header] || header; // Use the mapped header if available, otherwise use the original header
+                                                                headerRowLE.append($('<th>').text(mappedHeaderLE));
+                                                            }
+                                                        });
+                                                        tableLE.append(headerRowLE);
+
+                                                        // Create table rows
+                                                        jsonDataLE.forEach(function (item) {
+                                                            var rowLE = $('<tr>');
+                                                            headersLE.forEach(function (header) {
+                                                                if (!excludedHeadersLE.includes(header)) {
+                                                                    rowLE.append($('<td>').text(item[header]));
+                                                                }
+                                                            });
+                                                            tableLE.append(rowLE);
+                                                        });
+
+                                                        // Apply CSS styles to the table and table cells
+                                                        tableLE.css({
+                                                            'border-collapse': 'collapse',
+                                                            'border': '2px solid black',
+                                                            'padding': '2px',
+                                                            'width': '100%'
+                                                        });
+
+                                                        tableLE.find('td, th').css({
+                                                            'border': '1px solid black',
+                                                            'padding': '2px'
+                                                        });
+
+                                                        // Add the table to a container element in your HTML
+                                                        var tableContainerLE = $('#table-linked-entities');
+                                                        tableContainerLE.empty(); // Clear any existing content
+                                                        tableContainerLE.append($('<hr>'), "All Linked Entities", tableLE);
+
+                                                        // #endregion
+                                                    },
+                                                    error: function (xhr, status) { alert(status); }
+                                                });
+                                            }
+
+                                            // Update the data source of the select field
+                                            $("#jsGrid").jsGrid("fieldOption", "AccountNumber", "items", accounts);
+
+                                            // Refresh the grid to reflect the changes
+                                            $("#jsGrid").jsGrid("loadData");
+
+                                            // #endregion
+                                        },
+                                        error: function (xhr, status) { alert(status); }
+                                    });
+                                }
+                            }
+                            else {
+                                $('#table-container').empty();
+                                $('#table-linked-entities').empty();
+                                accounts.splice(1);
+                                document.getElementById("overlay").style.display = "none";
+                                return;
+                            }
+                            document.getElementById("overlay").style.display = "none";
+                        },
+                        error: function (xhr, status) { alert(status); document.getElementById("overlay").style.display = "none"; }
+                    });
+                }
+            });
+            // #endregion
+
+            // #region => For Documents Upload Table
+            var documentTypes = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.DocumentTypeList));
+            let documentTypesForDropdown = documentTypes.map(function (documentType) {
+                return {
+                    Name: documentType.Text,
+                    Id: documentType.Value
+                };
+            });
+
+            var parameters = {
+                documentTypeValue: 0,
+                documentFullPathValue: '',
+                memoIdValue: 0,
+                documentDetailIdValue: 0
+            };
+
+            var documentRowIndex = 0; // Initialize documentRowIndex
+
+            $("#addRow").click(function () {
+                var newRow = $("<tr>");
+                var cols = '';
+
+                cols += '<td>';
+                cols += '<input type="hidden" name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentDetailId" value="' + parameters.documentDetailIdValue + '"/>';
+                cols += '<input type="hidden" name="blacklistingDocumentDetails[' + documentRowIndex + '].MemoId" value="' + parameters.memoIdValue + '" />';
+                cols += '<input type="hidden" name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentFullPath" value="' + parameters.documentFullPathValue + '" />';
+                cols += '<select name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentTypeId" class="documentType form-control" required>';
+                // Add options from the documentTypesForDropdown array
+                for (var i = 0; i < documentTypesForDropdown.length; i++) {
+                    var documentType = documentTypesForDropdown[i];
+                    cols += '<option value="' + documentType.Id + '"' + (parameters.documentTypeValue === parseInt(documentType.Id) ? 'selected' : '') + '>' + documentType.Name + '</option>';
+                }
+
+                cols += '</select>';
+                cols += '</td>';
+                cols += '<td><input type="file" name="blacklistingDocumentDetails[' + documentRowIndex + '].DocumentHolder" class="documentFullPath form-control' + (parameters.documentFullPathValue === '' ? ' required"' : '"') + '/></td>';
+
+                cols += '<td><input class="remove btn btn-danger" value="Remove" /></td>';
+                if (parameters.documentFullPathValue !== '') {
+                    cols += '<td><a href="/' + String(parameters.documentFullPathValue).replace(/\\/g, '/') + '" target="_blank"><i class="bi bi-eye" title="View"></i></a></td>';
+                }
+                else {
+                    cols += '<td></td>';
+                }
+
+                newRow.append(cols);
+                $("#documentsTable").append(newRow);
+
+                // Validate the file upload field when adding a new row
+                newRow.find('.documentFullPath').on('change', function () {
+                    if ($(this).hasClass('required') && $(this).hasClass('documentFullPath')) {
+                        var file = $(this).prop('files')[0];
+                        if (!file) {
+                            $(this).addClass('is-invalid');
+                        } else {
+                            $(this).removeClass('is-invalid');
+                        }
+                    }
+                });
+
+                documentRowIndex++; // Increment documentRowIndex
+            });
+
+            $("#documentsTable").on("click", ".remove", function () {
+                if (confirm("Do you want to remove this document row?")) {
+                    $(this).closest("tr").remove();
+                    documentRowIndex--; // Decrement documentRowIndex
+                }
+            });
+            // #endregion
+
+            // #region Form Submit
+            // Validate the form before submission
+            $("form").submit(function () {
+                //document.getElementById("overlay").style.display = "block";
+                var fileUploads = $(this).find(".documentFullPath");
+                var hasEmptyFileUpload = false;
+                var hasHeavyFile = false;
+
+                fileUploads.each(function () {
+                    var file = $(this).prop('files')[0];
+                    let errorCanBeRemovedNext = true;
+                    if ($(this).hasClass('required') && $(this).hasClass('documentFullPath')) {
+                        if (!file) {
+                            $(this).addClass('is-invalid');
+                            hasEmptyFileUpload = true;
+                            errorCanBeRemovedNext = false;
+                        } else {
+                            $(this).removeClass('is-invalid');
+                            errorCanBeRemovedNext = true;
+                        }
+                    }
+                    if (file !== undefined) {
+                        var fileSize = file.size; // Get the file size in bytes
+                        var maxSize = 1024 * 1024; // 1MB in bytes
+
+                        if (fileSize > maxSize) {
+                            if ($(this).hasClass('is-invalid') === false) {
+                                $(this).addClass('is-invalid');
+                            }
+                            hasHeavyFile = true;
+                        }
+                        else if (fileSize <= maxSize && errorCanBeRemovedNext === true) {
+                            $(this).removeClass('is-invalid');
+                        }
+                    }
+                });
+
+                if (hasEmptyFileUpload) {
+                    // Show Toastr error notification
+                    document.getElementById("overlay").style.display = "none";
+                    toastr.error("Please select a file for each document row.");
+                    event.preventDefault(); // Prevent form submission
+                    //return false; // prevent form submission
+                }
+
+                if (hasHeavyFile) {
+                    // Show Toastr error notification
+                    document.getElementById("overlay").style.display = "none";
+                    toastr.error("File size exceeds 1MB.");
+                    event.preventDefault(); // Prevent form submission
+                    //return false; // prevent form submission
+                }
+
+                if ($('#LatestOperationId').val() !== '3' && $('#LatestOperationId').val() !== '10' && $('#LatestOperationId').val() !== '11' && $('#NextAuthority').val() === '') {
+                    // Show Toastr error notification
+                    document.getElementById("overlay").style.display = "none";
+                    toastr.error("Please provide Next Authority.");
+                    event.preventDefault(); // Prevent form submission
+                }
+
+
+                if ($("#MemoRequirementRemarks").val() === undefined || $("#MemoRequirementRemarks").val() === null || $("#MemoRequirementRemarks").val().trim() === '') {
+                    // Show Toastr error notification
+                    document.getElementById("overlay").style.display = "none";
+                    toastr.error("Please provide remarks.");
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+            // #endregion
+
+            // #region For case of Edits
+            if (@(Model.MemoId)!== 0) {
+                $('#btnGetDataFromAccountNumber').trigger('click').promise().then(function () {
+                    isLoanCustomerCheckbox.trigger('change');
+                });
+
+                if ($("#StringifiedBlacklistingDocumentDetails").val() !== "") {
+                    var arrDocumentDetails = JSON.parse($("#StringifiedBlacklistingDocumentDetails").val());
+                    $.each(arrDocumentDetails, function (i, l) {
+                        parameters = {
+                            documentTypeValue: l.DocumentTypeId,
+                            documentFullPathValue: l.DocumentFullPath,
+                            memoIdValue: l.MemoId,
+                            documentDetailIdValue: l.DocumentDetailId
+                        };
+                        $("#addRow").trigger("click").promise().then(function () {
+                            parameters = {
+                                documentTypeValue: 0,
+                                documentFullPathValue: '',
+                                memoIdValue: 0,
+                                documentDetailIdValue: 0
+                            };
+                        });
+                    });
+                }
+            }
+            // #endregion
+        });
+    </script>
+}

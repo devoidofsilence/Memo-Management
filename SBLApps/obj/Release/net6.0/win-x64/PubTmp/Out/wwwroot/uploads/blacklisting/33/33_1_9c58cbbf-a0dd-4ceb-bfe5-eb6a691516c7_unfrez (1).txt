@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FIXML xsi:schemaLocation="http://www.finacle.com/fixml AcctUnFreezeAdd.xsd" xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Header>
+<RequestHeader>
+<MessageKey>
+<RequestUUID>909ceeac-15e5-2e04-8acb-b70a8f719bce</RequestUUID>
+<ServiceRequestId>AcctUnFreezeAdd</ServiceRequestId>
+<ServiceRequestVersion>10.2</ServiceRequestVersion>
+<ChannelId>COR</ChannelId>
+<LanguageId></LanguageId>
+</MessageKey>
+<RequestMessageInfo>
+<BankId>1801</BankId>
+<TimeZone></TimeZone>
+<EntityId></EntityId>
+<EntityType></EntityType>
+<ArmCorrelationId></ArmCorrelationId>
+<MessageDateTime>2021-03-04T11:47:02.261</MessageDateTime>
+</RequestMessageInfo>
+<Security>
+<Token>
+<PasswordToken>
+<UserId></UserId>
+<Password></Password>
+</PasswordToken>
+</Token>
+<FICertToken></FICertToken>
+<RealUserLoginSessionId></RealUserLoginSessionId>
+<RealUser></RealUser>
+<RealUserPwd></RealUserPwd>
+<SSOTransferToken></SSOTransferToken>
+</Security>
+</RequestHeader>
+</Header>
+<Body>
+<AcctUnFreezeAddRequest>
+<AcctUnFreezeAddRq>
+<AcctId>0000701000000002</AcctId>
+</AcctUnFreezeAddRq>
+</AcctUnFreezeAddRequest>
+</Body>
+</FIXML>
+
+
+==================================
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<FIXML xmlns="http://www.finacle.com/fixml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.finacle.com/fixml AcctUnFreezeAdd.xsd">
+    <Header>
+        <ResponseHeader>
+            <RequestMessageKey>
+                <RequestUUID>909ceeac-15e5-2e04-8acb-b3248f719bce</RequestUUID>
+                <ServiceRequestId>AcctUnFreezeAdd</ServiceRequestId>
+                <ServiceRequestVersion>10.2</ServiceRequestVersion>
+                <ChannelId>COR</ChannelId>
+            </RequestMessageKey>
+            <ResponseMessageInfo>
+                <BankId>019</BankId>
+                <TimeZone>GMT+05:30</TimeZone>
+                <MessageDateTime>2022-10-18T11:24:48.106</MessageDateTime>
+            </ResponseMessageInfo>
+            <UBUSTransaction>
+                <Id/>
+                <Status/>
+            </UBUSTransaction>
+            <HostTransaction>
+                <Id/>
+                <Status>SUCCESS</Status>
+            </HostTransaction>
+            <HostParentTransaction>
+                <Id/>
+                <Status/>
+            </HostParentTransaction>
+            <CustomInfo/>
+        </ResponseHeader>
+    </Header>
+    <Body>
+        <AcctUnFreezeAddResponse>
+            <AcctUnFreezeAddRs/>
+            <AcctUnFreezeAdd_CustomData>
+                <acctId>
+                    <foracid>0000701000000002</foracid>
+                    <solId>000</solId>
+                </acctId>
+                <cifId>R000000040</cifId>
+            </AcctUnFreezeAdd_CustomData>
+        </AcctUnFreezeAddResponse>
+    </Body>
+</FIXML>

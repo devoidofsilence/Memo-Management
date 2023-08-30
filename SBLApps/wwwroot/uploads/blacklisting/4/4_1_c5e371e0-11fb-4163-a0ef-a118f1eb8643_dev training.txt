@@ -1,0 +1,178 @@
+https://creatio-global.zoom.us/w/89480355693?tk=cDNeN-IP7-xxei4-jU5JFpSKtrlmjRUKRIc6ByaVoWk.DQMAAAAU1XHfbRZHZ2x5ejlGWVJkYU5VSkRGZ1N6bEJ3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+d.gamora@creatio.com
+
+
+https://academy.creatio.com/api/jscoreapi/7.15.0/index.html
+
+
+view 
+
+DAY 5.
+=========================================================================================================================
+CLASSIC ui ( to add button )
+https://academy.creatio.com/docs/developer/interface_elements/record_page/field/overview#case-1911
+
+
+
+
+calculated field in classic UI:
+attributes: {
+			"UsrCommissionUSD": {
+				"dataValueType": Terrasoft.DataValueType.FLOAT,
+				dependencies: [
+					{
+						columns: ["UsrPriceUSD", "UsrOfferType"],
+						methodName: "calculateCommission"
+					}
+				]
+			},
+			"UsrOfferType": {
+				lookupListConfig: {
+					columns: ["UsrCommissionMultiplier"]
+				}
+			}
+
+		},
+methods: {
+			calculateCommission: function() {
+				var price = this.get("UsrPriceUSD");
+				if (!price) {
+					price = 0;
+				}
+				var offerTypeObject = this.get("UsrOfferType");
+				var coeff = 0;
+				if (offerTypeObject) {
+					coeff = offerTypeObject.UsrCommissionMultiplier;
+				}
+				var commission = price * coeff;
+				this.set("UsrCommissionUSD", commission);
+			},
+
+			onEntityInitialized: function() {
+				this.callParent(arguments);
+				this.calculateCommission();
+			},
+			
+			
+			
+		
+field validation in Freedom UI:
+https://academy.creatio.com/docs/developer/front_end_development_freedom_ui/page_customization/customize_page_fields/overview#case-2325
+validators: /**SCHEMA_VALIDATORS*/{
+			/* The validator type must contain a vendor prefix.
+			Format the validator type in PascalCase. */
+			"usr.DGValidator": {
+				validator: function (config) {
+					return function (control) {
+						let value = control.value;
+						let minValue = config.minValue;
+						let valueIsCorrect = value >= minValue;
+						var result;
+						if (valueIsCorrect) {
+							result = null;
+						} else {
+							result = {
+								"usr.DGValidator": { 
+									message: config.message
+								}
+							};
+						}
+						return result;
+					};
+				},
+				params: [
+					{
+						name: "minValue"
+					},
+					{
+						name: "message"
+					}
+				],
+				async: false
+			}
+		}/**SCHEMA_VALIDATORS*/		
+			
+			
+			
+			viewModelConfig:
+		...
+				"NumberAttribute_gtmuulo": {
+					"modelConfig": {
+						"path": "PDS.UsrPriceUSD"
+					},
+					"validators": {
+						"MySuperValidator": {
+							"type": "usr.DGValidator",
+							"params": {
+								"minValue": 30,
+								"message": "Price can not be less than 30.0"
+							}
+						}
+					}
+				},
+				"NumberAttribute_5mtdkwo": {
+					"modelConfig": {
+						"path": "PDS.UsrArea"
+					},
+					"validators": {
+						"MySuperValidator": {
+							"type": "usr.DGValidator",
+							"params": {
+								"minValue": 10,
+								"message": "Area can not be less than 10.0"
+							}
+						}
+					}
+				},
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				validation in Classic UI:
+positiveValueValidator: function(value, column) {
+				var msg = "";
+				if (value < 0) {
+					msg = this.get("Resources.Strings.ValueMustBeGreaterThanZero");
+				}
+				return {
+					invalidMessage: msg
+				};
+			},
+			setValidationConfig: function() {
+				this.callParent(arguments);
+				this.addColumnValidator("UsrPriceUSD", this.positiveValueValidator);
+				this.addColumnValidator("UsrArea", this.positiveValueValidator);
+			},
+			
+			
+			
+https://academy.creatio.com/docs/developer/application_components/static_content_bundling/overview
+
+			
+			
+			
+			
+			
+			
+			================================##############################################################################
+			
+	
+	WEB SERVICE
+	
+	-> good example (CryptographicService). && VisaDataService
+	
+	System Operation User => system settings. (
+	
+	web Hooks. ( to collect data from websites.)Nepal@123
+	
+	
